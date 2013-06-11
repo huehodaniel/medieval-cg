@@ -74,7 +74,7 @@ SRCDIRS   = src
 
 # The executable file name.
 # If not specified, current directory name or `a.out' will be used.
-PROGRAM   = duelo
+PROGRAM   = bin/duelo
 
 ## Implicit Section: change the following only when necessary.
 ##==========================================================================
