@@ -4,16 +4,15 @@ Repositório privado, não precisa de leia-me.
 # Como clonar esse repositório
 
 https://confluence.atlassian.com/pages/viewpage.action?pageId=270827678
-Siga os passos 2, 3, 4 e 6 do link, depois execute na linha de comando: 
+Siga os passos 2, 3, 4 e 6 do link, depois execute na linha de comando:  
 
-:::bash
-git clone git@bitbucket.org:Hueho/duelo-cg.git.
+	git clone git@bitbucket.org:Hueho/duelo-cg.git.
 
 Uma pasta mágica chamada duelo-cg deverá se materializar.
 
 # Não sei usar o Git!!!11!
 
-http://git-scm.com/documentation
+[http://git-scm.com/documentation](Leia:)
 
 # Como compilar
 
