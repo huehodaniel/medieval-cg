@@ -4,8 +4,12 @@ Repositório privado, não precisa de leia-me.
 # Como clonar esse repositório
 
 https://confluence.atlassian.com/pages/viewpage.action?pageId=270827678
+Siga os passos 2, 3, 4 e 6 do link, depois execute na linha de comando: 
 
-Siga os passos 2, 3, 4 e 6, depois execute na linha de comando: *git clone git@bitbucket.org:Hueho/duelo-cg.git*. Uma pasta mágica chamada duelo-cg deverá se materializar.
+:::bash
+git clone git@bitbucket.org:Hueho/duelo-cg.git.
+
+Uma pasta mágica chamada duelo-cg deverá se materializar.
 
 # Não sei usar o Git!!!11!
 
@@ -17,7 +21,7 @@ Abra a pasta no terminal, use o comando "make" para compilar, "make clean" para 
 
 # Que pastas são essas?
 
-***src/***: colocaremos o código-fonte aqui
+***src/***: colocaremos o código-fonte aqui  
 ***resources/***: colocaremos texturas, imagens e o escambau aqui
 
 # Que "Makefile" é esse?
