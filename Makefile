@@ -63,7 +63,7 @@ MY_CFLAGS =
 MY_LIBS   = -lGL -lGLU -lglut
 
 # The pre-processor options used by the cpp (man cpp for more).
-CPPFLAGS  = -Wall -std=c99
+CPPFLAGS  = -Wall -std=gnu99
 
 # The options used in linking as well as in any direct use of ld.
 LDFLAGS   =

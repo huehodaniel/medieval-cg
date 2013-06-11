@@ -1,18 +1,17 @@
-Repositório privado, não precisa de leia-me.
-...OK, vou colocar um "leia-me".
+# DUELO NO VELHO OESTE
+O JOGO ÉPICO DE TIROTEIO NO FUTURO
 
 # Como clonar esse repositório
-
-https://confluence.atlassian.com/pages/viewpage.action?pageId=270827678
+[https://confluence.atlassian.com/pages/viewpage.action?pageId=270827678]  
 Siga os passos 2, 3, 4 e 6 do link, depois execute na linha de comando:  
 
-	git clone git@bitbucket.org:Hueho/duelo-cg.git.
+	git clone git@bitbucket.org:Hueho/duelo-cg.git
 
 Uma pasta mágica chamada duelo-cg deverá se materializar.
 
 # Não sei usar o Git!!!11!
 
-[http://git-scm.com/documentation](Leia:)
+Leia: [http://git-scm.com/documentation]
 
 # Como compilar
 
@@ -30,3 +29,7 @@ Um arquivo pro programa "make" utilizar que fala quais arquivos devem ser compil
 # Porquê não esperou a gente?
 
 Porque sou afobado.
+
+# Que "README.md" é esse?
+
+O "leia-me" que você está lendo, em formato bruto de Markdown. Sintaxe é uma porcaria (mas o Gedit tem suporte nativo pelo menos). Detalhes de como escrever aqui: [http://daringfireball.net/projects/markdown/]
