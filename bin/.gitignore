@@ -1,0 +1,5 @@
+# Gambiarra. Ignora tudo nessa pasta.
+*
+# ...Menos o .gitignore
+!.gitignore
+# Assim da pra buildar direto sem enrolação

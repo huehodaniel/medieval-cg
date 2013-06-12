@@ -21,6 +21,7 @@ Abra a pasta no terminal, use o comando "make" para compilar, "make clean" para 
 
 ***src/***: colocaremos o código-fonte aqui  
 ***resources/***: colocaremos texturas, imagens e o escambau aqui
+***bin/***: aqui vai ficar o executável depois de compilado
 
 # Que "Makefile" é esse?
 
