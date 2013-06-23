@@ -83,7 +83,7 @@
  * 	Versão turbo-plus do printf() que imprime o número da linha, o nome do arquivo e a função onde ela foi chamada.
  *	Só funciona se uma váriavel global ou uma constante de macro DEBUG for setada no arquivo (logo, dá pra ligar e desligar).
  */
-#define _dprintf(fmt, ...) \
+#define dprintf(fmt, ...) \
         do { if (DEBUG) fprintf(stderr, "%s:%d:%s(): " fmt, __FILE__, \
                                 __LINE__, __func__, ##__VA_ARGS__); } while (0)
 

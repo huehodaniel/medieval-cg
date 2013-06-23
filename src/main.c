@@ -11,7 +11,7 @@
 
 int main()
 {
-    _dprintf("Olá mundo e a todos que habitam nele!\n");
+    dprintf("Olá mundo e a todos que habitam nele!\n");
     repeat(10) {
 		printf("Estou pronto!\n");
     }

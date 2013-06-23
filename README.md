@@ -1,13 +1,13 @@
-# DUELO NO VELHO OESTE
-O JOGO ÉPICO DE TIROTEIO NO FUTURO
+# BATALHA MEDIEVAL
+NÃO É MAIS VELHO-OESTE
 
 # Como clonar esse repositório
 [https://confluence.atlassian.com/pages/viewpage.action?pageId=270827678]  
 Siga os passos 2, 3, 4 e 6 do link, depois execute na linha de comando:  
 
-	git clone git@bitbucket.org:Hueho/duelo-cg.git
+	git clone git@bitbucket.org:Hueho/medieval-cg.git
 
-Uma pasta mágica chamada duelo-cg deverá se materializar.
+Uma pasta mágica chamada medieval-cg deverá se materializar.
 
 # Não sei usar o Git!!!11!
 
