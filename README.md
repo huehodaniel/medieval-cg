@@ -20,8 +20,8 @@ Abra a pasta no terminal, use o comando "make" para compilar, "make clean" para 
 # Que pastas são essas?
 
 ***src/***: colocaremos o código-fonte aqui  
-***resources/***: colocaremos texturas, imagens e o escambau aqui
-***bin/***: aqui vai ficar o executável depois de compilado
+***resources/***: colocaremos texturas, imagens e o escambau aqui  
+***bin/***: aqui vai ficar o executável depois de compilado  
 
 # Que "Makefile" é esse?
 
@@ -34,3 +34,18 @@ Porque sou afobado.
 # Que "README.md" é esse?
 
 O "leia-me" que você está lendo, em formato bruto de Markdown. Sintaxe é uma porcaria (mas o Gedit tem suporte nativo pelo menos). Detalhes de como escrever aqui: [http://daringfireball.net/projects/markdown/]
+
+# Comandos do Git
+
+git branch: lista todas as branchs locais.  
+git branch <nome>: cria uma branch local com o nome passado.  
+git checkout <nome>: muda para a branch com o nome passado.  
+git pull: pega os últimos commits do master.  
+git add . : adiciona todas as mudanças ao commit, tirando arquivos deletados.  
+git add -u: adiciona mudanças que deletam arquivos.  
+git commit: faz um commit.  
+git rebase -i master: faz rebase interativo com base na branch master.  
+git mergetool: se um rebase falhar, use para fazer o merge de cada arquivo com conflito.  
+git rebase --continue: depois do merge dar certo, use para prosseguir com o rebase anterior.  
+git rebase --abort: se quiser desistir do rebase, use para abortar.  
+git push: manda os commits feitos pro master remoto (i.e o repositório)
