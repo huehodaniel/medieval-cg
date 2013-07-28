@@ -78,6 +78,8 @@
  **/
 #define transform(body) glPushMatrix(); {body} glPopMatrix()
 
+#define glColor(x, y, z) glColor3f(x/255.0, y/255.0, z/255.0)
+
 /**
  * _dprintf(fmt, ...) - G99
  * 	Versão turbo-plus do printf() que imprime o número da linha, o nome do arquivo e a função onde ela foi chamada.
