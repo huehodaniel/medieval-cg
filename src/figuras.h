@@ -1,15 +1,8 @@
 #ifndef FIGURAS_H
 #define FIGURAS_H
 
-//Pronto
 void initFiguras();
-
-//Pronto
 void catapulta();
-
-//TODO
-
-//Rafael
 void pessoaJogo();
 
 typedef enum _muralhaEstado { _M100, _M80, _M60, _M40, _M20, _M0 } muralhaEstado;

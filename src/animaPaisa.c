@@ -120,22 +120,22 @@ void transformacoes(int key, int x, int y){
      glutPostRedisplay() ;
 }
 
-int main(int argc, char *argv[])
-{
-	int i;
-	for(i=0;i<100; i++){
-		x[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*40;
-    	y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*40;
-	}
-     glutInit(&argc,argv);
-     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB |GLUT_DEPTH);
-     glutInitWindowPosition(50,50);
-     glutInitWindowSize(600,600);
-     glutCreateWindow("Objetos 3D - OpenGL");
-     glutDisplayFunc(display);
-     glutTimerFunc(500,giraCenario,0);
-     glutTimerFunc(15000,desceLua,0);
-     glutSpecialFunc(transformacoes);
-     init();
-     glutMainLoop();
-}
+//int main(int argc, char *argv[])
+//{
+//	int i;
+//	for(i=0;i<100; i++){
+//		x[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*40;
+//    	y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*40;
+//	}
+//     glutInit(&argc,argv);
+//     glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB |GLUT_DEPTH);
+//     glutInitWindowPosition(50,50);
+//     glutInitWindowSize(600,600);
+//     glutCreateWindow("Objetos 3D - OpenGL");
+//     glutDisplayFunc(display);
+//     glutTimerFunc(500,giraCenario,0);
+//     glutTimerFunc(15000,desceLua,0);
+//     glutSpecialFunc(transformacoes);
+//     init();
+//     glutMainLoop();
+//}

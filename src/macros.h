@@ -58,6 +58,7 @@
  *				glVertex2f(0.0f, 0.5f);
  *			});
  **/
+
 #define draw(mode, body) glBegin(mode); { body } glEnd()
 
 /**
