@@ -23,6 +23,12 @@
 #define PI 3.141592654
 
 /**
+ * macrofy(body)
+ * 	Macro para criar macros, enrola elas dentro de um do-while para evitar erros toscos
+ **/
+#define macrofy(body) do { body } while(0)
+
+/**
  * range(name, start, end) - C99
  * 	Versão encurtada de um "for" para iterar pelos valores de um intervalo de números
  * 	inteiros utilizando a variavel de nome "name", começando em "start" e indo até "end" - 1.
@@ -59,7 +65,7 @@
  *			});
  **/
 
-#define draw(mode, body) glBegin(mode); { body } glEnd()
+#define draw(mode, body) macrofy(glBegin(mode); { body } glEnd();)
 
 /**
  * transform(body)
@@ -77,17 +83,31 @@
  *			});
  *		});
  **/
-#define transform(body) glPushMatrix(); {body} glPopMatrix()
+#define transform(body) macrofy(glPushMatrix(); {body} glPopMatrix();)
 
+/**
+ * glColor(x, y, z)
+ * 	Macro para definir cores em formato RGB chamando glColor3f, dividindo todos os parâmetros por 255.0. Sério,
+ * 	OpenGL, CADE A PORRA DO PADRÃO RGB
+ * 	Exemplo:
+ * 		glColor(255, 255, 0);
+ * 		glutSolidCube(100);
+ **/
 #define glColor(x, y, z) glColor3f(x/255.0, y/255.0, z/255.0)
 
 /**
- * _dprintf(fmt, ...) - G99
+ * dprintf(fmt, ...) - G99
  * 	Versão turbo-plus do printf() que imprime o número da linha, o nome do arquivo e a função onde ela foi chamada.
  *	Só funciona se uma váriavel global ou uma constante de macro DEBUG for setada no arquivo (logo, dá pra ligar e desligar).
  */
 #define dprintf(fmt, ...) \
         do { if (DEBUG) fprintf(stderr, "%s:%d:%s(): " fmt, __FILE__, \
                                 __LINE__, __func__, ##__VA_ARGS__); } while (0)
+                                
+/**
+ * console(str) - C99
+ * 	Versão minimalista do printf() que imprime uma string simples.
+ **/
+#define console(str) printf("%s\n", str)
 
 #endif /* MACROS_H */

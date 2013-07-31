@@ -65,8 +65,8 @@ int viewangZ = 0;
 float x_pos = 0;
 float y_pos = 0;
 
-#define DRAW_FUNC draw
-void draw()
+#define DRAW_FUNC drawfunc
+void drawfunc()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	transform({
@@ -74,6 +74,11 @@ void draw()
 		glRotatef(viewangY, 0, 1, 0);
 		glRotatef(viewangZ, 0, 0, 1);
 		catapulta(0);
+		
+		glTranslatef(100, 100, 0);
+		bandeira(1);
+		glTranslatef(100, 100, 0);
+		trombete();
 
 		glTranslatef(x_pos, y_pos, 0);
 		glutSolidSphere(10, 20, 20); //20
@@ -84,6 +89,7 @@ void draw()
 		glRotatef(viewangY, 0, 1, 0);
 		glRotatef(viewangZ, 0, 0, 1);
 		glTranslatef(-400, 0, 0);
+		glScalef(0.5, 0.5, 0.5);
 		pessoaJogo();
 	});
 	glFlush();

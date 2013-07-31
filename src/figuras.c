@@ -247,3 +247,69 @@ void muralha(muralhaEstado estado) {
 void castelo() {
 
 }
+
+void bandeira(int jogador) {
+	if(jogador == 1) glColor(255,0,0);
+	else glColor(0,0,255);
+	transform({
+		// Triângulo bizarro
+		glRotatef(90, 0, 0, 1);
+		draw(GL_POLYGON, {
+			glVertex3f(-25, 0, 0);
+			glVertex3f(0, 70, 0);
+			glVertex3f(25, 0, 0);
+			
+			glVertex3f(-25, 0, 0);
+			glVertex3f(-25, 0, 5);
+			
+			glVertex3f(0, 70, 5);
+			glVertex3f(0, 70, 0);
+			glVertex3f(0, 70, 5);
+			
+			glVertex3f(25, 0, 5);
+			glVertex3f(25, 0, 0);
+			glVertex3f(25, 0, 5);
+			
+			glVertex3f(-25, 0, 5);
+		});
+		glTranslatef(-25, -10, 0);
+		glColor(168, 86, 3);
+		glRotatef(90, 0, 1, 0);
+		glTranslatef(0, 0, -105);
+		gluCylinder(obj,5,5,160,20,20);
+	});
+}
+
+void trombete() {
+	glColor(242, 227, 7);
+	transform({
+		glScalef(1, 0.5, 1);
+		glutSolidTorus(10, 50, 20, 20);
+	});
+	transform({
+		glTranslatef(-80, 25, 0);
+		glRotatef(90, 0, 1, 0);
+		gluCylinder(obj, 7.5, 7.5, 160, 20, 20);
+		glTranslatef(0, 0, -40);
+		gluCylinder(obj, 15, 7.5, 40, 20, 20);
+		glTranslatef(0, 0, 200);
+		gluCylinder(obj, 7.5, 5, 40, 20, 20);
+	});
+	transform({
+		glTranslatef(-30, 50, 0);
+		repeat(3) {
+			transform({
+				glRotatef(90, 1, 0, 0);
+				gluCylinder(obj, 5, 5, 20, 20, 20);
+			});
+			transform({
+				glRotatef(90, 1, 0, 0);
+				gluDisk(obj, 0, 10, 20, 20);
+				gluCylinder(obj, 10, 10, 3, 20, 20);
+				glTranslatef(0, 3, 0);
+				gluDisk(obj, 0, 10, 20, 20);
+			});
+			glTranslatef(30, 0, 0);
+		}
+	});
+}
