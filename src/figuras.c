@@ -241,6 +241,161 @@ void pessoaMorta() {
 }
 
 void muralha(muralhaEstado estado) {
+		//int i, k=0;
+		transform({
+			//glColor(255, 127, 127);
+			glColor(168, 86, 3);
+			glScalef(5, 5, 5);
+
+			//de baixo pra cima esquerda direita
+			//glTranslatef(50, -100, 50);
+			glTranslatef(0,-30,0);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+		
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 14, -77);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+		
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 14, -77);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+		
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 14, -77);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+		
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 14, -77);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+		
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 14, -77);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+		
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 14);
+			glutSolidCube(11);
+
+		});
+
+		transform({
+				
+				glTranslatef(0, 0, 0);
+				glScalef(10, 10, 51);
+				glTranslatef(0, 30, 4);
+				glutSolidCube(11);
+			
+			});
+
+		transform({
+
+			glTranslatef(0, 420, -20);
+			glScalef(10, 10, 10);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 15);
+			glutSolidCube(11);
+			
+			glTranslatef(0, 0, 15);
+			glutSolidCube(11);
+
+			glTranslatef(0, 0, 15);
+			glutSolidCube(11);
+
+
+		});
+
+			
 
 }
 

@@ -5,6 +5,7 @@
 #include <GL/glut.h>
 
 #include "figuras.h"
+#include "cenario.h"
 #include "macros.h"
 
 // String cabeçalho
@@ -56,6 +57,7 @@ void misc()
 	C = v*v;
 
 	initFiguras();
+	initCenario();
 }
 
 int ang = 0;
@@ -70,6 +72,48 @@ void drawfunc()
 {
 	glClear(GL_COLOR_BUFFER_BIT);
 	transform({
+        glRotatef(viewangX, 1, 0, 0);
+		glRotatef(viewangY, 0, 1, 0);
+		glRotatef(viewangZ, 0, 0, 1);
+        cenario();
+        transform({
+            glRotatef(90,0,1,0);
+            glTranslatef(0,-330,-700);
+            glScalef(0.2,0.2,0.2);
+            catapulta(0);
+        });
+        transform({
+            glRotatef(-90,0,1,0);
+            glTranslatef(0,-330,-700);
+            glScalef(0.2,0.2,0.2);
+            catapulta(0);
+
+        });
+        transform({
+            glTranslatef(-550,-330,0);
+            glScalef(0.2,0.2,0.2);
+            muralha(0);
+        });
+        transform({
+            glTranslatef(550,-330,0);
+            glScalef(0.2,0.2,0.2);
+            muralha(0);
+        });
+        transform({
+            glRotatef(90,0,1,0);
+            glTranslatef(0,-330,720);
+            glScalef(0.05,0.05,0.05);
+            pessoaJogo();
+        });
+        transform({
+            glRotatef(-90,0,1,0);
+            glTranslatef(0,-330,720);
+            glScalef(0.05,0.05,0.05);
+            pessoaJogo();
+        });
+
+    });
+	/*transform({
 		glRotatef(viewangX, 1, 0, 0);
 		glRotatef(viewangY, 0, 1, 0);
 		glRotatef(viewangZ, 0, 0, 1);
@@ -91,7 +135,8 @@ void drawfunc()
 		glTranslatef(-400, 0, 0);
 		glScalef(0.5, 0.5, 0.5);
 		pessoaJogo();
-	});
+	});*/
+
 	glFlush();
 }
 
