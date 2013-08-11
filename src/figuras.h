@@ -3,7 +3,7 @@
 
 void initFiguras();
 void catapulta(float angulo);
-void pessoaJogo();
+void pessoa();
 
 typedef enum _muralhaEstado { _M100, _M80, _M60, _M40, _M20, _M0 } muralhaEstado;
 

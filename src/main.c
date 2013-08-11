@@ -66,6 +66,7 @@ int viewangY = 0;
 int viewangZ = 0;
 float x_pos = 0;
 float y_pos = 0;
+int pessoa_tipo_pessoa = 1, pessoa_estagio_anima = 0;
 
 #define DRAW_FUNC drawfunc
 void drawfunc()
@@ -103,39 +104,43 @@ void drawfunc()
             glRotatef(90,0,1,0);
             glTranslatef(0,-330,720);
             glScalef(0.05,0.05,0.05);
-            pessoaJogo();
+            pessoa(pessoa_tipo_pessoa);
         });
         transform({
             glRotatef(-90,0,1,0);
             glTranslatef(0,-330,720);
             glScalef(0.05,0.05,0.05);
-            pessoaJogo();
+            pessoa(pessoa_tipo_pessoa);
         });
 
     });
-	/*transform({
-		glRotatef(viewangX, 1, 0, 0);
-		glRotatef(viewangY, 0, 1, 0);
-		glRotatef(viewangZ, 0, 0, 1);
-		catapulta(0);
-		
-		glTranslatef(100, 100, 0);
-		bandeira(1);
-		glTranslatef(100, 100, 0);
-		trombete();
 
-		glTranslatef(x_pos, y_pos, 0);
-		glutSolidSphere(10, 20, 20); //20
-	});
+	//==========================
 
-	transform({
-		glRotatef(viewangX, 1, 0, 0);
-		glRotatef(viewangY, 0, 1, 0);
-		glRotatef(viewangZ, 0, 0, 1);
-		glTranslatef(-400, 0, 0);
-		glScalef(0.5, 0.5, 0.5);
-		pessoaJogo();
-	});*/
+
+//	transform({
+//		glRotatef(viewangX, 1, 0, 0);
+//		glRotatef(viewangY, 0, 1, 0);
+//		glRotatef(viewangZ, 0, 0, 1);
+//		catapulta(0);
+//
+//		glTranslatef(100, 100, 0);
+//		bandeira(1);
+//		glTranslatef(100, 100, 0);
+//		trombete();
+//
+//		glTranslatef(x_pos, y_pos, 0);
+//		glutSolidSphere(10, 20, 20); //20
+//	});
+
+//	transform({
+//		glRotatef(viewangX, 1, 0, 0);
+//		glRotatef(viewangY, 0, 1, 0);
+//		glRotatef(viewangZ, 0, 0, 1);
+//		glTranslatef(-400, 0, 0);
+//		glScalef(0.5, 0.5, 0.5);
+//		pessoa(1);
+//	});
 
 	glFlush();
 }
@@ -276,6 +281,15 @@ void __nullDrawFunc() {}
 
 #define GL_start() glutMainLoop()
 
+void anima_func( int value )
+{
+	//TODO
+	/* ATUALIZAR TODOS OS PARAMETROS DAS ANIMACOES */
+
+	glutPostRedisplay();
+	glutTimerFunc( 10, anima_func, 1 ); /* Faz a funcao anima_func continuar sendo chamada infinitamente */
+}
+
 /**
  * Função principal
  **/
@@ -287,5 +301,6 @@ int main(int argc, char *argv[])
 	GL_miscSetUp();
 	GL_draw();
 	GL_start();
+	glutTimerFunc( 10, anima_func, 1 );
 	return 0;
 }

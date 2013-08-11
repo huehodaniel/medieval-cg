@@ -13,13 +13,14 @@ float angX = 15;
 float angY = 0;
 float moonHeight = 12.0;
 void initCenario(){
+	int i;
     obj = gluNewQuadric();
     gluQuadricDrawStyle(obj,GLU_FILL);
-    for(int i=0;i<NUM_TREES/2; i++){
+    for(i=0;i<NUM_TREES/2; i++){
         x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*20)-40;
         y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140;
     }
-    for(int i=NUM_TREES/2;i<NUM_TREES; i++){
+    for(i=NUM_TREES/2;i<NUM_TREES; i++){
         x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*20)+40;
         y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140;
     }
