@@ -77,7 +77,7 @@ void drawfunc()
         glRotatef(viewangX, 1, 0, 0);
 		glRotatef(viewangY, 0, 1, 0);
 		glRotatef(viewangZ, 0, 0, 1);
-        cenario();
+        /*cenario();
         transform({
             glRotatef(90,0,1,0);
             glTranslatef(0,-330,-700);
@@ -92,16 +92,16 @@ void drawfunc()
 
         });
         transform({
-            glTranslatef(-550,-330,0);
+            glTranslatef(-550,-300,-40);
             glScalef(0.2,0.2,0.2);
             muralha(0);
-        });
+        });*/
         transform({
-            glTranslatef(550,-330,0);
-            glScalef(0.2,0.2,0.2);
+            //glTranslatef(550,-300,-40);
+            //glScalef(0.2,0.2,0.2);
             muralha(0);
         });
-        transform({
+        /*transform({
             glRotatef(90,0,1,0);
             glTranslatef(0,-330,720);
             glScalef(0.05,0.05,0.05);
@@ -112,7 +112,7 @@ void drawfunc()
             glTranslatef(0,-330,720);
             glScalef(0.05,0.05,0.05);
             pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
-        });
+        });*/
     });
 
 	//==========================

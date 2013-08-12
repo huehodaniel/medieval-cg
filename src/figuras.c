@@ -154,7 +154,7 @@ void pessoa(int tipo_pessoa, double estagio_anima) {
 			});
 			glColor3f( 0.0, 1.0, 0.0 );
 			transform({
-				glTranslatef( -10.0, 0.0, -140.0);
+				glTranslatef( -10.0, 0.0, -130.0);
 				glRotatef( -90.0, 0.0, 1.0, 0.0 );
 				glScaled( 0.5, 0.2, 0.2 );
 				glutSolidSphere(100.0, 20, 50);
@@ -315,7 +315,7 @@ void pessoa(int tipo_pessoa, double estagio_anima) {
 			transform({
 				glColor3f( 0.0, 1.0, 0.0 );
 				transform({
-					glTranslatef( -10.0, 0.0, -140.0);
+					glTranslatef( -10.0, 0.0, -130.0);
 					glRotatef( -90.0, 0.0, 1.0, 0.0 );
 
 					/* Ergue ante-braço */
@@ -449,161 +449,255 @@ void pessoaMorta() {
 }
 
 void muralha(muralhaEstado estado) {
-	//int i, k=0;
-	transform({
-		//glColor(255, 127, 127);
-		glColor(168, 86, 3);
-		glScalef(5, 5, 5);
 
-		//de baixo pra cima esquerda direita
-		//glTranslatef(50, -100, 50);
-		glTranslatef(0,-30,0);
-		glutSolidCube(11);
+	estado = 0;
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+	int tiro1 = 11, tiro2 = 11, tiro3 = 11, tiro4 = 11, tiro5 = 11, tiro6 = 11, tiro7 = 11, tiro8 = 11, tiroAux1 = 51, tiroAux2 = 4;
+	switch(estado){
+		case 1: tiro1 = 0, tiroAux1 = 40, tiroAux2 = 3; break;
+		case 2: tiro1 = 0, tiro2 = 0, tiroAux1 = 40, tiroAux2 = 3; break;
+		case 3: tiro1 = 0, tiro2 = 0, tiro3 = 0, tiroAux1 = 40, tiroAux2 = 3; break;
+		case 4: tiro1 = 0, tiro2 = 0, tiro3 = 0, tiro4 = 0, tiroAux1 = 40, tiroAux2 = 3; break;
+		case 5: tiro1 = 0, tiro2 = 0, tiro3 = 0, tiro4 = 0, tiro5 = 0, tiroAux1 = 40, tiroAux2 = 3; break;
+		case 6: return; break;
+		default: break;
+	}
+		transform({
+			glTranslatef(-180,-120,0);
+			glRotatef( 90.0, 0.0, 1.0, 0.0 );
+			transform({
+				transform({
+					glColor(168, 86, 3);
+					glScalef(5, 5, 5);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					//PARTE 1
+					glTranslatef(0,-30,-7);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
 
-		glTranslatef(0, 14, -77);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					//PARTE 2
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 13, -97);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 14, -77);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
+			
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
+				
+				
+					//PARTE 3
+					glTranslatef(0,13,-97);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 14, -77);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro6);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
 
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 14, -77);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 14, -77);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 14);
-		glutSolidCube(11);
-
-	});
-
-	transform({
-
-		glTranslatef(0, 0, 0);
-		glScalef(10, 10, 51);
-		glTranslatef(0, 30, 4);
-		glutSolidCube(11);
-
-	});
-
-	transform({
-
-		glTranslatef(0, 420, -20);
-		glScalef(10, 10, 10);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 15);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 15);
-		glutSolidCube(11);
-
-		glTranslatef(0, 0, 15);
-		glutSolidCube(11);
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
 
 
-	});
+					//PARTE 4
+
+					glTranslatef(0, 13, -97);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro5);
+			
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+
+					/////
+
+					//PARTE 5
+					glTranslatef(0,13,-97);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
 
 
+					//PARTE 6
+
+					glTranslatef(0, 13, -97);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+			
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+
+				
+					//PARTE 7
+					glTranslatef(0,13,-97);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro4);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+
+					glTranslatef(0, 0, 13);
+					glutSolidCube(tiro3);
+
+				});
+
+		
+
+				transform({
+					glTranslatef(0, 0, 0);
+					glScalef(10, 10, tiroAux1);
+					glTranslatef(0, 33, tiroAux2);
+					glutSolidCube(tiro2);
+
+				});
+
+				transform({
+
+	
+
+						glTranslatef(0, 450, -20);
+						glScalef(10, 10, 10);
+						glutSolidCube(tiro2);
+
+						glTranslatef(0, 0, 15);
+						glutSolidCube(tiro2);
+
+						glTranslatef(0, 0, 15);
+						glutSolidCube(tiro1);
+
+						glTranslatef(0, 0, 15);
+						glutSolidCube(tiro1);
+
+
+				});
+	
+			});
+
+		});
 
 }
 
