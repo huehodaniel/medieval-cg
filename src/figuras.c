@@ -419,7 +419,7 @@ void pessoa(int tipo_pessoa, double estagio_anima) {
 			glTranslatef( 0.0, 200.0, -40.0);
 			glRotatef( (40.0)*(estagio_anima/100.0), 1.0, 0.0, 0.0 );
 			glTranslatef( 0.0, 0.0, -120.0);
-			glRotatef( (-60.0)*(estagio_anima/100.0), 1.0, 0.0, 0.0 );
+			//glRotatef( (-60.0)*(estagio_anima/100.0), 1.0, 0.0, 0.0 );
 			glTranslatef( 0.0, -240.0, 130.0);
 
 			glTranslatef( -110.0, 240.0, -130.0);

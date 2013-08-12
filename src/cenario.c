@@ -12,6 +12,7 @@ int objId = 1;
 float angX = 15;
 float angY = 0;
 float moonHeight = 12.0;
+
 void initCenario(){
 	int i;
     obj = gluNewQuadric();
@@ -25,6 +26,7 @@ void initCenario(){
         y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140;
     }
 }
+
 void drawBranches(float x, float y){
     transform({
         glScalef(5,5,5);
