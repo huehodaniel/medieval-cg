@@ -79,7 +79,7 @@ void catapulta(float angulo) {
  * 	- 2 pessoaDerrota
  * 	- 3 pessoaMorte
  * 	*/
-void pessoa(int tipo_pessoa, int estagio_anima) {
+void pessoa(int tipo_pessoa, double estagio_anima) {
 
 	switch (tipo_pessoa) {
 	/* pessoaJogo */
@@ -317,17 +317,24 @@ void pessoa(int tipo_pessoa, int estagio_anima) {
 				transform({
 					glTranslatef( -10.0, 0.0, -140.0);
 					glRotatef( -90.0, 0.0, 1.0, 0.0 );
+
 					/* Ergue ante-braço */
 					/* ---------------------- */
 					glTranslatef( 40.0, 0.0, 0.0);
-					glRotatef( -70.0, 0.0, 0.0, 1.0 );
+					/* Animacao de levantar o braço */
+					glRotatef( (-70.0)*(estagio_anima/100.0), 0.0, 0.0, 1.0 );
 					glTranslatef( -40.0, 0.0, 0.0);
 					/* ---------------------- */
+
 					glScaled( 0.5, 0.2, 0.2 );
 					glutSolidSphere(100.0, 20, 50);
 				});
 				glColor3f( 0.0, 0.0, 1.0 );
 				transform({
+
+					glRotatef( (40.0)*(estagio_anima/100.0), 1.0, 0.0, 0.0 );
+					glTranslatef( 0.0, -90.0, -50.0);
+
 					glTranslatef( -10.0, 90.0, -130.0);
 					glScaled( 1.0, 1.0, 1.0 );
 					glutSolidSphere(20.0, 20, 50);
@@ -409,6 +416,12 @@ void pessoa(int tipo_pessoa, int estagio_anima) {
 			});
 		});
 		transform({
+			glTranslatef( 0.0, 200.0, -40.0);
+			glRotatef( (40.0)*(estagio_anima/100.0), 1.0, 0.0, 0.0 );
+			glTranslatef( 0.0, 0.0, -120.0);
+			glRotatef( (-60.0)*(estagio_anima/100.0), 1.0, 0.0, 0.0 );
+			glTranslatef( 0.0, -240.0, 130.0);
+
 			glTranslatef( -110.0, 240.0, -130.0);
 			glRotatef( -40.0, 0.0, 1.0, 0.0 );
 			glRotatef( 10.0, 0.0, 0.0, 1.0 );
@@ -645,22 +658,21 @@ void trombete() {
 		glTranslatef(0, 0, 200);
 		gluCylinder(obj, 7.5, 5, 40, 20, 20);
 	});
-	//TODO
-	//	transform({
-	//		glTranslatef(-30, 50, 0);
-	//		repeat(3) {
-	//			transform({
-	//				glRotatef(90, 1, 0, 0);
-	//				gluCylinder(obj, 5, 5, 20, 20, 20);
-	//			});
-	//			transform({
-	//				glRotatef(90, 1, 0, 0);
-	//				gluDisk(obj, 0, 10, 20, 20);
-	//				gluCylinder(obj, 10, 10, 3, 20, 20);
-	//				glTranslatef(0, 3, 0);
-	//				gluDisk(obj, 0, 10, 20, 20);
-	//			});
-	//			glTranslatef(30, 0, 0);
-	//		}
-	//	});
+		transform({
+			glTranslatef(-30, 50, 0);
+			repeat(3) {
+				transform({
+					glRotatef(90, 1, 0, 0);
+					gluCylinder(obj, 5, 5, 20, 20, 20);
+				});
+				transform({
+					glRotatef(90, 1, 0, 0);
+					gluDisk(obj, 0, 10, 20, 20);
+					gluCylinder(obj, 10, 10, 3, 20, 20);
+					glTranslatef(0, 3, 0);
+					gluDisk(obj, 0, 10, 20, 20);
+				});
+				glTranslatef(30, 0, 0);
+			}
+		});
 }

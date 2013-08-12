@@ -66,7 +66,8 @@ int viewangY = 0;
 int viewangZ = 0;
 float x_pos = 0;
 float y_pos = 0;
-int pessoa_tipo_pessoa = 1, pessoa_estagio_anima = 0;
+int pessoa_tipo_pessoa = 1;
+double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 1.0;
 
 #define DRAW_FUNC drawfunc
 void drawfunc()
@@ -104,15 +105,14 @@ void drawfunc()
             glRotatef(90,0,1,0);
             glTranslatef(0,-330,720);
             glScalef(0.05,0.05,0.05);
-            pessoa(pessoa_tipo_pessoa);
+            pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
         });
         transform({
             glRotatef(-90,0,1,0);
             glTranslatef(0,-330,720);
             glScalef(0.05,0.05,0.05);
-            pessoa(pessoa_tipo_pessoa);
+            pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
         });
-
     });
 
 	//==========================
@@ -133,13 +133,14 @@ void drawfunc()
 //		glutSolidSphere(10, 20, 20); //20
 //	});
 
+	//Mostrar apenas a pessoa
 //	transform({
 //		glRotatef(viewangX, 1, 0, 0);
-//		glRotatef(viewangY, 0, 1, 0);
+//		glRotatef(viewangY-90, 0, 1, 0);
 //		glRotatef(viewangZ, 0, 0, 1);
 //		glTranslatef(-400, 0, 0);
 //		glScalef(0.5, 0.5, 0.5);
-//		pessoa(1);
+//		pessoa(1, pessoa_estagio_anima);
 //	});
 
 	glFlush();
@@ -283,11 +284,18 @@ void __nullDrawFunc() {}
 
 void anima_func( int value )
 {
+	/* Animacao de vitoria */
+	if(pessoa_estagio_anima > 100.0 || pessoa_estagio_anima < 0.0)
+	{
+		pessoa_estagio_incremento *= -1;
+	}
+	pessoa_estagio_anima += pessoa_estagio_incremento;
+
 	//TODO
 	/* ATUALIZAR TODOS OS PARAMETROS DAS ANIMACOES */
 
-	glutPostRedisplay();
 	glutTimerFunc( 10, anima_func, 1 ); /* Faz a funcao anima_func continuar sendo chamada infinitamente */
+	glutPostRedisplay();
 }
 
 /**
@@ -300,7 +308,7 @@ int main(int argc, char *argv[])
 	GL_intSetUp();
 	GL_miscSetUp();
 	GL_draw();
-	GL_start();
 	glutTimerFunc( 10, anima_func, 1 );
+	GL_start();
 	return 0;
 }
