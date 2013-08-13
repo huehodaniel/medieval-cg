@@ -464,7 +464,7 @@ void muralha(muralhaEstado estado) {
 	}
 		transform({
 			glTranslatef(-180,-120,0);
-			glRotatef( 90.0, 0.0, 1.0, 0.0 );
+			//glRotatef( 90.0, 0.0, 1.0, 0.0 );
 			transform({
 				transform({
 					glColor(168, 86, 3);

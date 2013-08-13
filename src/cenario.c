@@ -14,16 +14,25 @@ float angY = 0;
 float moonHeight = 12.0;
 
 void initCenario(){
-	int i;
     obj = gluNewQuadric();
     gluQuadricDrawStyle(obj,GLU_FILL);
-    for(i=0;i<NUM_TREES/2; i++){
-        x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*20)-40;
-        y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140;
+    int spreadTrees = 200;//(NUM_TREES/100 + 1)*20;
+
+    range(i, 0, NUM_TREES/4){
+        x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*spreadTrees)-1.5*spreadTrees;
+        y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140 - 180;
     }
-    for(i=NUM_TREES/2;i<NUM_TREES; i++){
-        x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*20)+40;
-        y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140;
+    range(i, NUM_TREES/4, NUM_TREES/2){
+        x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*spreadTrees)-1.5*spreadTrees;
+        y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140 + 180;
+    }
+    range(i, NUM_TREES/2, 3*NUM_TREES/4){
+        x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*spreadTrees)+1.5*spreadTrees;
+        y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140 - 180;
+    }
+    range(i, 3*NUM_TREES/4, NUM_TREES){
+        x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*spreadTrees)+1.5*spreadTrees;
+        y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140 + 180;
     }
 }
 
@@ -58,13 +67,13 @@ void cenario(){
         transform({//desenha chão
             glColor3f(0,0.2,0);
             glTranslatef(0,-350,0);
-            glScalef(2,0.001,2);
-            glutSolidCube(800);
+            glScalef(4,0.001,2);
+            glutSolidCube(3200);
         });
         transform({//desenha rio
             glColor3f(0,0,1);
             glTranslatef(0,-345,0);
-            glScalef(0.2,0.003,2);
+            glScalef(0.2,0.003,8);
             glutSolidCube(800);
         });
         int i;

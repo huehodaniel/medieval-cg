@@ -1,9 +1,9 @@
 #ifndef CENARIO_H
 #define CENARIO_H
 
-#define NUM_TREES 50
+#define NUM_TREES 240
 
-float x[100], y[100];
+float x[NUM_TREES], y[NUM_TREES];
 
 void drawBranches(float x, float y);
 

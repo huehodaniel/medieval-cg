@@ -7,8 +7,9 @@
 #include "figuras.h"
 #include "cenario.h"
 #include "macros.h"
+#include "iluminacao.h"
 
-#define DEBUG 1
+#define DEBUG 0
 
 // String cabeçalho
 #define HEADER "-- Computação Grafica, turma de 2013, vespertino --"
@@ -24,7 +25,6 @@ const int WINDOW_SIZE_X = 800, WINDOW_SIZE_Y = 600;
  * Funções e variáveis para interação e desenho
  * - todas as funções que sejam ponto de entrada para o GLUT devem ser precedidas de um define criando um alias para a função
  * -- Mouse: #define MOUSE_FUNC <nome_da_função>
-
  * -- Desenho: #define DRAW_FUNC <nome_da_função>
  * -- Teclado: #define KBD_FUNC <nome_da_função>
  * -- Teclado (soltar tecla): #define KBD_UP_FUNC <nome_da_função>
@@ -46,7 +46,7 @@ float deltaY(int x, float C) {
 }
 
 //Vetor de estados do teclado (para permitir multiplas teclas pressionadas)
-bool keystate[256];
+bool keystate[256], spkeystate[256];
 
 #define MISC_FUNC misc
 void misc()
@@ -54,19 +54,25 @@ void misc()
 	// determinando face sólida para polígonos
 	glPolygonMode(GL_FRONT, GL_FILL);
 	// determinando background preto
-	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glClearColor(0.1, 0.6, 1.0, 0.0);
 	// Carregando matriz identidade
-	glMatrixMode(GL_MODELVIEW);
+	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	// Carregando modo de visualização ortográfica
 	int wx = WINDOW_SIZE_X/2, wy = WINDOW_SIZE_Y/2;
-	glOrtho(-SCALE*wx, SCALE*wx, -SCALE*wy, SCALE*wy, -SCALE*wx, SCALE*wx);
+	//glOrtho(-SCALE*wx, SCALE*wx, -SCALE*wy, SCALE*wy, -SCALE*wx, SCALE*wx);
+    gluPerspective(90,  wx/(wy*1.0),  0,  WINDOW_SIZE_X);
 
     glutIgnoreKeyRepeat(true);
 
 	initFiguras();
 	initCenario();
-    range(i, 0, 255) keystate[i] = false;
+    initLight();
+
+    glMatrixMode(GL_MODELVIEW);
+    //gluLookAt(0, 0, 0, 0, 0, 0, 0, 1, 0);
+
+    range(i, 0, 255) keystate[i] = spkeystate[i] = false;
 }
 
 // Angulos de visão
@@ -142,59 +148,82 @@ void keyboardOp() {
 		glutPostRedisplay();
 	}
 
+    /* Rotacao em Y */
+	if(spkeystate[GLUT_KEY_LEFT]) {
+		viewangY--;
+		glutPostRedisplay();
+	} else if(spkeystate[GLUT_KEY_RIGHT]) {
+		viewangY++;
+		glutPostRedisplay();
+	}
+
+	/* Rotacao em X */
+	if(spkeystate[GLUT_KEY_DOWN]) {
+		viewangX++;
+		glutPostRedisplay();
+	} else if(spkeystate[GLUT_KEY_UP]) {
+		viewangX--;
+		glutPostRedisplay();
+	}
+
 }
 
 #define DRAW_FUNC drawfunc
 void drawfunc()
 {
     keyboardOp();
-	glClear(GL_COLOR_BUFFER_BIT);
-	transform({
-        glRotatef(viewangX, 1, 0, 0);
-		glRotatef(viewangY, 0, 1, 0);
-		glRotatef(viewangZ, 0, 0, 1);
-        cenario();
-        transform({
-            glRotatef(90,0,1,0);
-            glTranslatef(0,-330,-700);
-            glScalef(0.2,0.2,0.2);
-            catapulta(0);
-        });
-        transform({
-            glRotatef(-90,0,1,0);
-            glTranslatef(0,-330,-700);
-            glScalef(0.2,0.2,0.2);
-            catapulta(0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glEnable(GL_DEPTH_TEST);
+    glNormal3d(0, 1, 0);
+    transform({
+        glTranslatef(0, 0, -WINDOW_SIZE_X*1.5);
+	    transform({
+            glRotatef(viewangX, 1, 0, 0);
+		    glRotatef(viewangY, 0, 1, 0);
+		    glRotatef(viewangZ, 0, 0, 1);
+            cenario();
+            transform({
+                glRotatef(90,0,1,0);
+                glTranslatef(0,-330,-700);
+                glScalef(0.2,0.2,0.2);
+                catapulta(0);
+            });
+            transform({
+                glRotatef(-90,0,1,0);
+                glTranslatef(0,-330,-700);
+                glScalef(0.2,0.2,0.2);
+                catapulta(0);
 
+            });
+            transform({
+                glTranslatef(-550,-330,0);
+                glScalef(0.2,0.2,0.2);
+                muralha(0);
+            });
+            transform({
+                glTranslatef(550,-330,0);
+                glScalef(0.2,0.2,0.2);
+                muralha(0);
+            });
+            transform({
+                glRotatef(90,0,1,0);
+                glTranslatef(0,-330,720);
+                glScalef(0.05,0.05,0.05);
+                pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
+                glColor(255, 255, 255);
+                glTranslatef(0, y1_pos, - x1_pos);
+		        glutSolidSphere(200, 20, 20);
+            });
+            transform({
+                glRotatef(-90,0,1,0);
+                glTranslatef(0,-330,720);
+                glScalef(0.05,0.05,0.05);
+                pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
+                glColor(255, 255, 255);
+                glTranslatef(0, y2_pos, - x2_pos);
+		        glutSolidSphere(200, 20, 20);
+            });    
         });
-        transform({
-            glTranslatef(-550,-330,0);
-            glScalef(0.2,0.2,0.2);
-            muralha(0);
-        });
-        transform({
-            glTranslatef(550,-330,0);
-            glScalef(0.2,0.2,0.2);
-            muralha(0);
-        });
-        transform({
-            glRotatef(90,0,1,0);
-            glTranslatef(0,-330,720);
-            glScalef(0.05,0.05,0.05);
-            pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
-            glColor(255, 255, 255);
-            glTranslatef(0, y1_pos, - x1_pos);
-		    glutSolidSphere(200, 20, 20);
-        });
-        transform({
-            glRotatef(-90,0,1,0);
-            glTranslatef(0,-330,720);
-            glScalef(0.05,0.05,0.05);
-            pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
-            glColor(255, 255, 255);
-            glTranslatef(0, y2_pos, - x2_pos);
-		    glutSolidSphere(200, 20, 20);
-        });    
     });
 
 	//==========================
@@ -258,24 +287,15 @@ void keyboardUp(unsigned char key, int x, int y) {
 
 #define SPKEY_FUNC spkeys
 void spkeys(int key, int x, int y) {
+	dprintf("%d\n", key);
+    spkeystate[key] = true;
+}
 
-	/* Rotacao em Y */
-	if(key == GLUT_KEY_LEFT) {
-		viewangY--;
-		glutPostRedisplay();
-	} else if(key == GLUT_KEY_RIGHT) {
-		viewangY++;
-		glutPostRedisplay();
-	}
 
-	/* Rotacao em X */
-	if(key == GLUT_KEY_DOWN) {
-		viewangX++;
-		glutPostRedisplay();
-	} else if(key == GLUT_KEY_UP) {
-		viewangX--;
-		glutPostRedisplay();
-	}
+#define SPKEY_UP_FUNC spkeysUp
+void spkeysUp(int key, int x, int y) {
+	dprintf("%d\n", key);
+    spkeystate[key] = false;
 }
 
 /**
@@ -324,6 +344,10 @@ void GL_windowSetUp(int* argc, char *argv[])
 #define SPKEY_FUNC NULL
 #endif
 
+#ifndef SPKEY_UP_FUNC
+#define SPKEY_UP_FUNC NULL
+#endif
+
 #ifndef MOUSE_FUNC
 #define MOUSE_FUNC NULL
 #endif
@@ -338,6 +362,7 @@ void GL_intSetUp()
 	glutKeyboardFunc(KBD_FUNC);
     glutKeyboardUpFunc(KBD_UP_FUNC);
 	glutSpecialFunc(SPKEY_FUNC);
+    glutSpecialUpFunc(SPKEY_UP_FUNC);
 	glutMouseFunc(MOUSE_FUNC);
 	glutPassiveMotionFunc(MOUSEMOV_FUNC);
 }
