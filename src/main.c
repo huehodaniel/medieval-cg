@@ -45,36 +45,6 @@ float deltaY(int x, float C) {
 	return 1 - G*(2*x + 1)/C;
 }
 
-//Vetor de estados do teclado (para permitir multiplas teclas pressionadas)
-bool keystate[256], spkeystate[256];
-
-#define MISC_FUNC misc
-void misc()
-{
-	// determinando face sólida para polígonos
-	glPolygonMode(GL_FRONT, GL_FILL);
-	// determinando background preto
-	glClearColor(0.1, 0.6, 1.0, 0.0);
-	// Carregando matriz identidade
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	// Carregando modo de visualização ortográfica
-	int wx = WINDOW_SIZE_X/2, wy = WINDOW_SIZE_Y/2;
-	//glOrtho(-SCALE*wx, SCALE*wx, -SCALE*wy, SCALE*wy, -SCALE*wx, SCALE*wx);
-    gluPerspective(90,  wx/(wy*1.0),  0,  WINDOW_SIZE_X);
-
-    glutIgnoreKeyRepeat(true);
-
-	initFiguras();
-	initCenario();
-    initLight();
-
-    glMatrixMode(GL_MODELVIEW);
-    //gluLookAt(0, 0, 0, 0, 0, 0, 0, 1, 0);
-
-    range(i, 0, 255) keystate[i] = spkeystate[i] = false;
-}
-
 // Angulos de visão
 int ang = 0;
 int viewangX = 0;
@@ -89,6 +59,54 @@ int pessoa_tipo_pessoa = 1;
 double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 1.0;
 
 bool charging_p1 = false, charging_p2 = false;
+
+//Vetor de estados do teclado (para permitir multiplas teclas pressionadas)
+bool keystate[256], spkeystate[256];
+
+void anima_func(int value)
+{
+	/* Animacao de vitoria */
+	if(pessoa_estagio_anima > 100.0 || pessoa_estagio_anima < 0.0)
+	{
+		pessoa_estagio_incremento *= -1;
+	}
+	pessoa_estagio_anima += pessoa_estagio_incremento;
+
+	//TODO
+	/* ATUALIZAR TODOS OS PARAMETROS DAS ANIMACOES */
+
+	glutTimerFunc( 10, anima_func, 1 ); /* Faz a funcao anima_func continuar sendo chamada infinitamente */
+	glutPostRedisplay();
+}
+
+#define MISC_FUNC misc
+void misc()
+{
+	// determinando face sólida para polígonos
+	glPolygonMode(GL_FRONT, GL_FILL);
+	// determinando background preto
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+	//glClearColor(0.1, 0.6, 1.0, 0.0);
+	// Carregando matriz identidade
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	// Carregando modo de visualização ortográfica
+	int wx = WINDOW_SIZE_X/2, wy = WINDOW_SIZE_Y/2;
+	glOrtho(-SCALE*wx, SCALE*wx, -SCALE*wy, SCALE*wy, -SCALE*wx, SCALE*wx);
+    //gluPerspective(90,  wx/(wy*1.0),  0,  WINDOW_SIZE_X);
+
+    glutIgnoreKeyRepeat(true);
+
+	initFiguras();
+	initCenario();
+    initLight();
+
+    glMatrixMode(GL_MODELVIEW);
+    //gluLookAt(0, 0, 0, 0, 0, 0, 0, 1, 0);
+
+    range(i, 0, 255) keystate[i] = spkeystate[i] = false;
+    glutTimerFunc( 10, anima_func, 1 );
+}
 
 void shoot_p1(int speed) {
     repeat(140) {
@@ -175,7 +193,7 @@ void drawfunc()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnable(GL_DEPTH_TEST);
     glNormal3d(0, 1, 0);
-    transform({
+    /*transform({
         glTranslatef(0, 0, -WINDOW_SIZE_X*1.5);
 	    transform({
             glRotatef(viewangX, 1, 0, 0);
@@ -192,23 +210,27 @@ void drawfunc()
                 glRotatef(-90,0,1,0);
                 glTranslatef(0,-330,-700);
                 glScalef(0.2,0.2,0.2);
+                glScalef(1.5, 1.5, 1.5);
                 catapulta(0);
 
             });
             transform({
                 glTranslatef(-550,-330,0);
                 glScalef(0.2,0.2,0.2);
+                glScalef(1.5, 1.5, 1.5);
                 muralha(0);
             });
             transform({
                 glTranslatef(550,-330,0);
                 glScalef(0.2,0.2,0.2);
+                glScalef(1.5, 1.5, 1.5);
                 muralha(0);
             });
             transform({
                 glRotatef(90,0,1,0);
                 glTranslatef(0,-330,720);
                 glScalef(0.05,0.05,0.05);
+                glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
                 glColor(255, 255, 255);
                 glTranslatef(0, y1_pos, - x1_pos);
@@ -218,59 +240,45 @@ void drawfunc()
                 glRotatef(-90,0,1,0);
                 glTranslatef(0,-330,720);
                 glScalef(0.05,0.05,0.05);
+                glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
                 glColor(255, 255, 255);
                 glTranslatef(0, y2_pos, - x2_pos);
 		        glutSolidSphere(200, 20, 20);
             });    
         });
-    });
+    }); */
 
 	//==========================
 
 
-	/*transform({
+	transform({
 		glRotatef(viewangX, 1, 0, 0);
 		glRotatef(viewangY, 0, 1, 0);
 		glRotatef(viewangZ, 0, 0, 1);
-		catapulta(0);
+        muralha(3);
+		//catapulta(0);
 
-		glTranslatef(100, 100, 0);
-		bandeira(1);
-    	glTranslatef(100, 100, 0);
-		trombete();
+		//glTranslatef(100, 100, 0);
+		//bandeira(1);
+    	//glTranslatef(100, 100, 0);
+		//trombete();
 
-		glTranslatef(x_pos, y_pos, 0);
-		glutSolidSphere(100, 20, 20); //20
-	}); */
+		glTranslatef(x1_pos, y1_pos, 0);
+		//glutSolidSphere(100, 20, 20); //20
+	});
 
 	//Mostrar apenas a pessoa
-//	transform({
-//		glRotatef(viewangX, 1, 0, 0);
-//		glRotatef(viewangY-90, 0, 1, 0);
-//		glRotatef(viewangZ, 0, 0, 1);
-//		glTranslatef(-400, 0, 0);
-//		glScalef(0.5, 0.5, 0.5);
-//		pessoa(1, pessoa_estagio_anima);
-//	});
+	/*transform({
+		glRotatef(viewangX, 1, 0, 0);
+		glRotatef(viewangY-90, 0, 1, 0);
+		glRotatef(viewangZ, 0, 0, 1);
+		glTranslatef(-400, 0, 0);
+		//glScalef(0.5, 0.5, 0.5);
+		pessoa(1, pessoa_estagio_anima);
+	});*/
 
 	glFlush();
-}
-
-void anima_func(int value)
-{
-	/* Animacao de vitoria */
-	if(pessoa_estagio_anima > 100.0 || pessoa_estagio_anima < 0.0)
-	{
-		pessoa_estagio_incremento *= -1;
-	}
-	pessoa_estagio_anima += pessoa_estagio_incremento;
-
-	//TODO
-	/* ATUALIZAR TODOS OS PARAMETROS DAS ANIMACOES */
-
-	glutTimerFunc( 10, anima_func, 1 ); /* Faz a funcao anima_func continuar sendo chamada infinitamente */
-	glutPostRedisplay();
 }
 
 #define KBD_FUNC keyboard
@@ -412,7 +420,6 @@ int main(int argc, char *argv[])
 	GL_intSetUp();
 	GL_miscSetUp();
 	GL_draw();
-	glutTimerFunc( 10, anima_func, 1 );
 	GL_start();
 	return 0;
 }

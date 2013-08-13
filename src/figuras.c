@@ -450,8 +450,6 @@ void pessoaMorta() {
 
 void muralha(muralhaEstado estado) {
 
-	estado = 0;
-
 	int tiro1 = 11, tiro2 = 11, tiro3 = 11, tiro4 = 11, tiro5 = 11, tiro6 = 11, tiro7 = 11, tiro8 = 11, tiroAux1 = 51, tiroAux2 = 4;
 	switch(estado){
 		case 1: tiro1 = 0, tiroAux1 = 40, tiroAux2 = 3; break;
