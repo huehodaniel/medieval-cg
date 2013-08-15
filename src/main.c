@@ -85,8 +85,8 @@ void misc()
 	// determinando face sólida para polígonos
 	glPolygonMode(GL_FRONT, GL_FILL);
 	// determinando background preto
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-	//glClearColor(0.1, 0.6, 1.0, 0.0);
+    //glClearColor(0.0, 0.0, 0.0, 0.0);
+	glClearColor(0.1, 0.6, 1.0, 0.0);
 	
 	// Carregando matriz identidade
 	glMatrixMode(GL_PROJECTION);
@@ -113,7 +113,7 @@ void misc()
 }
 
 void shoot_p1(int speed) {
-    repeat(140) {
+    repeat(240) {
         x1_pos++;
     	y1_pos += deltaY(x1_pos, speed);
     }
@@ -123,7 +123,7 @@ void shoot_p1(int speed) {
 }
 
 void shoot_p2(int speed) {
-    repeat(140) {
+    repeat(240) {
         x2_pos++;
     	y2_pos += deltaY(x2_pos, speed);
     }
@@ -133,12 +133,12 @@ void shoot_p2(int speed) {
 }
 
 void force_p1(int f) {
-    if(charging_p1) glutTimerFunc(5, force_p1, f + 2);
+    if(charging_p1) glutTimerFunc(5, force_p1, f + 5);
     else shoot_p1(f*f);
 }
 
 void force_p2(int f) {
-    if(charging_p2) glutTimerFunc(5, force_p2, f + 2);
+    if(charging_p2) glutTimerFunc(5, force_p2, f + 5);
     else shoot_p2(f*f);
 }
 
@@ -209,34 +209,34 @@ void drawfunc()
 		    cenario();
             transform({
                 glRotatef(90,0,1,0);
-                glTranslatef(0,-300,-700);
-                glScalef(0.2,0.2,0.2);
+                glTranslatef(0,-315,-900);
+                glScalef(0.3,0.3,0.3);
                 catapulta(0);
             });
             transform({
                 glRotatef(-90,0,1,0);
-                glTranslatef(0,-300,-700);
-                glScalef(0.2,0.2,0.2);
-                glScalef(1.5, 1.5, 1.5);
+                glTranslatef(0,-315,-900);
+                glScalef(0.3,0.3,0.3);
+                //glScalef(1.5, 1.5, 1.5);
                 catapulta(0);
             });
             transform({
                 glTranslatef(-550,-260,-60);
-                glScalef(0.2,0.2,0.2);
-                glScalef(1.5, 1.5, 1.5);
+                glScalef(0.4,0.4,0.4);
+                //glScalef(1.5, 1.5, 1.5);
                 muralha(0);
             });
             transform({
                 glTranslatef(550,-260,-60);
-                glScalef(0.2,0.2,0.2);
-                glScalef(1.5, 1.5, 1.5);
+                glScalef(0.4,0.4,0.4);
+                //glScalef(1.5, 1.5, 1.5);
                 muralha(0);
             });
             transform({
                 glRotatef(90,0,1,0);
-                glTranslatef(0,-315,720);
-                glScalef(0.05,0.05,0.05);
-                glScalef(1.5, 1.5, 1.5);
+                glTranslatef(0,-315,1000);
+                glScalef(0.1,0.1,0.1);
+                //glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
                 glColor(255, 255, 255);
                 glTranslatef(0, y1_pos, - x1_pos);
@@ -244,9 +244,9 @@ void drawfunc()
             });
             transform({
                 glRotatef(-90,0,1,0);
-                glTranslatef(0,-315,720);
-                glScalef(0.05,0.05,0.05);
-                glScalef(1.5, 1.5, 1.5);
+                glTranslatef(0,-315,1000);
+                glScalef(0.1,0.1,0.1);
+                //glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
                 glColor(255, 255, 255);
                 glTranslatef(0, y2_pos, - x2_pos);
