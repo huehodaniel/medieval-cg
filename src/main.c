@@ -87,13 +87,15 @@ void misc()
 	// determinando background preto
     glClearColor(0.0, 0.0, 0.0, 0.0);
 	//glClearColor(0.1, 0.6, 1.0, 0.0);
+	
 	// Carregando matriz identidade
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
+	glTranslatef(0,0,-1);
 	// Carregando modo de visualização ortográfica
 	int wx = WINDOW_SIZE_X/2, wy = WINDOW_SIZE_Y/2;
-	glOrtho(-SCALE*wx, SCALE*wx, -SCALE*wy, SCALE*wy, -SCALE*wx, SCALE*wx);
-    //gluPerspective(90,  wx/(wy*1.0),  0,  WINDOW_SIZE_X);
+	//glOrtho(-SCALE*wx, SCALE*wx, -SCALE*wy, SCALE*wy, -SCALE*wx, SCALE*wx);
+    gluPerspective(90.0,  wx/(wy*1.0),  1.0,  WINDOW_SIZE_X);
 
     glutIgnoreKeyRepeat(true);
 
@@ -101,8 +103,10 @@ void misc()
 	initCenario();
     initLight();
 
-    glMatrixMode(GL_MODELVIEW);
-    //gluLookAt(0, 0, 0, 0, 0, 0, 0, 1, 0);
+    glMatrixMode(GL_PROJECTION);
+    gluLookAt(0.0, 0.0, 1.0,   //posição da câmera
+              0.0, 0.0, 0.0,   //para onde a câmera aponta
+              0.0, 1.0, 0.0);  //vetor view-up
 
     range(i, 0, 255) keystate[i] = spkeystate[i] = false;
     glutTimerFunc( 10, anima_func, 1 );
@@ -191,44 +195,46 @@ void drawfunc()
 {
     keyboardOp();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-    glEnable(GL_DEPTH_TEST);
-    glNormal3d(0, 1, 0);
-    /*transform({
+	glEnable(GL_DEPTH_TEST);
+    glShadeModel(GL_FLAT);
+    //glShadeModel(GL_SMOOTH);
+    glEnable(GL_NORMALIZE);
+    glNormal3f(0.0,0.0,1.0);
+    transform({
         glTranslatef(0, 0, -WINDOW_SIZE_X*1.5);
 	    transform({
             glRotatef(viewangX, 1, 0, 0);
 		    glRotatef(viewangY, 0, 1, 0);
 		    glRotatef(viewangZ, 0, 0, 1);
-            cenario();
+		    cenario();
             transform({
                 glRotatef(90,0,1,0);
-                glTranslatef(0,-330,-700);
+                glTranslatef(0,-300,-700);
                 glScalef(0.2,0.2,0.2);
                 catapulta(0);
             });
             transform({
                 glRotatef(-90,0,1,0);
-                glTranslatef(0,-330,-700);
+                glTranslatef(0,-300,-700);
                 glScalef(0.2,0.2,0.2);
                 glScalef(1.5, 1.5, 1.5);
                 catapulta(0);
-
             });
             transform({
-                glTranslatef(-550,-330,0);
+                glTranslatef(-550,-260,-60);
                 glScalef(0.2,0.2,0.2);
                 glScalef(1.5, 1.5, 1.5);
                 muralha(0);
             });
             transform({
-                glTranslatef(550,-330,0);
+                glTranslatef(550,-260,-60);
                 glScalef(0.2,0.2,0.2);
                 glScalef(1.5, 1.5, 1.5);
                 muralha(0);
             });
             transform({
                 glRotatef(90,0,1,0);
-                glTranslatef(0,-330,720);
+                glTranslatef(0,-315,720);
                 glScalef(0.05,0.05,0.05);
                 glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
@@ -238,7 +244,7 @@ void drawfunc()
             });
             transform({
                 glRotatef(-90,0,1,0);
-                glTranslatef(0,-330,720);
+                glTranslatef(0,-315,720);
                 glScalef(0.05,0.05,0.05);
                 glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
@@ -247,12 +253,12 @@ void drawfunc()
 		        glutSolidSphere(200, 20, 20);
             });    
         });
-    }); */
+    }); 
 
 	//==========================
 
 
-	transform({
+	/*transform({
 		glRotatef(viewangX, 1, 0, 0);
 		glRotatef(viewangY, 0, 1, 0);
 		glRotatef(viewangZ, 0, 0, 1);
@@ -269,7 +275,7 @@ void drawfunc()
 	});
 
 	//Mostrar apenas a pessoa
-	/*transform({
+	transform({
 		glRotatef(viewangX, 1, 0, 0);
 		glRotatef(viewangY-90, 0, 1, 0);
 		glRotatef(viewangZ, 0, 0, 1);
@@ -278,7 +284,7 @@ void drawfunc()
 		pessoa(1, pessoa_estagio_anima);
 	});*/
 
-	glFlush();
+	glutSwapBuffers();
 }
 
 #define KBD_FUNC keyboard
@@ -327,7 +333,7 @@ void LOG_credits()
  */
 void GL_windowSetUp(int* argc, char *argv[])
 {
-	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
 	glutInitWindowPosition(WINDOW_POSITION_X, WINDOW_POSITION_Y);
 	glutInitWindowSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 	glutInit(argc, argv);

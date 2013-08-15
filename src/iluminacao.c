@@ -5,7 +5,7 @@
 
 
 GLfloat light0_pos[] = {4.0f,10.0f, 6.0f, 1.0f};
-GLfloat white[] = {2.0f, 2.0f, 2.0f, 1.0f};
+GLfloat white[] = {9.0f, 9.0f, 9.0f, 1.0f};
 GLfloat black[] = {0.0f, 0.0f, 0.0f, 1.0f};
 
 
@@ -18,12 +18,12 @@ void lightning(){
     glLightfv(GL_LIGHT0,GL_SPECULAR,white);
 
     //Atenuação radial - luz ambiente
-    //glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.5f);   //define a0
-    //glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.15f);    //define a1
-    //glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.1f);  //define a2
+    glLightf(GL_LIGHT0, GL_CONSTANT_ATTENUATION, 0.5f);   //define a0
+    glLightf(GL_LIGHT0, GL_LINEAR_ATTENUATION, 0.15f);    //define a1
+    glLightf(GL_LIGHT0, GL_QUADRATIC_ATTENUATION, 0.1f);  //define a2
 
     //Parâmetros definidos globalmente
-    GLfloat global_ambient[] = {0.5f, 0.5f, 0.5f, 1.0f};
+    GLfloat global_ambient[] = {0.7f, 0.7f, 0.7f, 1.0f};
     glLightModelfv(GL_LIGHT_MODEL_AMBIENT, global_ambient);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
