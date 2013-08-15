@@ -4,12 +4,11 @@
 #include <math.h>
 #include <GL/glut.h>
 
+#include "macros.h"
 #include "figuras.h"
 #include "cenario.h"
-#include "macros.h"
 #include "iluminacao.h"
-
-#define DEBUG 0
+#include "logica.h"
 
 // String cabeçalho
 #define HEADER "-- Computação Grafica, turma de 2013, vespertino --"
@@ -32,33 +31,15 @@ const int WINDOW_SIZE_X = 800, WINDOW_SIZE_Y = 600;
  * -- Miscelânea: #define MISC_FUNC <nome_da_função>
  * -- Movimento do mouse: #define MOUSEMOV_FUNC <nome_da_função>
  **/
-
-//Calculo da trajetória
-
-const int TAN45 = 1;
-const float SEN45 = 0.851;
-const float COS45 = 0.851;
-const float G = 9.81;
-const float SCALE = 2;
-
-float deltaY(int x, float C) {
-	return 1 - G*(2*x + 1)/C;
-}
-
+ 
 // Angulos de visão
 int ang = 0;
 int viewangX = 0;
 int viewangY = 0;
 int viewangZ = 0;
 
-// Posição dos projéteis
-float x1_pos = 0, y1_pos = 0;
-float x2_pos = 0, y2_pos = 0;
-
 int pessoa_tipo_pessoa = 1;
 double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 1.0;
-
-bool charging_p1 = false, charging_p2 = false;
 
 //Vetor de estados do teclado (para permitir multiplas teclas pressionadas)
 bool keystate[256], spkeystate[256];
@@ -112,54 +93,19 @@ void misc()
     glutTimerFunc( 10, anima_func, 1 );
 }
 
-void shoot_p1(int speed) {
-    repeat(240) {
-        x1_pos++;
-    	y1_pos += deltaY(x1_pos, speed);
-    }
-	glutPostRedisplay();
-    if(y1_pos > 0 && y1_pos < 20000) glutTimerFunc(10, shoot_p1, speed);
-    else x1_pos = y1_pos = 0;
-}
-
-void shoot_p2(int speed) {
-    repeat(240) {
-        x2_pos++;
-    	y2_pos += deltaY(x2_pos, speed);
-    }
-	glutPostRedisplay();
-    if(y2_pos > 0 && y2_pos < 20000) glutTimerFunc(10, shoot_p2, speed);
-    else x2_pos = y2_pos = 0;
-}
-
-void force_p1(int f) {
-    if(charging_p1) glutTimerFunc(5, force_p1, f + 5);
-    else shoot_p1(f*f);
-}
-
-void force_p2(int f) {
-    if(charging_p2) glutTimerFunc(5, force_p2, f + 5);
-    else shoot_p2(f*f);
-}
-
 void keyboardOp() {
-    if(x1_pos == 0) {
-	    if(keystate['m'] && !charging_p1) {
-            charging_p1 = true;
-            force_p1(10);
-        } else if(!keystate['m'] && charging_p1) {
-            charging_p1 = false;
-        }
+    if(keystate['m']) {
+         if(getinfo_p1().p.x <= 0) force_p1(10);
+    } else {
+        end_force_p1();
     }
 
-    if(x1_pos == 0) {
-	    if(keystate[' '] && !charging_p2) {
-            charging_p2 = true;
-            force_p2(10);
-        } else if(!keystate[' '] && charging_p2) {
-            charging_p2 = false;
-        }
+    if(keystate[' ']) {
+        if(getinfo_p2().p.x <= 0) force_p2(10);
+    } else {
+        end_force_p2();
     }
+
 
 	/* Rotacao em Z */
 	if(keystate['z']) {
@@ -239,7 +185,8 @@ void drawfunc()
                 //glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
                 glColor(255, 255, 255);
-                glTranslatef(0, y1_pos, - x1_pos);
+                projetil p1 = getinfo_p1().p;
+                glTranslatef(0, p1.y, - p1.x);
 		        glutSolidSphere(200, 20, 20);
             });
             transform({
@@ -249,7 +196,8 @@ void drawfunc()
                 //glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
                 glColor(255, 255, 255);
-                glTranslatef(0, y2_pos, - x2_pos);
+                projetil p2 = getinfo_p2().p;
+                glTranslatef(0, p2.y, - p2.x);
 		        glutSolidSphere(200, 20, 20);
             });    
         });

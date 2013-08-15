@@ -16,6 +16,8 @@
 #ifndef MACROS_H
 #define MACROS_H
 
+#define DEBUG 0
+
 /**
  * Constante PI
  * 	Porque a gente vai precisar, com certeza.
