@@ -152,35 +152,104 @@ void drawfunc()
             glRotatef(viewangX, 1, 0, 0);
 		    glRotatef(viewangY, 0, 1, 0);
 		    glRotatef(viewangZ, 0, 0, 1);
+		    //glTranslatef(0,0,-1000);
 		    cenario();
             transform({
                 glRotatef(90,0,1,0);
-                glTranslatef(0,-315,-900);
+                glTranslatef(0,-315,-1400);
                 glScalef(0.3,0.3,0.3);
                 catapulta(0);
             });
             transform({
                 glRotatef(-90,0,1,0);
-                glTranslatef(0,-315,-900);
+                glTranslatef(0,-315,-1400);
                 glScalef(0.3,0.3,0.3);
                 //glScalef(1.5, 1.5, 1.5);
                 catapulta(0);
             });
             transform({
-                glTranslatef(-550,-260,-60);
+                glTranslatef(-800,-260,-60);
                 glScalef(0.4,0.4,0.4);
                 //glScalef(1.5, 1.5, 1.5);
-                muralha(0);
+                muralhaArua(0);
+                transform({
+		            glRotatef(5,0,1,0);
+		            glTranslatef(30,0,-900);
+		            muralhaArua(0);
+		            glRotatef(5,0,1,0);
+		            glTranslatef(30,0,-900);
+		            muralhaArua(0);
+		            glRotatef(5,0,1,0);
+		            glTranslatef(30,0,-900);
+		            muralhaArua(0);
+		            glRotatef(5,0,1,0);
+		            glTranslatef(30,0,-900);
+		            muralhaArua(0);
+		            glRotatef(5,0,1,0);
+		            glTranslatef(30,0,-900);
+		            muralhaArua(0);
+		        });
+		        transform({
+		            glRotatef(-5,0,1,0);
+		            glTranslatef(60,0,900);
+		            muralhaArua(0);
+		            glRotatef(-5,0,1,0);
+		            glTranslatef(60,0,900);
+		            muralhaArua(0);
+		            glRotatef(-5,0,1,0);
+		            glTranslatef(60,0,900);
+		            muralhaArua(0);
+		            glRotatef(-5,0,1,0);
+		            glTranslatef(60,0,900);
+		            muralhaArua(0);
+		            glRotatef(-5,0,1,0);
+		            glTranslatef(60,0,900);
+		            muralhaArua(0);
+		        });
             });
             transform({
-                glTranslatef(550,-260,-60);
+                glTranslatef(800,-260,-60);
                 glScalef(0.4,0.4,0.4);
                 //glScalef(1.5, 1.5, 1.5);
-                muralha(0);
+                muralhaArua(0);
+                transform({
+		            glRotatef(-5,0,1,0);
+		            glTranslatef(-30,0,-900);
+		            muralhaArua(0);
+		            glRotatef(-5,0,1,0);
+		            glTranslatef(-30,0,-900);
+		            muralhaArua(0);
+		            glRotatef(-5,0,1,0);
+		            glTranslatef(-30,0,-900);
+		            muralhaArua(0);
+		            glRotatef(-5,0,1,0);
+		            glTranslatef(-30,0,-900);
+		            muralhaArua(0);
+		            glRotatef(-5,0,1,0);
+		            glTranslatef(-30,0,-900);
+		            muralhaArua(0);
+		        });
+		        transform({
+		            glRotatef(5,0,1,0);
+		            glTranslatef(-60,0,900);
+		            muralhaArua(0);
+		            glRotatef(5,0,1,0);
+		            glTranslatef(-60,0,900);
+		            muralhaArua(0);
+		            glRotatef(5,0,1,0);
+		            glTranslatef(-60,0,900);
+		            muralhaArua(0);
+		            glRotatef(5,0,1,0);
+		            glTranslatef(-60,0,900);
+		            muralhaArua(0);
+		            glRotatef(5,0,1,0);
+		            glTranslatef(-60,0,900);
+		            muralhaArua(0);
+		        });
             });
             transform({
                 glRotatef(90,0,1,0);
-                glTranslatef(0,-315,1000);
+                glTranslatef(0,-315,1500);
                 glScalef(0.1,0.1,0.1);
                 //glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
@@ -191,7 +260,7 @@ void drawfunc()
             });
             transform({
                 glRotatef(-90,0,1,0);
-                glTranslatef(0,-315,1000);
+                glTranslatef(0,-315,1500);
                 glScalef(0.1,0.1,0.1);
                 //glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);

@@ -447,7 +447,60 @@ void pessoaVence() {
 void pessoaMorta() {
 
 }
+void muralhaArua(muralhaEstado estado){
+	int i,j;
+	int matrizMuralha[9][9] = {
+		{1,1,1,1,1,1,0,0,0},
+		{1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1},
+		{1,1,1,1,1,1,1,1,1},
+	};
+	transform({
+		glColor(168, 86, 3);
+		glScalef(6, 5, 8);
+		glTranslatef(0,-52,-40);
+		for(i=1;i<9;i++){
+			glTranslatef(0,13,0);
+			for(j=0;j<9;j++){
+			glTranslatef(0, 0, 13);
+			glutSolidCube(11*matrizMuralha[i][j]);
+			}
+			if (i%2==0)glTranslatef(0,0,-125.5);
+			else glTranslatef(0,0,-109.5);
+		}
+	});
+	transform({
+		//glTranslatef(0, 0, 0);
+		glScalef(10, 10, 78);
+		glTranslatef(0, 36, 2.7);
+		glutSolidCube(11*matrizMuralha[0][5]);
 
+	});
+
+	transform({
+		glTranslatef(0, 480, -130);
+		glScalef(10, 10, 10);
+		glutSolidCube(11*matrizMuralha[0][0]);
+
+		glTranslatef(0, 0, 17);
+		glutSolidCube(11*matrizMuralha[0][1]);
+
+		glTranslatef(0, 0, 17);
+		glutSolidCube(11*matrizMuralha[0][2]);
+
+		glTranslatef(0, 0, 17);
+		glutSolidCube(11*matrizMuralha[0][3]);
+		
+		glTranslatef(0, 0, 17);
+		glutSolidCube(11*matrizMuralha[0][4]);
+
+	});
+}
 void muralha(muralhaEstado estado) {
 
 	int tiro1 = 11, tiro2 = 11, tiro3 = 11, tiro4 = 11, tiro5 = 11, tiro6 = 11, tiro7 = 11, tiro8 = 11, tiroAux1 = 51, tiroAux2 = 4;

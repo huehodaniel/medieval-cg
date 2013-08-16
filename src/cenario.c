@@ -16,7 +16,7 @@ float moonHeight = 12.0;
 void initCenario(){
     obj = gluNewQuadric();
     gluQuadricDrawStyle(obj,GLU_FILL);
-    int spreadTrees = 200;//(NUM_TREES/100 + 1)*20;
+    int spreadTrees = 100;//(NUM_TREES/100 + 1)*20;
 
     range(i, 0, NUM_TREES/4){
         x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*spreadTrees)-1.5*spreadTrees;
@@ -38,9 +38,9 @@ void initCenario(){
 
 void drawBranches(float x, float y){
     transform({
-        glScalef(5,5,5);
+        glScalef(10,10,10);
         glRotatef(-90,1.0,0.0,0.0);
-        glTranslatef(x,y,-65.0);
+        glTranslatef(x,y,-30.0);
     	glColor3f(0,0.5,0);
     	glutSolidCone(2,7,20,20);
     });
@@ -48,9 +48,9 @@ void drawBranches(float x, float y){
 
 void drawTrunk(float x, float y){
     transform({  
-        glScalef(5,5,5);
+        glScalef(10,10,10);
     	glRotatef(-90,1.0,0.0,0.0);
-        glTranslatef(x,y,-70.0); 
+        glTranslatef(x,y,-35.0); 
     	glColor3f(0.5,0.35,0.05);
     	gluCylinder(obj,0.5,0.5,5,20,20);
     });
