@@ -6,7 +6,7 @@
 #include "logica.h"
 
 const float G = 9.81;
-static const float ANIM_SPEED = 240;
+static const float ANIM_SPEED = 240; //velocidade da bola
 
 static projetil p1, p2;
 static force f1, f2;
@@ -24,15 +24,21 @@ plInfo getinfo_p1() { _getinfo(1); }
 plInfo getinfo_p2() { _getinfo(2); }
 
 static float deltaY(int x, float C) {
+
 	return 1 - G*(2*x + 1)/C;
+	
 }
 
 static inline bool valid(int v, int vmax) {
+
     return v > 0 && v < vmax;
+    
 }
 
 static inline int pow2(int x) {
+
     return x * x;
+    
 }
 
 #define _shoot(speed, i) \

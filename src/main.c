@@ -37,6 +37,10 @@ int ang = 0;
 int viewangX = 0;
 int viewangY = 0;
 int viewangZ = 0;
+int direcaoCanhao1 = 0;
+int direcaoCanhao2 = 0;
+int moverCanhao1 = 0;
+int moverCanhao2 = 0;
 
 int pessoa_tipo_pessoa = 1;
 double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 1.0;
@@ -133,7 +137,23 @@ void keyboardOp() {
 		viewangX--;
 		glutPostRedisplay();
 	}
-
+	
+	if(keystate['h']){
+		if(direcaoCanhao1<45)
+			direcaoCanhao1+=5;
+	}
+	if(keystate['j']){
+		if(direcaoCanhao1>-45)
+			direcaoCanhao1-=5;
+	}
+	if(keystate['k']){
+		if(direcaoCanhao2<45)
+			direcaoCanhao2+=5;
+	}
+	if(keystate['l']){
+		if(direcaoCanhao2>-45)
+			direcaoCanhao2-=5;
+	}
 }
 
 #define DRAW_FUNC drawfunc
@@ -155,17 +175,29 @@ void drawfunc()
 		    //glTranslatef(0,0,-1000);
 		    cenario();
             transform({
-                glRotatef(90,0,1,0);
+                glRotatef(90,0,1,0); //localizacao do canhao
                 glTranslatef(0,-315,-1400);
                 glScalef(0.3,0.3,0.3);
+                glRotatef(direcaoCanhao1,0,1,0);
                 catapulta(0);
+                glColor(0, 0, 0);
+                projetil p2 = getinfo_p2().p;
+                glRotatef(direcaoCanhao2,0,1,0);
+                glTranslatef(0, p2.y,  p2.x);
+		        glutSolidSphere(200, 20, 20);
             });
             transform({
                 glRotatef(-90,0,1,0);
                 glTranslatef(0,-315,-1400);
                 glScalef(0.3,0.3,0.3);
                 //glScalef(1.5, 1.5, 1.5);
+                glRotatef(direcaoCanhao2,0,1,0);
                 catapulta(0);
+                glColor(0, 0, 0);
+               	projetil p1 = getinfo_p1().p;
+                glRotatef(direcaoCanhao1,0,1,0);
+                glTranslatef(0, p1.y,  p1.x);
+		        glutSolidSphere(200, 20, 20);
             });
             transform({
                 glTranslatef(-800,-260,-60);
@@ -253,10 +285,7 @@ void drawfunc()
                 glScalef(0.1,0.1,0.1);
                 //glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
-                glColor(255, 255, 255);
-                projetil p1 = getinfo_p1().p;
-                glTranslatef(0, p1.y, - p1.x);
-		        glutSolidSphere(200, 20, 20);
+		        
             });
             transform({
                 glRotatef(-90,0,1,0);
@@ -264,10 +293,6 @@ void drawfunc()
                 glScalef(0.1,0.1,0.1);
                 //glScalef(1.5, 1.5, 1.5);
                 pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
-                glColor(255, 255, 255);
-                projetil p2 = getinfo_p2().p;
-                glTranslatef(0, p2.y, - p2.x);
-		        glutSolidSphere(200, 20, 20);
             });    
         });
     }); 
