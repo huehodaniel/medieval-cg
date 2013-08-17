@@ -72,6 +72,68 @@ void catapulta(float angulo) {
 	});
 }
 
+void pessoa_v2(int tipo_pessoa, double estagio_anima)
+{
+	glColor3f( 1.0, 0.0, 1.0 );
+	switch (tipo_pessoa) {
+	/* pessoaJogo */
+	case 0:
+		/* Desenha cabeca */
+		transform({
+			glBindTexture(GL_TEXTURE_2D, texturesID[CABECA_FRENTE]);
+
+			glBegin(GL_QUADS);
+
+			glTexCoord2f(0.0, 0.0); glVertex2f(-1.0, -1.0);
+			glTexCoord2f(1.0, 0.0); glVertex2f(1.0, -1.0);
+			glTexCoord2f(1.0, 1.0); glVertex2f(1.0,  1.0);
+			glTexCoord2f(0.0, 1.0); glVertex2f(-1.0,  1.0);
+
+			glEnd();
+
+		});
+
+		/* Desenha torso */
+		glColor3f( 1.0, 1.0, 1.0 );
+		transform({
+			//TODO
+		});
+
+		/* Desenha braco esquerdo */
+		transform({
+			//TODO
+		});
+
+		/* Desenha braco direito */
+		transform({
+			//TODO
+		});
+
+		/* Desenha perna esquerda */
+		transform({
+			//TODO
+		});
+
+		/* Desenha perna direita */
+		transform({
+			//TODO
+		});
+		break;
+		/* pessoaVitoria */
+	case 1:
+		break;
+		/* pessoaDerrota */
+	case 2:
+		break;
+		/* pessoaMorte */
+	case 3:
+		break;
+	default:
+		printf("Erro - Entrou no default da funcao 'pessoa()' - Arquivo 'figuras.c'");
+		break;
+	}
+}
+
 /* Funcao generica para todas as pessoas:
  * parametro 'tipo_pessoa':
  * 	- 0 pessoaJogo
