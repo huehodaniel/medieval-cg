@@ -12,6 +12,12 @@ static projetil p1, p2;
 static force f1, f2;
 static bool charging1 = false, charging2 = false;
 
+void updateByAngle(projetil *p, float ang) {
+    float old = p->x;
+    p->x = fabsf(p->x*cos(ang));
+    p->z = old - p->x;
+}
+
 #define _getinfo(i) \
     plInfo v; \
     v.p = p##i; \

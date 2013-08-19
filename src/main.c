@@ -57,9 +57,6 @@ void anima_func(int value)
 	}
 	pessoa_estagio_anima += pessoa_estagio_incremento;
 
-	//TODO
-	/* ATUALIZAR TODOS OS PARAMETROS DAS ANIMACOES */
-
 	glutTimerFunc( 10, anima_func, 1 ); /* Faz a funcao anima_func continuar sendo chamada infinitamente */
 	glutPostRedisplay();
 }
@@ -94,7 +91,7 @@ void misc()
               0.0, 1.0, 0.0);  //vetor view-up
 
     range(i, 0, 255) keystate[i] = spkeystate[i] = false;
-    glutTimerFunc( 10, anima_func, 1 );
+    glutTimerFunc(10, anima_func, 1);
 }
 
 void keyboardOp() {
@@ -139,20 +136,27 @@ void keyboardOp() {
 	}
 	
 	if(keystate['h']){
-		if(direcaoCanhao1<45)
-			direcaoCanhao1+=5;
+		if(direcaoCanhao1 < 25)
+			direcaoCanhao1 += 5;
+			dprintf("%d\n", direcaoCanhao1);
 	}
+	
 	if(keystate['j']){
-		if(direcaoCanhao1>-45)
-			direcaoCanhao1-=5;
+		if(direcaoCanhao1 > -25)
+			direcaoCanhao1 -= 5;
+			dprintf("%d\n", direcaoCanhao1);
 	}
+	
 	if(keystate['k']){
-		if(direcaoCanhao2<45)
-			direcaoCanhao2+=5;
+		if(direcaoCanhao2 < 25)
+			direcaoCanhao2 += 5;
+			dprintf("%d\n", direcaoCanhao2);
 	}
+	
 	if(keystate['l']){
-		if(direcaoCanhao2>-45)
-			direcaoCanhao2-=5;
+		if(direcaoCanhao2 > -25)
+			direcaoCanhao2 -= 5;
+			dprintf("%d\n", direcaoCanhao2);
 	}
 }
 
@@ -178,26 +182,26 @@ void drawfunc()
                 glRotatef(90,0,1,0); //localizacao do canhao
                 glTranslatef(0,-315,-1400);
                 glScalef(0.3,0.3,0.3);
-                glRotatef(direcaoCanhao1,0,1,0);
+                glRotatef(direcaoCanhao2,0,1,0);
                 catapulta(0);
                 glColor(0, 0, 0);
                 projetil p2 = getinfo_p2().p;
-                glRotatef(direcaoCanhao2,0,1,0);
-                glTranslatef(0, p2.y,  p2.x);
-		        glutSolidSphere(200, 20, 20);
+                updateByAngle(&p2, direcaoCanhao2);
+                glTranslatef(p2.z, p2.y,  p2.x);
+		        glutSolidSphere(50, 20, 20);
             });
             transform({
                 glRotatef(-90,0,1,0);
                 glTranslatef(0,-315,-1400);
                 glScalef(0.3,0.3,0.3);
                 //glScalef(1.5, 1.5, 1.5);
-                glRotatef(direcaoCanhao2,0,1,0);
+                glRotatef(direcaoCanhao1,0,1,0);
                 catapulta(0);
                 glColor(0, 0, 0);
                	projetil p1 = getinfo_p1().p;
-                glRotatef(direcaoCanhao1,0,1,0);
-                glTranslatef(0, p1.y,  p1.x);
-		        glutSolidSphere(200, 20, 20);
+                updateByAngle(&p1, direcaoCanhao1);
+                glTranslatef(p1.z, p1.y,  p1.x);
+		        glutSolidSphere(50, 20, 20);
             });
             transform({
                 glTranslatef(-800,-260,-60);
@@ -205,38 +209,18 @@ void drawfunc()
                 //glScalef(1.5, 1.5, 1.5);
                 muralhaArua(0);
                 transform({
-		            glRotatef(5,0,1,0);
-		            glTranslatef(30,0,-900);
-		            muralhaArua(0);
-		            glRotatef(5,0,1,0);
-		            glTranslatef(30,0,-900);
-		            muralhaArua(0);
-		            glRotatef(5,0,1,0);
-		            glTranslatef(30,0,-900);
-		            muralhaArua(0);
-		            glRotatef(5,0,1,0);
-		            glTranslatef(30,0,-900);
-		            muralhaArua(0);
-		            glRotatef(5,0,1,0);
-		            glTranslatef(30,0,-900);
-		            muralhaArua(0);
+		            repeat(5) {
+		                glRotatef(5,0,1,0);
+		                glTranslatef(30,0,-900);
+		                muralhaArua(0);
+		            }
 		        });
 		        transform({
-		            glRotatef(-5,0,1,0);
-		            glTranslatef(60,0,900);
-		            muralhaArua(0);
-		            glRotatef(-5,0,1,0);
-		            glTranslatef(60,0,900);
-		            muralhaArua(0);
-		            glRotatef(-5,0,1,0);
-		            glTranslatef(60,0,900);
-		            muralhaArua(0);
-		            glRotatef(-5,0,1,0);
-		            glTranslatef(60,0,900);
-		            muralhaArua(0);
-		            glRotatef(-5,0,1,0);
-		            glTranslatef(60,0,900);
-		            muralhaArua(0);
+		            repeat(5) {
+		                glRotatef(-5,0,1,0);
+		                glTranslatef(60,0,900);
+		                muralhaArua(0);
+		            }
 		        });
             });
             transform({
@@ -245,38 +229,18 @@ void drawfunc()
                 //glScalef(1.5, 1.5, 1.5);
                 muralhaArua(0);
                 transform({
-		            glRotatef(-5,0,1,0);
-		            glTranslatef(-30,0,-900);
-		            muralhaArua(0);
-		            glRotatef(-5,0,1,0);
-		            glTranslatef(-30,0,-900);
-		            muralhaArua(0);
-		            glRotatef(-5,0,1,0);
-		            glTranslatef(-30,0,-900);
-		            muralhaArua(0);
-		            glRotatef(-5,0,1,0);
-		            glTranslatef(-30,0,-900);
-		            muralhaArua(0);
-		            glRotatef(-5,0,1,0);
-		            glTranslatef(-30,0,-900);
-		            muralhaArua(0);
+                    repeat(5) {
+		                glRotatef(-5,0,1,0);
+		                glTranslatef(-30,0,-900);
+		                muralhaArua(0);
+		            }
 		        });
 		        transform({
-		            glRotatef(5,0,1,0);
-		            glTranslatef(-60,0,900);
-		            muralhaArua(0);
-		            glRotatef(5,0,1,0);
-		            glTranslatef(-60,0,900);
-		            muralhaArua(0);
-		            glRotatef(5,0,1,0);
-		            glTranslatef(-60,0,900);
-		            muralhaArua(0);
-		            glRotatef(5,0,1,0);
-		            glTranslatef(-60,0,900);
-		            muralhaArua(0);
-		            glRotatef(5,0,1,0);
-		            glTranslatef(-60,0,900);
-		            muralhaArua(0);
+		            repeat(5) {
+		                glRotatef(5,0,1,0);
+		                glTranslatef(-60,0,900);
+		                muralhaArua(0);
+		            }
 		        });
             });
             transform({

@@ -4,6 +4,7 @@
 typedef struct _projetil {
     float x;
     float y;
+    float z;
 } projetil;
 
 typedef struct _force {
@@ -18,6 +19,8 @@ typedef struct _plInfo {
 plInfo getinfo_p1();
 
 plInfo getinfo_p2();
+
+void updateByAngle(projetil* p, float ang);
 
 void shoot_p1(int speed);
 
