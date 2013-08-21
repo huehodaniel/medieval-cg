@@ -25,6 +25,12 @@
 #define PI 3.141592654
 
 /**
+ * radians(x)
+ * 	Converte valor em degraus para radianos
+ **/
+#define radians(x) (x*PI/180.0)
+
+/**
  * macrofy(body)
  * 	Macro para criar macros, enrola elas dentro de um do-while para evitar erros toscos
  **/

@@ -98,13 +98,13 @@ void keyboardOp() {
     if(keystate['m']) {
          if(getinfo_p1().p.x <= 0) force_p1(10);
     } else {
-        end_force_p1();
+        end_force_p1(direcaoCanhao1);
     }
 
     if(keystate[' ']) {
         if(getinfo_p2().p.x <= 0) force_p2(10);
     } else {
-        end_force_p2();
+        end_force_p2(direcaoCanhao2);
     }
 
 
@@ -182,26 +182,33 @@ void drawfunc()
                 glRotatef(90,0,1,0); //localizacao do canhao
                 glTranslatef(0,-315,-1400);
                 glScalef(0.3,0.3,0.3);
-                glRotatef(direcaoCanhao2,0,1,0);
-                catapulta(0);
-                glColor(0, 0, 0);
-                projetil p2 = getinfo_p2().p;
-                updateByAngle(&p2, direcaoCanhao2);
-                glTranslatef(p2.z, p2.y,  p2.x);
-		        glutSolidSphere(50, 20, 20);
-            });
-            transform({
-                glRotatef(-90,0,1,0);
-                glTranslatef(0,-315,-1400);
-                glScalef(0.3,0.3,0.3);
-                //glScalef(1.5, 1.5, 1.5);
-                glRotatef(direcaoCanhao1,0,1,0);
-                catapulta(0);
-                glColor(0, 0, 0);
-               	projetil p1 = getinfo_p1().p;
-                updateByAngle(&p1, direcaoCanhao1);
-                glTranslatef(p1.z, p1.y,  p1.x);
-		        glutSolidSphere(50, 20, 20);
+				transform({
+					glRotatef(direcaoCanhao2,0,1,0);
+					catapulta(0);
+				});
+				transform({
+					glColor(0, 0, 0);
+					projetil p2 = getinfo_p2().p;
+					updateByAngle(&p2);
+					glTranslatef(p2.z, p2.y, p2.x);
+					glutSolidSphere(50, 20, 20);
+				});
+			});
+			transform({
+				glRotatef(-90,0,1,0);
+				glTranslatef(0,-315,-1400);
+				glScalef(0.3,0.3,0.3);
+				transform({
+					glRotatef(direcaoCanhao1,0,1,0);
+					catapulta(0);
+				});
+				transform({
+					glColor(0, 0, 0);
+					projetil p1 = getinfo_p1().p;
+					updateByAngle(&p1);
+					glTranslatef(p1.z, p1.y, p1.x);
+					glutSolidSphere(50, 20, 20);
+				});
             });
             transform({
                 glTranslatef(-800,-260,-60);
@@ -295,26 +302,26 @@ void drawfunc()
 
 #define KBD_FUNC keyboard
 void keyboard(unsigned char key, int x, int y) {
-    dprintf("%c\n", key);
+    //dprintf("%c\n", key);
     keystate[key] = true;
 }
 
 #define KBD_UP_FUNC keyboardUp
 void keyboardUp(unsigned char key, int x, int y) {
-    dprintf("%c\n", key);    
+    //dprintf("%c\n", key);    
     keystate[key] = false;
 }
 
 #define SPKEY_FUNC spkeys
 void spkeys(int key, int x, int y) {
-	dprintf("%d\n", key);
+	//dprintf("%d\n", key);
     spkeystate[key] = true;
 }
 
 
 #define SPKEY_UP_FUNC spkeysUp
 void spkeysUp(int key, int x, int y) {
-	dprintf("%d\n", key);
+	//dprintf("%d\n", key);
     spkeystate[key] = false;
 }
 

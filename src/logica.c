@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <math.h>
 #include <GL/glut.h>
 
 #include "macros.h"
@@ -12,10 +13,10 @@ static projetil p1, p2;
 static force f1, f2;
 static bool charging1 = false, charging2 = false;
 
-void updateByAngle(projetil *p, float ang) {
+void updateByAngle(projetil *p) {
     float old = p->x;
-    p->x = fabsf(p->x*cos(ang));
-    p->z = old - p->x;
+    p->x = fabsf(p->x*cos(radians(p->ang)));
+    p->z = old*sin(radians(p->ang));
 }
 
 #define _getinfo(i) \
@@ -30,21 +31,15 @@ plInfo getinfo_p1() { _getinfo(1); }
 plInfo getinfo_p2() { _getinfo(2); }
 
 static float deltaY(int x, float C) {
-
 	return 1 - G*(2*x + 1)/C;
-	
 }
 
 static inline bool valid(int v, int vmax) {
-
     return v > 0 && v < vmax;
-    
 }
 
 static inline int pow2(int x) {
-
-    return x * x;
-    
+	return x * x;
 }
 
 #define _shoot(speed, i) \
@@ -55,7 +50,7 @@ static inline int pow2(int x) {
 	glutPostRedisplay(); \
     if(valid(p##i.x, 20000) && valid(p##i.y, 20000)) \
         glutTimerFunc(10, shoot_p##i, speed); \
-    else p##i.x = p##i.y = 0
+    else p##i.x = p##i.y = p##i.z = 0
 
 void shoot_p1(int speed) { _shoot(speed, 1); }
 
@@ -91,6 +86,18 @@ void force_p2(int inc) {
     _force_p2(inc); 
 }
 
-void end_force_p1() { charging1 = false; }
+void end_force_p1(float ang) { 
+	if(charging1) {
+		charging1 = false; 
+		p1.ang = ang;
+		dprintf("%f\n", p1.ang);
+	}
+}
 
-void end_force_p2() { charging2 = false; }
+void end_force_p2(float ang) { 
+	if(charging2) { 
+		charging2 = false; 
+		p2.ang = ang; 
+		dprintf("%f\n", p2.ang);
+	}
+}
