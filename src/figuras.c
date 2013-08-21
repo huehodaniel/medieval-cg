@@ -74,7 +74,6 @@ void catapulta(float angulo) {
 
 void pessoa_v2(int tipo_pessoa, double estagio_anima)
 {
-	glColor3f( 1.0, 0.0, 1.0 );
 	switch (tipo_pessoa) {
 	/* pessoaJogo */
 	case 0:
@@ -84,13 +83,23 @@ void pessoa_v2(int tipo_pessoa, double estagio_anima)
 
 			glBegin(GL_QUADS);
 
-			glTexCoord2f(0.0, 0.0); glVertex2f(-1.0, -1.0);
-			glTexCoord2f(1.0, 0.0); glVertex2f(1.0, -1.0);
-			glTexCoord2f(1.0, 1.0); glVertex2f(1.0,  1.0);
-			glTexCoord2f(0.0, 1.0); glVertex2f(-1.0,  1.0);
+			glTexCoord2f(0.0, 0.0); glVertex3f(-100.0, -100.0, 0.0);
+			glTexCoord2f(1.0, 0.0); glVertex3f(100.0, -100.0, 0.0);
+			glTexCoord2f(1.0, 1.0); glVertex3f(100.0,  100.0, 0.0);
+			glTexCoord2f(0.0, 1.0); glVertex3f(-100.0,  100.0, 0.0);
 
 			glEnd();
 
+//			glBindTexture(GL_TEXTURE_2D, texturesID[CABECA_LADO_DIREITO]);
+//
+//			glBegin(GL_QUADS);
+//
+//			glTexCoord2f(0.0, 0.0); glVertex2f(-100.0, -100.0);
+//			glTexCoord2f(1.0, 0.0); glVertex2f(100.0, -100.0);
+//			glTexCoord2f(1.0, 1.0); glVertex2f(100.0,  100.0);
+//			glTexCoord2f(0.0, 1.0); glVertex2f(-100.0,  100.0);
+//
+//			glEnd();
 		});
 
 		/* Desenha torso */

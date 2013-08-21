@@ -294,7 +294,7 @@ void drawfunc()
 		glRotatef(viewangZ, 0, 0, 1);
 		glTranslatef(-400, 0, 0);
 		//glScalef(0.5, 0.5, 0.5);
-		pessoa(1, pessoa_estagio_anima);
+		pessoa_v2(0, pessoa_estagio_anima);
 	});*/
 
 	glutSwapBuffers();
@@ -351,6 +351,7 @@ void GL_windowSetUp(int* argc, char *argv[])
 	glutInitWindowSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 	glutInit(argc, argv);
 	glutCreateWindow(APP_NAME);
+	initTexture();
 }
 
 /*

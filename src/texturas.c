@@ -7,7 +7,7 @@ void getBitmapImageData( char* pFileName, BMPImage* pImage ) {
     unsigned short nNumPlanes;
     unsigned short nNumBPP;
     int i;
-	
+
     if( (pFile = fopen(pFileName, "rb") ) == NULL )
         printf("ERROR: getBitmapImageData - %s not found.\n", pFileName);
     fseek( pFile, 18, SEEK_CUR );
@@ -57,15 +57,15 @@ void CarregaTexturas(){
     glGenTextures(QTD_TEX, &texturesID[0]);
 
     //Carrega a textura do poste
-    funcoesDeCarregamento("imgs\\Cabeca_Atras.bmp", CABECA_ATRAS);
-    funcoesDeCarregamento("imgs\\Cabeca_Baixo.bmp", CABECA_BAIXO);
-    funcoesDeCarregamento("imgs\\Cabeca_Frente.bmp", CABECA_FRENTE);
-    funcoesDeCarregamento("imgs\\Cabeca_Lado_direito.bmp", CABECA_LADO_DIREITO);
-    funcoesDeCarregamento("imgs\\Cabeca_Lado_esquerdo.bmp", CABECA_LADO_ESQUERDO);
-    funcoesDeCarregamento("imgs\\Cabeca_Topo.bmp", CABECA_TOPO);
+    funcoesDeCarregamento("./resources/cabeca_atras.bmp", CABECA_ATRAS);
+    funcoesDeCarregamento("./resources/cabeca_baixo.bmp", CABECA_BAIXO);
+    funcoesDeCarregamento("./resources/cabeca_frente.bmp", CABECA_FRENTE);
+    funcoesDeCarregamento("./resources/cabeca_lado_direito.bmp", CABECA_LADO_DIREITO);
+    funcoesDeCarregamento("./resources/cabeca_lado_esquerdo.bmp", CABECA_LADO_ESQUERDO);
+    funcoesDeCarregamento("./resources/cabeca_topo.bmp", CABECA_TOPO);
 }
 
-void initTexture (){
+void initTexture(){
     /* Habilita o uso de textura bidimensional  */
     glEnable(GL_TEXTURE_2D);
     CarregaTexturas();
