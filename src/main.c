@@ -76,6 +76,7 @@ void misc()
 	glTranslatef(0,0,-1);
 	// Carregando modo de visualização ortográfica
 	int wx = WINDOW_SIZE_X/2, wy = WINDOW_SIZE_Y/2;
+	//int SCALE=2;
 	//glOrtho(-SCALE*wx, SCALE*wx, -SCALE*wy, SCALE*wy, -SCALE*wx, SCALE*wx);
     gluPerspective(90.0,  wx/(wy*1.0),  1.0,  WINDOW_SIZE_X);
 
@@ -83,15 +84,21 @@ void misc()
 
 	initFiguras();
 	initCenario();
+	glMatrixMode(GL_MODELVIEW);
     initLight();
-
-    glMatrixMode(GL_PROJECTION);
+	
+	glShadeModel(GL_FLAT);
+    glShadeModel(GL_SMOOTH);
+    glEnable(GL_NORMALIZE);
+	
+  
     gluLookAt(0.0, 0.0, 1.0,   //posição da câmera
               0.0, 0.0, 0.0,   //para onde a câmera aponta
               0.0, 1.0, 0.0);  //vetor view-up
 
     range(i, 0, 255) keystate[i] = spkeystate[i] = false;
     glutTimerFunc(10, anima_func, 1);
+    glMatrixMode(GL_PROJECTION);
 }
 
 void keyboardOp() {
@@ -166,10 +173,6 @@ void drawfunc()
     keyboardOp();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
-    glShadeModel(GL_FLAT);
-    //glShadeModel(GL_SMOOTH);
-    glEnable(GL_NORMALIZE);
-    glNormal3f(0.0,0.0,1.0);
     transform({
         glTranslatef(0, 0, -WINDOW_SIZE_X*1.5);
 	    transform({
@@ -255,7 +258,7 @@ void drawfunc()
                 glTranslatef(0,-315,1500);
                 glScalef(0.1,0.1,0.1);
                 //glScalef(1.5, 1.5, 1.5);
-                pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
+                //pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
 		        
             });
             transform({
@@ -263,7 +266,7 @@ void drawfunc()
                 glTranslatef(0,-315,1500);
                 glScalef(0.1,0.1,0.1);
                 //glScalef(1.5, 1.5, 1.5);
-                pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
+               //pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
             });    
         });
     }); 
@@ -290,9 +293,9 @@ void drawfunc()
 	//Mostrar apenas a pessoa
 	transform({
 		glRotatef(viewangX, 1, 0, 0);
-		glRotatef(viewangY-90, 0, 1, 0);
+		glRotatef(viewangY, 0, 1, 0);
 		glRotatef(viewangZ, 0, 0, 1);
-		glTranslatef(-400, 0, 0);
+		//glTranslatef(-400, 0, 0);
 		//glScalef(0.5, 0.5, 0.5);
 		pessoa_v2(0, pessoa_estagio_anima);
 	});*/

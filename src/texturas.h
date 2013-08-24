@@ -1,10 +1,6 @@
 #ifndef TEXTURAS_H
 #define TEXTURAS_H
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <GL/glut.h>
-
 #define WINDOWS 0
 #define LINUX 1
 
@@ -30,7 +26,22 @@
 #define TORSO_LADO 20
 #define TORSO_FRENTE 21
 
-#define QTD_TEX 21
+//texturas da muralha
+#define MURALHA1 22
+#define MURALHA2 23
+#define MURALHA3 24
+#define MURALHA4 25
+#define MURALHA5 26
+#define MURALHA6 27
+#define MURALHA7 28
+#define MURALHA8 29
+#define MURALHA9 30
+#define MURALHA10 31
+#define MURALHA11 32
+#define MURALHA12 33
+
+
+#define QTD_TEX 33
 
 GLuint texturesID[QTD_TEX];
 
@@ -45,7 +56,5 @@ void getBitmapImageData( char* pFileName, BMPImage* pImage );
 void funcoesDeCarregamento( char* img, int idImagem );
 
 void CarregaTexturas();
-
-void initTexture ();
 
 #endif /* TEXTURAS_H */

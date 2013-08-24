@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <GL/glut.h>
 #include "texturas.h"
 
 //int SO = WINDOWS;
@@ -56,8 +59,7 @@ void funcoesDeCarregamento(char* img, int idImagem){
 }
 
 void CarregaTexturas(){
-
-	glGenTextures(QTD_TEX, &texturesID[0]);
+	glGenTextures(QTD_TEX, texturesID);
 
 	if ( SO == WINDOWS ) {
 		//Carrega as texturas
@@ -107,6 +109,19 @@ void CarregaTexturas(){
 		funcoesDeCarregamento("./resources/torso_cima.bmp", TORSO_CIMA);
 		funcoesDeCarregamento("./resources/torso_lado.bmp", TORSO_LADO);
 		funcoesDeCarregamento("./resources/torso_frente.bmp", TORSO_FRENTE);
+		
+		funcoesDeCarregamento("./resources/muralha1.bmp", MURALHA1);
+		funcoesDeCarregamento("./resources/muralha2.bmp", MURALHA2);
+		funcoesDeCarregamento("./resources/muralha3.bmp", MURALHA3);
+		funcoesDeCarregamento("./resources/muralha4.bmp", MURALHA4);
+		funcoesDeCarregamento("./resources/muralha5.bmp", MURALHA5);
+		funcoesDeCarregamento("./resources/muralha6.bmp", MURALHA6);
+		funcoesDeCarregamento("./resources/muralha7.bmp", MURALHA7);
+		funcoesDeCarregamento("./resources/muralha8.bmp", MURALHA8);
+		funcoesDeCarregamento("./resources/muralha9.bmp", MURALHA9);
+		funcoesDeCarregamento("./resources/muralha10.bmp", MURALHA10);
+		funcoesDeCarregamento("./resources/muralha11.bmp", MURALHA11);
+		funcoesDeCarregamento("./resources/muralha12.bmp", MURALHA12);
 
 	}
 }
