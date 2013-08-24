@@ -6,6 +6,9 @@
 #include "macros.h"
 #include "logica.h"
 
+#define WINDOWS 0
+#define LINUX 1
+
 const float G = 9.81;
 static const float ANIM_SPEED = 240; //velocidade da bola
 

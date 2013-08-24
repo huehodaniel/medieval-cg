@@ -1,5 +1,8 @@
 #include "texturas.h"
 
+//int SO = WINDOWS;
+int SO = LINUX;
+
 /* Funções para leitura de imagens .bmp */
 void getBitmapImageData( char* pFileName, BMPImage* pImage ) {
 
@@ -54,16 +57,60 @@ void funcoesDeCarregamento(char* img, int idImagem){
 
 void CarregaTexturas(){
 
-    glGenTextures(QTD_TEX, &texturesID[0]);
+	glGenTextures(QTD_TEX, &texturesID[0]);
 
-    //Carrega a textura do poste
-    funcoesDeCarregamento("./resources/cabeca_atras.bmp", CABECA_ATRAS);
-    funcoesDeCarregamento("./resources/cabeca_baixo.bmp", CABECA_BAIXO);
-    funcoesDeCarregamento("./resources/cabeca_frente.bmp", CABECA_FRENTE);
-    funcoesDeCarregamento("./resources/cabeca_lado_direito.bmp", CABECA_LADO_DIREITO);
-    funcoesDeCarregamento("./resources/cabeca_lado_esquerdo.bmp", CABECA_LADO_ESQUERDO);
-    funcoesDeCarregamento("./resources/cabeca_topo.bmp", CABECA_TOPO);
+	if ( SO == WINDOWS ) {
+		//Carrega as texturas
+		funcoesDeCarregamento("resources\\cabeca_atras.bmp", CABECA_ATRAS);
+		funcoesDeCarregamento("resources\\cabeca_baixo.bmp", CABECA_BAIXO);
+		funcoesDeCarregamento("resources\\cabeca_frente.bmp", CABECA_FRENTE);
+		funcoesDeCarregamento("resources\\cabeca_lado_direito.bmp", CABECA_LADO_DIREITO);
+		funcoesDeCarregamento("resources\\cabeca_lado_esquerdo.bmp", CABECA_LADO_ESQUERDO);
+		funcoesDeCarregamento("resources\\cabeca_topo.bmp", CABECA_TOPO);
+		funcoesDeCarregamento("resources\\braco_atras.bmp", BRACO_ATRAS);
+		funcoesDeCarregamento("resources\\braco_baixo.bmp", BRACO_BAIXO);
+		funcoesDeCarregamento("resources\\braco_cima.bmp", BRACO_CIMA);
+		funcoesDeCarregamento("resources\\braco_frente.bmp", BRACO_FRENTE);
+		funcoesDeCarregamento("resources\\braco_lado.bmp", BRACO_LADO);
+		funcoesDeCarregamento("resources\\perna_atras.bmp", PERNA_ATRAS);
+		funcoesDeCarregamento("resources\\perna_baixo.bmp", PERNA_BAIXO);
+		funcoesDeCarregamento("resources\\perna_cima.bmp", PERNA_CIMA);
+		funcoesDeCarregamento("resources\\perna_frente.bmp", PERNA_FRENTE);
+		funcoesDeCarregamento("resources\\perna_lado.bmp", PERNA_LADO);
+		funcoesDeCarregamento("resources\\torso_atras.bmp", TORSO_ATRAS);
+		funcoesDeCarregamento("resources\\torso_baixo.bmp", TORSO_BAIXO);
+		funcoesDeCarregamento("resources\\torso_cima.bmp", TORSO_CIMA);
+		funcoesDeCarregamento("resources\\torso_lado.bmp", TORSO_LADO);
+		funcoesDeCarregamento("resources\\torso_frente.bmp", TORSO_FRENTE);
+	}
+	else
+	{
+		//Carrega as texturas
+		funcoesDeCarregamento("./resources/cabeca_atras.bmp", CABECA_ATRAS);
+		funcoesDeCarregamento("./resources/cabeca_baixo.bmp", CABECA_BAIXO);
+		funcoesDeCarregamento("./resources/cabeca_frente.bmp", CABECA_FRENTE);
+		funcoesDeCarregamento("./resources/cabeca_lado_direito.bmp", CABECA_LADO_DIREITO);
+		funcoesDeCarregamento("./resources/cabeca_lado_esquerdo.bmp", CABECA_LADO_ESQUERDO);
+		funcoesDeCarregamento("./resources/cabeca_topo.bmp", CABECA_TOPO);
+		funcoesDeCarregamento("./resources/braco_atras.bmp", BRACO_ATRAS);
+		funcoesDeCarregamento("./resources/braco_baixo.bmp", BRACO_BAIXO);
+		funcoesDeCarregamento("./resources/braco_cima.bmp", BRACO_CIMA);
+		funcoesDeCarregamento("./resources/braco_frente.bmp", BRACO_FRENTE);
+		funcoesDeCarregamento("./resources/braco_lado.bmp", BRACO_LADO);
+		funcoesDeCarregamento("./resources/perna_atras.bmp", PERNA_ATRAS);
+		funcoesDeCarregamento("./resources/perna_baixo.bmp", PERNA_BAIXO);
+		funcoesDeCarregamento("./resources/perna_cima.bmp", PERNA_CIMA);
+		funcoesDeCarregamento("./resources/perna_frente.bmp", PERNA_FRENTE);
+		funcoesDeCarregamento("./resources/perna_lado.bmp", PERNA_LADO);
+		funcoesDeCarregamento("./resources/torso_atras.bmp", TORSO_ATRAS);
+		funcoesDeCarregamento("./resources/torso_baixo.bmp", TORSO_BAIXO);
+		funcoesDeCarregamento("./resources/torso_cima.bmp", TORSO_CIMA);
+		funcoesDeCarregamento("./resources/torso_lado.bmp", TORSO_LADO);
+		funcoesDeCarregamento("./resources/torso_frente.bmp", TORSO_FRENTE);
+
+	}
 }
+
 
 void initTexture(){
     /* Habilita o uso de textura bidimensional  */
