@@ -1,6 +1,0 @@
-# .gitignore temporario
-# Gambiarra. Ignora tudo nessa pasta.
-*
-# ...Menos o .gitignore
-!.gitignore
-# Quando entrar textura/imagem/X nessa pasta, a gente remove
