@@ -72,60 +72,201 @@ void catapulta(float angulo) {
 	});
 }
 
+void desenha_quadrado_textura( int textures_ID_index )
+{
+	glBindTexture(GL_TEXTURE_2D, texturesID[textures_ID_index]);
+
+	glBegin(GL_QUADS);
+
+	glTexCoord2f(0.0, 0.0); glVertex3f(-100.0, -100.0, 0.0);
+	glTexCoord2f(1.0, 0.0); glVertex3f(100.0, -100.0, 0.0);
+	glTexCoord2f(1.0, 1.0); glVertex3f(100.0,  100.0, 0.0);
+	glTexCoord2f(0.0, 1.0); glVertex3f(-100.0,  100.0, 0.0);
+
+	glEnd();
+}
+
+void desenha_pessoa_cabeca()
+{
+
+	desenha_quadrado_textura( CABECA_FRENTE );
+	transform({
+		glTranslatef( -100.0, 0.0, -100.0 );
+		glRotatef( 90.0, 0.0, 1.0, 0.0 );
+		desenha_quadrado_textura( CABECA_LADO_ESQUERDO );
+	});
+	transform({
+		glTranslatef( 100.0, 0.0, -100.0 );
+		glRotatef( -90.0, 0.0, 1.0, 0.0 );
+		desenha_quadrado_textura( CABECA_LADO_DIREITO );
+	});
+	transform({
+		glTranslatef( 0.0, 0.0, -200.0 );
+		desenha_quadrado_textura( CABECA_ATRAS );
+	});
+	transform({
+		glTranslatef( 0.0, 100.0, -100.0 );
+		glRotatef( 90.0, 1.0, 0.0, 0.0 );
+		desenha_quadrado_textura( CABECA_TOPO );
+	});
+	transform({
+		glTranslatef( 0.0, -100.0, -100.0 );
+		glRotatef( 90.0, 1.0, 0.0, 0.0 );
+		desenha_quadrado_textura( CABECA_BAIXO );
+	});
+}
+
+void desenha_pessoa_torso()
+{
+	transform({
+		glScalef( 0.9, 1.4, 1.0 );
+		desenha_quadrado_textura( TORSO_FRENTE );
+	});
+	transform({
+		glScalef( 0.9, 1.4, 0.5 );
+		glTranslatef( 100, 0.0, -100.0 );
+		glRotatef( 90, 0.0, 1.0, 0.0 );
+		desenha_quadrado_textura( TORSO_LADO );
+	});
+	transform({
+		glScalef( 0.9, 1.4, 0.5 );
+		glTranslatef( -100, 0.0, -100.0 );
+		glRotatef( 90, 0.0, 1.0, 0.0 );
+		desenha_quadrado_textura( TORSO_LADO );
+	});
+	transform({
+		glScalef( 0.9, 1.4, 0.5 );
+		glTranslatef( 0.0, 0.0, -200.0 );
+		desenha_quadrado_textura( TORSO_ATRAS );
+	});
+	transform({
+		glScalef( 0.9, 1.4, 0.5 );
+		glTranslatef( 0.0, -100.0, -100.0 );
+		glRotatef( 90, 1.0, 0.0, 0.0 );
+		desenha_quadrado_textura( TORSO_BAIXO );
+	});
+	transform({
+		glScalef( 0.9, 1.4, 0.5 );
+		glTranslatef( 0.0, 100.0, -100.0 );
+		glRotatef( 90, 1.0, 0.0, 0.0 );
+		desenha_quadrado_textura( TORSO_CIMA );
+	});
+}
+
+void desenha_pessoa_braco()
+{
+	transform({
+		glScalef( 0.3, 1.5, 0.3 );
+		desenha_quadrado_textura( BRACO_FRENTE );
+	});
+	transform({
+		glScalef( 0.3, 1.5, 0.3 );
+		glTranslatef( 100, 0.0, -100.0 );
+		glRotatef( 90, 0.0, 1.0, 0.0 );
+		desenha_quadrado_textura( BRACO_LADO );
+	});
+	transform({
+		glScalef( 0.3, 1.5, 0.3 );
+		glTranslatef( -100, 0.0, -100.0 );
+		glRotatef( 90, 0.0, 1.0, 0.0 );
+		desenha_quadrado_textura( BRACO_LADO );
+	});
+	transform({
+		glScalef( 0.3, 1.5, 0.3 );
+		glTranslatef( 0.0, 0.0, -200.0 );
+		desenha_quadrado_textura( BRACO_ATRAS );
+	});
+	transform({
+		glScalef( 0.3, 1.5, 0.3 );
+		glTranslatef( 0.0, -100.0, -100.0 );
+		glRotatef( 90, 1.0, 0.0, 0.0 );
+		desenha_quadrado_textura( BRACO_BAIXO );
+	});
+	transform({
+		glScalef( 0.3, 1.5, 0.3 );
+		glTranslatef( 0.0, 100.0, -100.0 );
+		glRotatef( 90, 1.0, 0.0, 0.0 );
+		desenha_quadrado_textura( BRACO_CIMA );
+	});
+}
+
+void desenha_pessoa_perna()
+{
+	transform({
+		glScalef( 0.45, 1.5, 0.3 );
+		desenha_quadrado_textura( PERNA_FRENTE );
+	});
+	transform({
+		glScalef( 0.45, 1.5, 0.3 );
+		glTranslatef( 100, 0.0, -100.0 );
+		glRotatef( 90, 0.0, 1.0, 0.0 );
+		desenha_quadrado_textura( PERNA_LADO );
+	});
+	transform({
+		glScalef( 0.45, 1.5, 0.3 );
+		glTranslatef( -100, 0.0, -100.0 );
+		glRotatef( 90, 0.0, 1.0, 0.0 );
+		desenha_quadrado_textura( PERNA_LADO );
+	});
+	transform({
+		glScalef( 0.45, 1.5, 0.3 );
+		glTranslatef( 0.0, 0.0, -200.0 );
+		desenha_quadrado_textura( PERNA_ATRAS );
+	});
+	transform({
+		glScalef( 0.45, 1.5, 0.3 );
+		glTranslatef( 0.0, -100.0, -100.0 );
+		glRotatef( 90, 1.0, 0.0, 0.0 );
+		desenha_quadrado_textura( PERNA_BAIXO );
+	});
+	transform({
+		glScalef( 0.45, 1.5, 0.3 );
+		glTranslatef( 0.0, 100.0, -100.0 );
+		glRotatef( 90, 1.0, 0.0, 0.0 );
+		desenha_quadrado_textura( PERNA_CIMA );
+	});
+}
+
 void pessoa_v2(int tipo_pessoa, double estagio_anima)
 {
+	glEnable(GL_TEXTURE_2D);
+
 	switch (tipo_pessoa) {
 	/* pessoaJogo */
 	case 0:
 		/* Desenha cabeca */
 		transform({
-			glBindTexture(GL_TEXTURE_2D, texturesID[CABECA_FRENTE]);
-
-			glBegin(GL_QUADS);
-
-			glTexCoord2f(0.0, 0.0); glVertex3f(-100.0, -100.0, 0.0);
-			glTexCoord2f(1.0, 0.0); glVertex3f(100.0, -100.0, 0.0);
-			glTexCoord2f(1.0, 1.0); glVertex3f(100.0,  100.0, 0.0);
-			glTexCoord2f(0.0, 1.0); glVertex3f(-100.0,  100.0, 0.0);
-
-			glEnd();
-
-//			glBindTexture(GL_TEXTURE_2D, texturesID[CABECA_LADO_DIREITO]);
-//
-//			glBegin(GL_QUADS);
-//
-//			glTexCoord2f(0.0, 0.0); glVertex2f(-100.0, -100.0);
-//			glTexCoord2f(1.0, 0.0); glVertex2f(100.0, -100.0);
-//			glTexCoord2f(1.0, 1.0); glVertex2f(100.0,  100.0);
-//			glTexCoord2f(0.0, 1.0); glVertex2f(-100.0,  100.0);
-//
-//			glEnd();
+			glTranslatef( 0.0, 240, 50.0);
+			desenha_pessoa_cabeca();
 		});
 
 		/* Desenha torso */
-		glColor3f( 1.0, 1.0, 1.0 );
 		transform({
-			//TODO
+			desenha_pessoa_torso();
 		});
 
 		/* Desenha braco esquerdo */
 		transform({
-			//TODO
+			glTranslatef( -120.0, -10.0, -20.0);
+			desenha_pessoa_braco();
 		});
 
 		/* Desenha braco direito */
 		transform({
-			//TODO
+			glTranslatef( 120.0, -10.0, -20.0);
+			desenha_pessoa_braco();
 		});
 
 		/* Desenha perna esquerda */
 		transform({
-			//TODO
+			glTranslatef( -40.0, -290.0, -20.0);
+			desenha_pessoa_perna();
 		});
 
 		/* Desenha perna direita */
 		transform({
-			//TODO
+			glTranslatef( 40.0, -290.0, -20.0);
+			desenha_pessoa_perna();
 		});
 		break;
 		/* pessoaVitoria */
@@ -141,6 +282,7 @@ void pessoa_v2(int tipo_pessoa, double estagio_anima)
 		printf("Erro - Entrou no default da funcao 'pessoa()' - Arquivo 'figuras.c'");
 		break;
 	}
+	glDisable( GL_TEXTURE_2D );
 }
 
 /* Funcao generica para todas as pessoas:

@@ -351,7 +351,7 @@ void GL_windowSetUp(int* argc, char *argv[])
 	glutInitWindowSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 	glutInit(argc, argv);
 	glutCreateWindow(APP_NAME);
-	initTexture();
+	CarregaTexturas();
 }
 
 /*

@@ -110,10 +110,3 @@ void CarregaTexturas(){
 
 	}
 }
-
-
-void initTexture(){
-    /* Habilita o uso de textura bidimensional  */
-    glEnable(GL_TEXTURE_2D);
-    CarregaTexturas();
-}
