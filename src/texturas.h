@@ -48,7 +48,7 @@
 
 #define QTD_TEX 38
 
-GLuint texturesID[QTD_TEX];
+extern GLuint texturesID[QTD_TEX];
 
 typedef struct {
     int   width;

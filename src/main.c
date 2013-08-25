@@ -9,6 +9,7 @@
 #include "cenario.h"
 #include "iluminacao.h"
 #include "logica.h"
+#include "texturas.h"
 
 // String cabeçalho
 #define HEADER "-- Computação Grafica, turma de 2013, vespertino --"
@@ -41,6 +42,11 @@ int direcaoCanhao1 = 0;
 int direcaoCanhao2 = 0;
 int moverCanhao1 = 0;
 int moverCanhao2 = 0;
+
+// Posição do pointer
+int x_pointer = 0;
+int z_pointer = 0;
+int pass = 10;
 
 int pessoa_tipo_pessoa = 1;
 double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 1.0;
@@ -84,14 +90,15 @@ void misc()
 
 	initFiguras();
 	initCenario();
+	initLogica();
 	glMatrixMode(GL_MODELVIEW);
     initLight();
 	
-	glShadeModel(GL_FLAT);
     glShadeModel(GL_SMOOTH);
     glEnable(GL_NORMALIZE);
-	
-  
+	CarregaTexturas();
+	glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_FASTEST);
+
     gluLookAt(0.0, 0.0, 1.0,   //posição da câmera
               0.0, 0.0, 0.0,   //para onde a câmera aponta
               0.0, 1.0, 0.0);  //vetor view-up
@@ -165,12 +172,19 @@ void keyboardOp() {
 			direcaoCanhao2 -= 5;
 			dprintf("%d\n", direcaoCanhao2);
 	}
+
+	if(keystate['a']) x_pointer -= pass;
+	if(keystate['d']) x_pointer += pass;
+	if(keystate['w']) z_pointer += pass;
+	if(keystate['s']) z_pointer -= pass;
+	if(keystate['e']) dprintf("%d, %d\n", x_pointer, z_pointer);
 }
 
 #define DRAW_FUNC drawfunc
 void drawfunc()
 {
     keyboardOp();
+	plInfo pl1 = getinfo_p1(), pl2 = getinfo_p2();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glEnable(GL_DEPTH_TEST);
     transform({
@@ -185,51 +199,51 @@ void drawfunc()
                 glRotatef(90,0,1,0); //localizacao do canhao
                 glTranslatef(0,-315,-1400);
                 glScalef(0.3,0.3,0.3);
-				transform({
-					glRotatef(direcaoCanhao2,0,1,0);
-					catapulta(0);
-				});
-				transform({
-					glColor(0, 0, 0);
-					projetil p2 = getinfo_p2().p;
-					updateByAngle(&p2);
-					glTranslatef(p2.z, p2.y, p2.x);
-					glutSolidSphere(50, 20, 20);
-				});
+				glRotatef(direcaoCanhao2,0,1,0);
+				catapulta(0);
+			});
+			transform({
+				glTranslatef(-1400,-315,0);
+				glColor(0, 0, 0);
+				projetil p2 = pl2.p;
+				updateByAngle(&p2);
+				check_colision_p2(p2);
+				glTranslatef(p2.x, p2.y, p2.z);
+				glutSolidSphere(15, 20, 20);
 			});
 			transform({
 				glRotatef(-90,0,1,0);
 				glTranslatef(0,-315,-1400);
 				glScalef(0.3,0.3,0.3);
-				transform({
-					glRotatef(direcaoCanhao1,0,1,0);
-					catapulta(0);
-				});
-				transform({
-					glColor(0, 0, 0);
-					projetil p1 = getinfo_p1().p;
-					updateByAngle(&p1);
-					glTranslatef(p1.z, p1.y, p1.x);
-					glutSolidSphere(50, 20, 20);
-				});
-            });
+				glRotatef(direcaoCanhao1,0,1,0);
+				catapulta(0);
+			});
+			transform({
+				glColor(0, 0, 0);
+				glTranslatef(1400,-315,0);
+				projetil p1 = pl1.p;
+				updateByAngle(&p1);
+				check_colision_p1(p1);
+				glTranslatef(p1.x, p1.y, p1.z);
+				glutSolidSphere(15, 20, 20);
+			});
             transform({
                 glTranslatef(-800,-260,-60);
                 glScalef(0.4,0.4,0.4);
                 //glScalef(1.5, 1.5, 1.5);
-                muralhaArua(0);
+                muralhaArua(pl1.e);
                 transform({
-		            repeat(5) {
+		            repeat(4) {
 		                glRotatef(5,0,1,0);
 		                glTranslatef(30,0,-900);
-		                muralhaArua(0);
+		                muralhaArua(pl1.e);
 		            }
 		        });
 		        transform({
-		            repeat(5) {
+		            repeat(4) {
 		                glRotatef(-5,0,1,0);
 		                glTranslatef(60,0,900);
-		                muralhaArua(0);
+		                muralhaArua(pl1.e);
 		            }
 		        });
             });
@@ -237,19 +251,19 @@ void drawfunc()
                 glTranslatef(800,-260,-60);
                 glScalef(0.4,0.4,0.4);
                 //glScalef(1.5, 1.5, 1.5);
-                muralhaArua(0);
+                muralhaArua(pl2.e);
                 transform({
-                    repeat(5) {
+                    repeat(4) {
 		                glRotatef(-5,0,1,0);
 		                glTranslatef(-30,0,-900);
-		                muralhaArua(0);
+		                muralhaArua(pl2.e);
 		            }
 		        });
 		        transform({
-		            repeat(5) {
+		            repeat(4) {
 		                glRotatef(5,0,1,0);
 		                glTranslatef(-60,0,900);
-		                muralhaArua(0);
+		                muralhaArua(pl2.e);
 		            }
 		        });
             });
@@ -257,17 +271,21 @@ void drawfunc()
                 glRotatef(90,0,1,0);
                 glTranslatef(0,-315,1500);
                 glScalef(0.1,0.1,0.1);
-                //glScalef(1.5, 1.5, 1.5);
-                //pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
-		        
+                glScalef(1.5, 1.5, 1.5);
+                pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
             });
             transform({
                 glRotatef(-90,0,1,0);
                 glTranslatef(0,-315,1500);
                 glScalef(0.1,0.1,0.1);
-                //glScalef(1.5, 1.5, 1.5);
-               //pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
-            });    
+                glScalef(1.5, 1.5, 1.5);
+                pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
+            });
+            if(DEBUG){
+            	glColor(255, 0, 0);
+            	glTranslatef(x_pointer, -50, z_pointer);
+            	glutSolidSphere(50, 20, 20);
+            }    
         });
     }); 
 
@@ -354,7 +372,6 @@ void GL_windowSetUp(int* argc, char *argv[])
 	glutInitWindowSize(WINDOW_SIZE_X, WINDOW_SIZE_Y);
 	glutInit(argc, argv);
 	glutCreateWindow(APP_NAME);
-	CarregaTexturas();
 }
 
 /*

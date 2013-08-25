@@ -6,12 +6,13 @@
 #include "macros.h"
 #include "cenario.h"
 
-GLUquadricObj *obj;
+static GLUquadricObj *obj;
+static int objId = 1;
+static float angX = 15;
+static float angY = 0;
+static float moonHeight = 12.0;
 
-int objId = 1;
-float angX = 15;
-float angY = 0;
-float moonHeight = 12.0;
+float x[NUM_TREES], y[NUM_TREES];
 
 void initCenario(){
     obj = gluNewQuadric();

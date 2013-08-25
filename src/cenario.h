@@ -3,7 +3,7 @@
 
 #define NUM_TREES 240
 
-float x[NUM_TREES], y[NUM_TREES];
+extern float x[NUM_TREES], y[NUM_TREES];
 
 void drawBranches(float x, float y);
 

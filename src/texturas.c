@@ -1,7 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <GL/glu.h>
 #include <GL/glut.h>
+
 #include "texturas.h"
+
+GLuint texturesID[QTD_TEX];
 
 //int SO = WINDOWS;
 int SO = LINUX;
@@ -52,13 +56,17 @@ void funcoesDeCarregamento(char* img, int idImagem){
     glBindTexture(GL_TEXTURE_2D, texturesID[idImagem]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textura.width,  textura.height, 0, GL_RGB, GL_UNSIGNED_BYTE, textura.data);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST );
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    gluBuild2DMipmaps(GL_TEXTURE_2D, GL_RGBA, textura.width, textura.height, GL_RGB, GL_UNSIGNED_BYTE, textura.data);
+    //glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textura.width,  textura.height, 0, GL_RGB, GL_UNSIGNED_BYTE, textura.data);
 
 }
 
 void CarregaTexturas(){
+	glEnable(GL_TEXTURE_2D);
 	glGenTextures(QTD_TEX, texturesID);
 
 	if ( SO == WINDOWS ) {
@@ -152,4 +160,5 @@ void CarregaTexturas(){
 
 
 	}
+	glDisable(GL_TEXTURE_2D);
 }

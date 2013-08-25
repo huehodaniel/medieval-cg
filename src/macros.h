@@ -1,16 +1,8 @@
 /**
- * Coleção de macros utilitárias para ajudar em algumas tarefas bestas.
- * Por enquanto, é principalmente também pra testar se funciona direitinho
- * o sistema de build...
- *
+ * Coleção de macros utilitárias para ajudar em algumas tarefas.
  * Atenção: algumas dessas macros só funcionam se o compilador estiver configurado
- * para compilar o padrão C99, que é o C lecau.
- * Outras funções ainda só rolam no modo G99, que é o C99 + extensões do GCC.
- * Eu já deixei o makefile pra compilar desse jeito, então tanto faz, 
- * mas por precaução eu estou deixando marcado qual precisa de qual. E quem quiser compilar no Visual Studio,
- * HAHAHAHAHAHAHAHAHAHAHAHAHA (infinito).
- *
- * TODO: remover essa introdução porca
+ * para compilar o padrão C99. Outras funções ainda só rolam no modo G99, que é o C99 + extensões do GCC.
+ * O makefile já esta preparado para disparar a compilação como G99
  **/
 
 #ifndef MACROS_H

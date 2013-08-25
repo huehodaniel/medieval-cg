@@ -5,5 +5,4 @@ void lightning();
 
 void initLight();
 
-
 #endif
