@@ -1,0 +1,9 @@
+Pessoa morrendo:
+	Quando o atirador é atingido por um tiro, ele morre, na animação da sua morte o personagem cai de costas no chão e enquanto está caindo vai levantando os braços.
+
+	<IMAGEM = Pessoa_Morte>
+	
+Pessoa se rendendo:
+	Quando um jogador perde ele passa a levantar e abaixar a bandeira de rendição.
+	
+	<IMAGEM = Pessoa_Derrota>

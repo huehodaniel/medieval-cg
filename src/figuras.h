@@ -19,13 +19,13 @@ typedef enum _muralhaEstado { _M100, _M80, _M60, _M40, _M20, _M0 } muralhaEstado
 void muralha(muralhaEstado estado);
 void muralhaArua(muralhaEstado estado);
 
-// AlguÃ©m um dia
-void pessoa();
-void pessoa_v2();
-
-// AruÃ£ vai fazer o castelo
-// Daniel vai fazer bandeira e trombete
-void bandeira(int jogador);
-void trombete();
+/* Funcao generica para todas as pessoas:
+ * parametro 'tipo_pessoa':
+ * 	- 0 pessoaJogo
+ * 	- 1 pessoaVitoria
+ * 	- 2 pessoaDerrota
+ * 	- 3 pessoaMorte
+ */
+void pessoa(int tipo_pessoa, double estagio_anima);
 
 #endif /** FIGURAS_H **/

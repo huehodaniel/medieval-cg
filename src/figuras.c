@@ -72,8 +72,73 @@ void catapulta(float angulo) {
 	});
 }
 
-void desenha_quadrado_textura( int textures_ID_index)
-{
+void bandeira(int jogador) {
+	if(jogador == 1) glColor(255,0,0);
+	else glColor(0,0,255);
+	transform({
+		// Triângulo bizarro
+		glRotatef(90, 0, 0, 1);
+		draw(GL_POLYGON, {
+				glVertex3f(-25, 0, 0);
+				glVertex3f(0, 70, 0);
+				glVertex3f(25, 0, 0);
+
+				glVertex3f(-25, 0, 0);
+				glVertex3f(-25, 0, 5);
+
+				glVertex3f(0, 70, 5);
+				glVertex3f(0, 70, 0);
+				glVertex3f(0, 70, 5);
+
+				glVertex3f(25, 0, 5);
+				glVertex3f(25, 0, 0);
+				glVertex3f(25, 0, 5);
+
+				glVertex3f(-25, 0, 5);
+		});
+		glTranslatef(-25, -10, 0);
+		glColor(168, 86, 3);
+		glRotatef(90, 0, 1, 0);
+		glTranslatef(0, 0, -105);
+		gluCylinder(obj,5,5,160,20,20);
+	});
+}
+
+void trombete() {
+	glColor(242, 227, 7);
+	transform({
+		glScalef(1, 0.5, 1);
+		glutSolidTorus(10, 50, 20, 20);
+	});
+	transform({
+		glTranslatef(-80, 25, 0);
+		glRotatef(90, 0, 1, 0);
+		gluCylinder(obj, 7.5, 7.5, 160, 20, 20);
+		glTranslatef(0, 0, -40);
+		gluCylinder(obj, 15, 7.5, 40, 20, 20);
+		glTranslatef(0, 0, 200);
+		gluCylinder(obj, 7.5, 5, 40, 20, 20);
+	});
+		transform({
+			glTranslatef(-30, 50, 0);
+			repeat(3) {
+				transform({
+					glRotatef(90, 1, 0, 0);
+					gluCylinder(obj, 5, 5, 20, 20, 20);
+				});
+				transform({
+					glRotatef(90, 1, 0, 0);
+					gluDisk(obj, 0, 10, 20, 20);
+					gluCylinder(obj, 10, 10, 3, 20, 20);
+					glTranslatef(0, 3, 0);
+					gluDisk(obj, 0, 10, 20, 20);
+				});
+				glTranslatef(30, 0, 0);
+			}
+		});
+}
+
+void desenha_quadrado_textura( int textures_ID_index) {
 	glBindTexture(GL_TEXTURE_2D, texturesID[textures_ID_index]);
 
 	glBegin(GL_QUADS);
@@ -86,33 +151,76 @@ void desenha_quadrado_textura( int textures_ID_index)
 	glEnd();
 }
 
-/*void desenha_pessoa_cabeca()
+void desenha_quadrado_textura_pessoa( int textures_ID_index )
+{
+	glBindTexture(GL_TEXTURE_2D, texturesID[textures_ID_index]);
+
+	glBegin(GL_QUADS);
+
+	glNormal3f(-100.0, -100.0, 0.0); glTexCoord2f(0.0, 0.0); glVertex3f(-100.0, -100.0, 0.0);
+	glNormal3f(100.0, -100.0, 0.0); glTexCoord2f(1.0, 0.0); glVertex3f(100.0, -100.0, 0.0);
+	glNormal3f(100.0,  100.0, 0.0); glTexCoord2f(1.0, 1.0); glVertex3f(100.0,  100.0, 0.0);
+	glNormal3f(-100.0,  100.0, 0.0); glTexCoord2f(0.0, 1.0); glVertex3f(-100.0,  100.0, 0.0);
+
+	glEnd();
+}
+
+void bandeira_derrota() {
+	transform({
+		//Bandeira
+		desenha_quadrado_textura_pessoa(BANDEIRA_DERROTA);
+
+		//Cabo
+		glTranslatef( -110.0, -100.0, 0.0 );
+		glScalef( 0.1, 2.0, 0.0 );
+
+		desenha_quadrado_textura_pessoa(BANDEIRA_DERROTA_CABO);
+	});
+}
+
+void desenha_pessoa_cabeca( int tipo_pessoa )
 {
 
-	desenha_quadrado_textura( CABECA_FRENTE );
+	switch ( tipo_pessoa ) {
+	case 0:
+		desenha_quadrado_textura_pessoa( CABECA_FRENTE_JOGO );
+		break;
+	case 1:
+		desenha_quadrado_textura_pessoa( CABECA_FRENTE_VITORIA );
+		break;
+	case 2:
+		desenha_quadrado_textura_pessoa( CABECA_FRENTE_DERROTA );
+		break;
+	case 3:
+		desenha_quadrado_textura_pessoa( CABECA_FRENTE_MORTE );
+		break;
+	default:
+		break;
+	}
+
 	transform({
 		glTranslatef( -100.0, 0.0, -100.0 );
 		glRotatef( 90.0, 0.0, 1.0, 0.0 );
-		desenha_quadrado_textura( CABECA_LADO_ESQUERDO );
+		desenha_quadrado_textura_pessoa( CABECA_LADO_ESQUERDO );
 	});
 	transform({
 		glTranslatef( 100.0, 0.0, -100.0 );
 		glRotatef( -90.0, 0.0, 1.0, 0.0 );
-		desenha_quadrado_textura( CABECA_LADO_DIREITO );
+		desenha_quadrado_textura_pessoa( CABECA_LADO_DIREITO );
 	});
 	transform({
 		glTranslatef( 0.0, 0.0, -200.0 );
-		desenha_quadrado_textura( CABECA_ATRAS );
+		desenha_quadrado_textura_pessoa( CABECA_ATRAS );
 	});
 	transform({
 		glTranslatef( 0.0, 100.0, -100.0 );
 		glRotatef( 90.0, 1.0, 0.0, 0.0 );
-		desenha_quadrado_textura( CABECA_TOPO );
+		desenha_quadrado_textura_pessoa( CABECA_TOPO );
 	});
 	transform({
 		glTranslatef( 0.0, -100.0, -100.0 );
 		glRotatef( 90.0, 1.0, 0.0, 0.0 );
-		desenha_quadrado_textura( CABECA_BAIXO );
+		desenha_quadrado_textura_pessoa( CABECA_BAIXO );
 	});
 }
 
@@ -120,36 +228,36 @@ void desenha_pessoa_torso()
 {
 	transform({
 		glScalef( 0.9, 1.4, 1.0 );
-		desenha_quadrado_textura( TORSO_FRENTE );
+		desenha_quadrado_textura_pessoa( TORSO_FRENTE );
 	});
 	transform({
 		glScalef( 0.9, 1.4, 0.5 );
 		glTranslatef( 100, 0.0, -100.0 );
 		glRotatef( 90, 0.0, 1.0, 0.0 );
-		desenha_quadrado_textura( TORSO_LADO );
+		desenha_quadrado_textura_pessoa( TORSO_LADO );
 	});
 	transform({
 		glScalef( 0.9, 1.4, 0.5 );
 		glTranslatef( -100, 0.0, -100.0 );
 		glRotatef( 90, 0.0, 1.0, 0.0 );
-		desenha_quadrado_textura( TORSO_LADO );
+		desenha_quadrado_textura_pessoa( TORSO_LADO );
 	});
 	transform({
 		glScalef( 0.9, 1.4, 0.5 );
 		glTranslatef( 0.0, 0.0, -200.0 );
-		desenha_quadrado_textura( TORSO_ATRAS );
+		desenha_quadrado_textura_pessoa( TORSO_ATRAS );
 	});
 	transform({
 		glScalef( 0.9, 1.4, 0.5 );
 		glTranslatef( 0.0, -100.0, -100.0 );
 		glRotatef( 90, 1.0, 0.0, 0.0 );
-		desenha_quadrado_textura( TORSO_BAIXO );
+		desenha_quadrado_textura_pessoa( TORSO_BAIXO );
 	});
 	transform({
 		glScalef( 0.9, 1.4, 0.5 );
 		glTranslatef( 0.0, 100.0, -100.0 );
 		glRotatef( 90, 1.0, 0.0, 0.0 );
-		desenha_quadrado_textura( TORSO_CIMA );
+		desenha_quadrado_textura_pessoa( TORSO_CIMA );
 	});
 }
 
@@ -157,36 +265,36 @@ void desenha_pessoa_braco()
 {
 	transform({
 		glScalef( 0.3, 1.5, 0.3 );
-		desenha_quadrado_textura( BRACO_FRENTE );
+		desenha_quadrado_textura_pessoa( BRACO_FRENTE );
 	});
 	transform({
 		glScalef( 0.3, 1.5, 0.3 );
 		glTranslatef( 100, 0.0, -100.0 );
 		glRotatef( 90, 0.0, 1.0, 0.0 );
-		desenha_quadrado_textura( BRACO_LADO );
+		desenha_quadrado_textura_pessoa( BRACO_LADO );
 	});
 	transform({
 		glScalef( 0.3, 1.5, 0.3 );
 		glTranslatef( -100, 0.0, -100.0 );
 		glRotatef( 90, 0.0, 1.0, 0.0 );
-		desenha_quadrado_textura( BRACO_LADO );
+		desenha_quadrado_textura_pessoa( BRACO_LADO );
 	});
 	transform({
 		glScalef( 0.3, 1.5, 0.3 );
 		glTranslatef( 0.0, 0.0, -200.0 );
-		desenha_quadrado_textura( BRACO_ATRAS );
+		desenha_quadrado_textura_pessoa( BRACO_ATRAS );
 	});
 	transform({
 		glScalef( 0.3, 1.5, 0.3 );
 		glTranslatef( 0.0, -100.0, -100.0 );
 		glRotatef( 90, 1.0, 0.0, 0.0 );
-		desenha_quadrado_textura( BRACO_BAIXO );
+		desenha_quadrado_textura_pessoa( BRACO_BAIXO );
 	});
 	transform({
 		glScalef( 0.3, 1.5, 0.3 );
 		glTranslatef( 0.0, 100.0, -100.0 );
 		glRotatef( 90, 1.0, 0.0, 0.0 );
-		desenha_quadrado_textura( BRACO_CIMA );
+		desenha_quadrado_textura_pessoa( BRACO_CIMA );
 	});
 }
 
@@ -194,96 +302,260 @@ void desenha_pessoa_perna()
 {
 	transform({
 		glScalef( 0.45, 1.5, 0.3 );
-		desenha_quadrado_textura( PERNA_FRENTE );
+		desenha_quadrado_textura_pessoa( PERNA_FRENTE );
 	});
 	transform({
 		glScalef( 0.45, 1.5, 0.3 );
 		glTranslatef( 100, 0.0, -100.0 );
 		glRotatef( 90, 0.0, 1.0, 0.0 );
-		desenha_quadrado_textura( PERNA_LADO );
+		desenha_quadrado_textura_pessoa( PERNA_LADO );
 	});
 	transform({
 		glScalef( 0.45, 1.5, 0.3 );
 		glTranslatef( -100, 0.0, -100.0 );
 		glRotatef( 90, 0.0, 1.0, 0.0 );
-		desenha_quadrado_textura( PERNA_LADO );
+		desenha_quadrado_textura_pessoa( PERNA_LADO );
 	});
 	transform({
 		glScalef( 0.45, 1.5, 0.3 );
 		glTranslatef( 0.0, 0.0, -200.0 );
-		desenha_quadrado_textura( PERNA_ATRAS );
+		desenha_quadrado_textura_pessoa( PERNA_ATRAS );
 	});
 	transform({
 		glScalef( 0.45, 1.5, 0.3 );
 		glTranslatef( 0.0, -100.0, -100.0 );
 		glRotatef( 90, 1.0, 0.0, 0.0 );
-		desenha_quadrado_textura( PERNA_BAIXO );
+		desenha_quadrado_textura_pessoa( PERNA_BAIXO );
 	});
 	transform({
 		glScalef( 0.45, 1.5, 0.3 );
 		glTranslatef( 0.0, 100.0, -100.0 );
 		glRotatef( 90, 1.0, 0.0, 0.0 );
-		desenha_quadrado_textura( PERNA_CIMA );
+		desenha_quadrado_textura_pessoa( PERNA_CIMA );
 	});
 }
 
-void pessoa_v2(int tipo_pessoa, double estagio_anima)
+void desenha_pessoa_jogo( double estagio_anima )
 {
-	glEnable(GL_TEXTURE_2D);
+	// Desenha cabeca
+	transform({
+		glTranslatef( 0.0, 240, 50.0);
+		desenha_pessoa_cabeca(0);
+	});
 
-	switch (tipo_pessoa) {
-	// pessoaJogo 
-	case 0:
-		// Desenha cabeca 
+	// Desenha torso
+	transform({
+		desenha_pessoa_torso();
+	});
+
+	//Desenha braco esquerdo
+	transform({
+		glTranslatef( -120.0, -10.0, -20.0);
+
+		//Movimentacao do braco
+		glTranslatef( 0.0, 100.0, 0.0);
+		glRotatef( -110, 1.0, 0.0, 0.0 );
+		glTranslatef( 0.0, -100.0, 0.0);
+
+		desenha_pessoa_braco();
+	});
+
+	// Desenha braco direito
+	transform({
+		glTranslatef( 120.0, -10.0, -20.0);
+
+		//Movimentacao do braco
+		glTranslatef( 0.0, 100.0, 0.0);
+		glRotatef( 40, 1.0, 0.0, 0.0 );
+		glTranslatef( 0.0, -100.0, 0.0);
+
+		desenha_pessoa_braco();
+	});
+
+	// Desenha perna esquerda
+	transform({
+		glTranslatef( -40.0, -260.0, -20.0);
+
+		//Movimento da perna
+		glTranslatef( 0.0, 140.0, 0.0);
+		glRotatef( -30, 1.0, 0.0, 0.0 );
+		glTranslatef( 0.0, -140.0, 0.0);
+
+		desenha_pessoa_perna();
+	});
+
+	// Desenha perna direita
+	transform({
+		glTranslatef( 40.0, -290.0, -20.0);
+
+		//Movimento da perna
+		glTranslatef( 0.0, 140.0, 0.0);
+		glRotatef( 30, 1.0, 0.0, 0.0 );
+		glTranslatef( 0.0, -140.0, 0.0);
+
+		desenha_pessoa_perna();
+	});
+}
+
+void desenha_pessoa_vitoria( double estagio_anima )
+{
+	// Desenha cabeca
+	transform({
+		glTranslatef( 0.0, 240, 50.0);
+		desenha_pessoa_cabeca(1);
+	});
+
+	// Desenha torso
+	transform({
+		desenha_pessoa_torso();
+	});
+
+	//Desenha braco esquerdo
+	transform({
+		glTranslatef( -120.0, -10.0, -20.0);
+
+		//Para a movimentacao do braco
+		glTranslatef( 0.0, 100.0, 0.0);
+		glRotatef( -estagio_anima, 1.0, 0.0, 0.0 );
+		glTranslatef( 0.0, -100.0, 0.0);
+
+		desenha_pessoa_braco();
+
+		//TODO fazer funcionar essa parada
+		//		trombete();
+
+	});
+
+	// Desenha braco direito
+	transform({
+		glTranslatef( 120.0, -10.0, -20.0);
+		desenha_pessoa_braco();
+	});
+
+	// Desenha perna esquerda
+	transform({
+		glTranslatef( -40.0, -290.0, -20.0);
+		desenha_pessoa_perna();
+	});
+
+	// Desenha perna direita
+	transform({
+		glTranslatef( 40.0, -290.0, -20.0);
+		desenha_pessoa_perna();
+	});
+}
+
+void desenha_pessoa_derrota( double estagio_anima )
+{
+	// Desenha cabeca
+	transform({
+		glTranslatef( 0.0, 240, 50.0);
+		desenha_pessoa_cabeca(2);
+	});
+
+	// Desenha torso
+	transform({
+		desenha_pessoa_torso();
+	});
+
+	//Desenha braco esquerdo
+	transform({
+		//Para a movimentacao do braco
+		glTranslatef( 0.0, 100.0, 0.0);
+		glRotatef( -estagio_anima, 1.0, 0.0, 0.0 );
+		glTranslatef( 0.0, -100.0, 0.0);
+
 		transform({
-			glTranslatef( 0.0, 240, 50.0);
-			desenha_pessoa_cabeca();
+			glTranslatef( -120.0, -10.0, -20.0);
+
+			desenha_pessoa_braco();
+
 		});
 
-		// Desenha torso 
+		//Para ajuste da posicao da bandeira
+		glTranslatef( -140.0, -260.0, 240.0 );
+		glRotatef( -95, 0.0, 1.0, 0.0 );
+		glRotatef( -95, 0.0, 0.0, 1.0 );
+
+		bandeira_derrota();
+
+	});
+
+	// Desenha braco direito
+	transform({
+		glTranslatef( 120.0, -10.0, -20.0);
+		desenha_pessoa_braco();
+	});
+
+	// Desenha perna esquerda
+	transform({
+		glTranslatef( -40.0, -290.0, -20.0);
+		desenha_pessoa_perna();
+	});
+
+	// Desenha perna direita
+	transform({
+		glTranslatef( 40.0, -290.0, -20.0);
+		desenha_pessoa_perna();
+	});
+}
+
+void desenha_pessoa_morte( double estagio_anima )
+{
+	transform({
+
+		glTranslatef( 0.0, -300.0, 0.0);
+		glRotatef( -((estagio_anima/100)*90), 1.0, 0.0, 0.0 ); //estagio_anima varia de 0 a 100, mas precisamos de uma rotacao de 0 a 90
+		glTranslatef( 0.0, 300.0, 0.0);
+
+		// Desenha cabeca
+		transform({
+			glTranslatef( 0.0, 240, 50.0);
+			desenha_pessoa_cabeca(3);
+		});
+
+		// Desenha torso
 		transform({
 			desenha_pessoa_torso();
 		});
 
-		// Desenha braco esquerdo 
+		//Desenha braco esquerdo
 		transform({
 			glTranslatef( -120.0, -10.0, -20.0);
+
+			//Animacao do braco na queda
+			glTranslatef( 0.0, 100.0, 0.0);
+			glRotatef( -estagio_anima, 1.0, 0.0, 0.0 );
+			glTranslatef( 0.0, -100.0, 0.0);
+
 			desenha_pessoa_braco();
 		});
 
-		// Desenha braco direito 
+		// Desenha braco direito
 		transform({
 			glTranslatef( 120.0, -10.0, -20.0);
+
+			//Animacao do braco na queda
+			glTranslatef( 0.0, 100.0, 0.0);
+			glRotatef( -estagio_anima, 1.0, 0.0, 0.0 );
+			glTranslatef( 0.0, -100.0, 0.0);
+
 			desenha_pessoa_braco();
 		});
 
-		// Desenha perna esquerda 
+		// Desenha perna esquerda
 		transform({
 			glTranslatef( -40.0, -290.0, -20.0);
 			desenha_pessoa_perna();
 		});
 
-		// Desenha perna direita 
+		// Desenha perna direita
 		transform({
 			glTranslatef( 40.0, -290.0, -20.0);
 			desenha_pessoa_perna();
 		});
-		break;
-		// pessoaVitoria 
-	case 1:
-		break;
-		// pessoaDerrota 
-	case 2:
-		break;
-		// pessoaMorte 
-	case 3:
-		break;
-	default:
-		printf("Erro - Entrou no default da funcao 'pessoa()' - Arquivo 'figuras.c'");
-		break;
-	}
-	glDisable( GL_TEXTURE_2D );
-}*/
+	});
+}
 
 /* Funcao generica para todas as pessoas:
  * parametro 'tipo_pessoa':
@@ -291,16 +563,36 @@ void pessoa_v2(int tipo_pessoa, double estagio_anima)
  * 	- 1 pessoaVitoria
  * 	- 2 pessoaDerrota
  * 	- 3 pessoaMorte
- * 	*/
+ */
+void pessoa(int tipo_pessoa, double estagio_anima)
+{
+	glEnable(GL_TEXTURE_2D);
 
-
-void pessoaVence() {
-
+	switch (tipo_pessoa) {
+	// pessoaJogo 
+	case 0:
+		desenha_pessoa_jogo( estagio_anima );
+		break;
+		// pessoa vitoria
+	case 1:
+		desenha_pessoa_vitoria( estagio_anima );
+		break;
+		//pessoa derrota
+	case 2:
+		desenha_pessoa_derrota( estagio_anima );
+		break;
+		//pessoaMorte
+	case 3:
+		desenha_pessoa_morte( estagio_anima );
+		break;
+	default:
+		printf("Erro - Entrou no default da funcao 'pessoa()' - Arquivo 'figuras.c'");
+		break;
+	}
+	glDisable( GL_TEXTURE_2D );
 }
 
-void pessoaMorta() {
 
-}
 void desenhaParalelepipedo(){
 	desenha_quadrado_textura(22);//(22+(rand()%12)));
 	transform({
@@ -392,71 +684,4 @@ void muralhaArua(muralhaEstado estado){
 
 	});
 	//glDisable( GL_TEXTURE_2D );
-}
-
-
-void bandeira(int jogador) {
-	if(jogador == 1) glColor(255,0,0);
-	else glColor(0,0,255);
-	transform({
-		// Triângulo bizarro
-		glRotatef(90, 0, 0, 1);
-		draw(GL_POLYGON, {
-				glVertex3f(-25, 0, 0);
-				glVertex3f(0, 70, 0);
-				glVertex3f(25, 0, 0);
-
-				glVertex3f(-25, 0, 0);
-				glVertex3f(-25, 0, 5);
-
-				glVertex3f(0, 70, 5);
-				glVertex3f(0, 70, 0);
-				glVertex3f(0, 70, 5);
-
-				glVertex3f(25, 0, 5);
-				glVertex3f(25, 0, 0);
-				glVertex3f(25, 0, 5);
-
-				glVertex3f(-25, 0, 5);
-		});
-		glTranslatef(-25, -10, 0);
-		glColor(168, 86, 3);
-		glRotatef(90, 0, 1, 0);
-		glTranslatef(0, 0, -105);
-		gluCylinder(obj,5,5,160,20,20);
-	});
-}
-
-void trombete() {
-	glColor(242, 227, 7);
-	transform({
-		glScalef(1, 0.5, 1);
-		glutSolidTorus(10, 50, 20, 20);
-	});
-	transform({
-		glTranslatef(-80, 25, 0);
-		glRotatef(90, 0, 1, 0);
-		gluCylinder(obj, 7.5, 7.5, 160, 20, 20);
-		glTranslatef(0, 0, -40);
-		gluCylinder(obj, 15, 7.5, 40, 20, 20);
-		glTranslatef(0, 0, 200);
-		gluCylinder(obj, 7.5, 5, 40, 20, 20);
-	});
-		transform({
-			glTranslatef(-30, 50, 0);
-			repeat(3) {
-				transform({
-					glRotatef(90, 1, 0, 0);
-					gluCylinder(obj, 5, 5, 20, 20, 20);
-				});
-				transform({
-					glRotatef(90, 1, 0, 0);
-					gluDisk(obj, 0, 10, 20, 20);
-					gluCylinder(obj, 10, 10, 3, 20, 20);
-					glTranslatef(0, 3, 0);
-					gluDisk(obj, 0, 10, 20, 20);
-				});
-				glTranslatef(30, 0, 0);
-			}
-		});
 }
