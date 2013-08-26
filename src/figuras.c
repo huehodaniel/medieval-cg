@@ -633,5 +633,28 @@ void muralha(muralhaEstado estado){
 	//glDisable( GL_TEXTURE_2D );
 }
 
+void escreverTexto(char* texto) {
+	transform({
+		do glutStrokeCharacter(GLUT_STROKE_ROMAN, *texto); while(*(++texto));
+	});
+}
+
+void _letreiro(const char* text1, const char* text2) {
+	transform({
+		glColor(127, 127, 127);
+		escreverTexto(text1);
+		glTranslatef(0, -65, 0);
+		glScalef(0.7, 0.7, 0.7);
+		escreverTexto(text2);
+	});
+}
+
+void letreiroIni() {
+	_letreiro("Batalha Medieval", "Pressione Enter para jogar...");
+}
+
+void letreiroFim(int vencedor) {
+	_letreiro(vencedor == 1 ? "Parabens jogador 1!" : "Parabens jogador 2!", "Pressione Enter para sair...");
+}
 
 

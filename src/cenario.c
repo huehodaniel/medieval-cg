@@ -7,7 +7,6 @@
 #include "cenario.h"
 
 static GLUquadricObj *obj;
-static int objId = 1;
 static float angX = 15;
 static float angY = 0;
 static float moonHeight = 12.0;

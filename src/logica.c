@@ -55,6 +55,7 @@ static inline int pow2(int x) {
 	return x * x;
 }
 
+// Salve Wolfram
 static float intervalos[9][2] = {
     {-1550, -1215.70},
     {-1215.70, -874.05},
@@ -67,7 +68,6 @@ static float intervalos[9][2] = {
     {1215.70, 1550}
 };
 
-#define FRACAO_MURALHA 172.2
 static int getMuralha(float z) {
     range(i, 0, 9) {
         dprintf("%f, %f, %f\n", intervalos[i][0], z, intervalos[i][1]);
@@ -79,7 +79,7 @@ static int getMuralha(float z) {
 // Seja a equação da parábola para a muralha 1 igual a f(x) = 0.00012z² + 810 + x0
 #define _validateColision(i, j, p) \
     float z = 0.00012*pow2(p.z); \
-    if(p.x >= z + 2210 ||(0 && p.x <= z + 2260 && p.y < 300)) { \
+    if(p.x >= z + 2210 || (0 && p.x <= z + 2260 && p.y < 300)) { \
         colide##i = true; \
         int muralha = getMuralha(p.z); \
         dprintf("%d\n", muralha); \

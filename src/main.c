@@ -48,6 +48,10 @@ int x_pointer = 0;
 int z_pointer = 0;
 int pass = 10;
 
+// Estado do jogo
+typedef enum _modoJogo { INICIO, JOGO, FIM } modoJogo;
+modoJogo modo = INICIO;
+
 double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 1.0;
 
 //Vetor de estados do teclado (para permitir multiplas teclas pressionadas)
@@ -61,6 +65,10 @@ void anima_func(int value)
 		pessoa_estagio_incremento *= -1;
 	}
 	pessoa_estagio_anima += pessoa_estagio_incremento;
+
+	if(modo == INICIO) {
+		viewangY += 4;
+	}
 
 	glutTimerFunc( 10, anima_func, 1 ); /* Faz a funcao anima_func continuar sendo chamada infinitamente */
 	glutPostRedisplay();
@@ -106,6 +114,15 @@ void misc()
     range(i, 0, 255) keystate[i] = spkeystate[i] = false;
     glutTimerFunc(10, anima_func, 1);
     glMatrixMode(GL_PROJECTION);
+}
+
+void keyboardOpStart() {
+	if(keystate[13]) {
+		modo = JOGO;
+		viewangY = 0;
+		viewangX = 35;
+		glutPostRedisplay();
+	}
 }
 
 void keyboardOp() {
@@ -180,14 +197,33 @@ void keyboardOp() {
 	if(keystate['e']) dprintf("%d, %d\n", x_pointer, z_pointer);
 }
 
+void keyboardOpEnd() {
+	if(keystate[13]) exit(0);
+}
+
 #define DRAW_FUNC drawfunc
 void drawfunc()
 {
-    keyboardOp();
 	plInfo pl1 = getinfo_p1(), pl2 = getinfo_p2();
+	if(pl1.j == VENCEU || pl2.j == VENCEU) modo = FIM;
+
+	switch(modo) {
+		case INICIO: keyboardOpStart(); break;
+		case JOGO: keyboardOp(); break;
+		case FIM: keyboardOpEnd();
+	}
+	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     transform({
         glTranslatef(0, 0, -WINDOW_SIZE_X*1.5);
+        transform({
+        	glTranslatef(0, 200, 0);
+	        if(modo == INICIO) {
+		    	letreiroIni();
+		    } else if(modo == FIM) {
+		    	letreiroFim(pl1.j == VENCEU ? 1 : 2);
+		    }
+		});
 	    transform({
             glRotatef(viewangX, 1, 0, 0);
 		    glRotatef(viewangY, 0, 1, 0);
@@ -267,7 +303,7 @@ void drawfunc()
 		        });
             });
             transform({
-            	glTranslatef(1500,-315, 0);
+            	glTranslatef(1500,-315,0);
                 glRotatef(-90,0,1,0);
                 glScalef(0.15,0.15,0.15);
                 pessoa(pl1.j, pessoa_estagio_anima);
@@ -320,7 +356,7 @@ void drawfunc()
 
 #define KBD_FUNC keyboard
 void keyboard(unsigned char key, int x, int y) {
-    //dprintf("%c\n", key);
+    dprintf("%d\n", key);
     keystate[key] = true;
 }
 
@@ -332,7 +368,7 @@ void keyboardUp(unsigned char key, int x, int y) {
 
 #define SPKEY_FUNC spkeys
 void spkeys(int key, int x, int y) {
-	//dprintf("%d\n", key);
+	dprintf("%d\n", key);
     spkeystate[key] = true;
 }
 
