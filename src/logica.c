@@ -76,19 +76,33 @@ static int getMuralha(float z) {
     return 4;
 }
 
-// Seja a equação da parábola para a muralha 1 igual a f(x) = 0.00012z² + 810 + x0
+// Seja a equação da parábola para a muralha oponente igual a f(x) = 0.00012z² + 810 + x0
+// e a equação da parábola para a própria muralha igual a f(x) = - 0.00012z² + 600 + x0
 #define _validateColision(i, j, p) \
     float z = 0.00012*pow2(p.z); \
-    if(p.x >= z + 2210 || (0 && p.x <= z + 2260 && p.y < 300)) { \
-        colide##i = true; \
+    bool oponente = p.x >= z + 2210 && p.x <= z + 2260; \
+    bool propria  = p.x >= -z + 600 && p.x <= -z + 650; \
+    if(oponente || propria) { \
         int muralha = getMuralha(p.z); \
         dprintf("%d\n", muralha); \
-        e##j[muralha]++; \
-        glutPostRedisplay(); \
-        if(e##j[muralha] == M0) { \
-            jg##i = VENCEU; \
-            jg##j = PERDEU; \
+        if(oponente){\
+            if(p.y > e##j[muralha]*50) return; \
+            else colide##i = true; \
+            e##j[muralha]--; \
+            if(e##j[muralha] == M0) { \
+                jg##i = VENCEU; \
+                jg##j = PERDEU; \
+            } \
+        } else { \
+            if(p.y > e##i[muralha]*50) return; \
+            else colide##i = true; \
+            e##i[muralha]--; \
+            if(e##i[muralha] == M0) { \
+                jg##j = VENCEU; \
+                jg##i = PERDEU; \
+            } \
         } \
+        glutPostRedisplay(); \
     }
 
 void check_colision_p1(projetil p) { 
@@ -100,12 +114,17 @@ void check_colision_p2(projetil p) {
 }
 
 #define _shoot(speed, i) macrofy(\
+    projetil upd; \
     repeat(ANIM_SPEED) { \
         p##i.x++; \
     	p##i.y += deltaY(p##i.x, speed); \
+        upd = p##i; \
+        updateByAngle(&upd); \
+        check_colision_p##i(upd); \
+        if(colide##i) break; \
     } \
-	glutPostRedisplay(); \
-    if(!colide##i && valid(p##i.x, 20000) && valid(p##i.y, 20000)) \
+    glutPostRedisplay(); \
+    if(!colide##i && valid(upd.x, 20000) && valid(upd.y, 20000)) \
         glutTimerFunc(10, shoot_p##i, speed); \
     else { \
         p##i.x = p##i.y = p##i.z = 0; \

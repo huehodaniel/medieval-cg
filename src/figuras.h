@@ -5,7 +5,6 @@
 
 void initFiguras();
 void catapulta(float angulo);
-void pessoa();
 
 void muralha(muralhaEstado estado);
 

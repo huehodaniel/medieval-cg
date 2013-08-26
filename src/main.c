@@ -212,7 +212,7 @@ void drawfunc()
 		case JOGO: keyboardOp(); break;
 		case FIM: keyboardOpEnd();
 	}
-	
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     transform({
         glTranslatef(0, 0, -WINDOW_SIZE_X*1.5);
@@ -242,7 +242,7 @@ void drawfunc()
 				glColor(0, 0, 0);
 				projetil p2 = pl2.p;
 				updateByAngle(&p2);
-				check_colision_p2(p2);
+				//check_colision_p2(p2);
 				glTranslatef(p2.x, p2.y, p2.z);
 				glutSolidSphere(15, 20, 20);
 			});
@@ -258,7 +258,7 @@ void drawfunc()
 				glTranslatef(1400,-315,0);
 				projetil p1 = pl1.p;
 				updateByAngle(&p1);
-				check_colision_p1(p1);
+				//check_colision_p1(p1);
 				glTranslatef(-p1.x, p1.y, p1.z);
 				glutSolidSphere(15, 20, 20);
 			});

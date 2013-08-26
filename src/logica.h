@@ -1,7 +1,7 @@
 #ifndef LOGICA_H
 #define LOGICA_H
 
-typedef enum _muralhaEstado { M100, M80, M60, M40, M20, M0 } muralhaEstado;
+typedef enum _muralhaEstado { M0 = 0, M20, M40, M60, M80, M100 } muralhaEstado;
 
 typedef enum _estadoJogador { PERDEU, JOGANDO, VENCEU, MORREU } estadoJogador;
 
