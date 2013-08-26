@@ -48,7 +48,6 @@ int x_pointer = 0;
 int z_pointer = 0;
 int pass = 10;
 
-int pessoa_tipo_pessoa = 1;
 double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 1.0;
 
 //Vetor de estados do teclado (para permitir multiplas teclas pressionadas)
@@ -75,7 +74,8 @@ void misc()
 	// determinando background preto
     //glClearColor(0.0, 0.0, 0.0, 0.0);
 	glClearColor(0.1, 0.6, 1.0, 0.0);
-	
+	glEnable(GL_DEPTH_TEST);
+
 	// Carregando matriz identidade
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -112,7 +112,7 @@ void keyboardOp() {
     if(keystate['m']) {
          if(getinfo_p1().p.x <= 0) force_p1(10);
     } else {
-        end_force_p1(direcaoCanhao1);
+        end_force_p1(-direcaoCanhao1);
     }
 
     if(keystate[' ']) {
@@ -150,26 +150,26 @@ void keyboardOp() {
 	}
 	
 	if(keystate['h']){
-		if(direcaoCanhao1 < 25)
-			direcaoCanhao1 += 5;
+		if(direcaoCanhao1 < 40)
+			direcaoCanhao1 += 2;
 			dprintf("%d\n", direcaoCanhao1);
 	}
 	
 	if(keystate['j']){
-		if(direcaoCanhao1 > -25)
-			direcaoCanhao1 -= 5;
+		if(direcaoCanhao1 > -40)
+			direcaoCanhao1 -= 2;
 			dprintf("%d\n", direcaoCanhao1);
 	}
 	
 	if(keystate['k']){
-		if(direcaoCanhao2 < 25)
-			direcaoCanhao2 += 5;
+		if(direcaoCanhao2 < 40)
+			direcaoCanhao2 += 2;
 			dprintf("%d\n", direcaoCanhao2);
 	}
 	
 	if(keystate['l']){
-		if(direcaoCanhao2 > -25)
-			direcaoCanhao2 -= 5;
+		if(direcaoCanhao2 > -40)
+			direcaoCanhao2 -= 2;
 			dprintf("%d\n", direcaoCanhao2);
 	}
 
@@ -186,7 +186,6 @@ void drawfunc()
     keyboardOp();
 	plInfo pl1 = getinfo_p1(), pl2 = getinfo_p2();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glEnable(GL_DEPTH_TEST);
     transform({
         glTranslatef(0, 0, -WINDOW_SIZE_X*1.5);
 	    transform({
@@ -224,26 +223,26 @@ void drawfunc()
 				projetil p1 = pl1.p;
 				updateByAngle(&p1);
 				check_colision_p1(p1);
-				glTranslatef(p1.x, p1.y, p1.z);
+				glTranslatef(-p1.x, p1.y, p1.z);
 				glutSolidSphere(15, 20, 20);
 			});
             transform({
                 glTranslatef(-800,-260,-60);
                 glScalef(0.4,0.4,0.4);
                 //glScalef(1.5, 1.5, 1.5);
-                muralhaArua(pl1.e);
+                muralha(pl2.e[4]);
                 transform({
-		            repeat(4) {
+		            for(int idx = 3; idx >= 0; idx--) {
 		                glRotatef(5,0,1,0);
 		                glTranslatef(30,0,-900);
-		                muralhaArua(pl1.e);
+		                muralha(pl2.e[idx]);
 		            }
 		        });
 		        transform({
-		            repeat(4) {
+		            range(idx, 5, 9) {
 		                glRotatef(-5,0,1,0);
 		                glTranslatef(60,0,900);
-		                muralhaArua(pl1.e);
+		                muralha(pl2.e[idx]);
 		            }
 		        });
             });
@@ -251,35 +250,33 @@ void drawfunc()
                 glTranslatef(800,-260,-60);
                 glScalef(0.4,0.4,0.4);
                 //glScalef(1.5, 1.5, 1.5);
-                muralhaArua(pl2.e);
+                muralha(pl1.e[4]);
                 transform({
-                    repeat(4) {
+                    for(int idx = 3; idx >= 0; idx--) {
 		                glRotatef(-5,0,1,0);
 		                glTranslatef(-30,0,-900);
-		                muralhaArua(pl2.e);
+		                muralha(pl1.e[idx]);
 		            }
 		        });
 		        transform({
-		            repeat(4) {
+		            range(idx, 5, 9) {
 		                glRotatef(5,0,1,0);
 		                glTranslatef(-60,0,900);
-		                muralhaArua(pl2.e);
+		                muralha(pl1.e[idx]);
 		            }
 		        });
             });
             transform({
-                glRotatef(90,0,1,0);
-                glTranslatef(0,-315,1500);
-                glScalef(0.1,0.1,0.1);
-                glScalef(1.5, 1.5, 1.5);
-                pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
+            	glTranslatef(1500,-315, 0);
+                glRotatef(-90,0,1,0);
+                glScalef(0.15,0.15,0.15);
+                pessoa(pl1.j, pessoa_estagio_anima);
             });
             transform({
-                glRotatef(-90,0,1,0);
-                glTranslatef(0,-315,1500);
-                glScalef(0.1,0.1,0.1);
-                glScalef(1.5, 1.5, 1.5);
-                pessoa(pessoa_tipo_pessoa, pessoa_estagio_anima);
+            	glTranslatef(-1500,-315,0);
+                glRotatef(90,0,1,0);
+                glScalef(0.15,0.15,0.15);
+                pessoa(pl2.j, pessoa_estagio_anima);
             });
             if(DEBUG){
             	glColor(255, 0, 0);

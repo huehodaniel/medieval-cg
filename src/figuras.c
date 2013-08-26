@@ -501,25 +501,25 @@ void desenha_pessoa_morte( double estagio_anima )
  * 	- 2 pessoaDerrota
  * 	- 3 pessoaMorte
  */
-void pessoa(int tipo_pessoa, double estagio_anima)
+void pessoa(estadoJogador tipo_pessoa, double estagio_anima)
 {
 	glEnable(GL_TEXTURE_2D);
 
 	switch (tipo_pessoa) {
 	// pessoaJogo 
-	case 0:
+	case JOGANDO:
 		desenha_pessoa_jogo( estagio_anima );
 		break;
 		// pessoa vitoria
-	case 1:
+	case VENCEU:
 		desenha_pessoa_vitoria( estagio_anima );
 		break;
 		//pessoa derrota
-	case 2:
+	case PERDEU:
 		desenha_pessoa_derrota( estagio_anima );
 		break;
 		//pessoaMorte
-	case 3:
+	case MORREU:
 		desenha_pessoa_morte( estagio_anima );
 		break;
 	default:
@@ -556,7 +556,8 @@ void desenhaParalelepipedo(){
 		desenha_quadrado_textura(27);//(22+(rand()%12)));
 	});
 }
-void muralhaArua(muralhaEstado estado){
+
+void muralha(muralhaEstado estado){
 	int i,j;
 	int matrizMuralha[9][9] = {
 		{1,1,1,1,1,1,0,0,0},
@@ -569,6 +570,16 @@ void muralhaArua(muralhaEstado estado){
 		{1,1,1,1,1,1,1,1,1},
 		{1,1,1,1,1,1,1,1,1},
 	};
+
+	switch(estado) {
+		case M0:  range(i, 0, 9) matrizMuralha[8][i] = 0;
+		case M20: range(i, 0, 9) matrizMuralha[7][i] = matrizMuralha[6][i] = 0;
+		case M40: range(i, 0, 9) matrizMuralha[5][i] = matrizMuralha[4][i] = 0;
+		case M60: range(i, 0, 9) matrizMuralha[3][i] = matrizMuralha[2][i] = 0;
+		case M80: range(i, 0, 9) matrizMuralha[1][i] = matrizMuralha[0][i] = 0;
+		case M100: break;
+	}
+
 	glEnable ( GL_TEXTURE_2D );
     glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 	transform({

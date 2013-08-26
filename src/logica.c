@@ -7,17 +7,18 @@
 #include "logica.h"
 
 const float G = 9.81;
-static const float ANIM_SPEED = 240; //velocidade da bola
+static const float ANIM_SPEED = 180; //velocidade da bola
 
 static projetil p1, p2;
 static force f1, f2;
-static muralhaEstado e1, e2;
+static muralhaEstado e1[9], e2[9];
 static bool charging1 = false, charging2 = false;
 static bool colide1 = false, colide2 = false;
+static estadoJogador jg1 = JOGANDO, jg2 = JOGANDO;
 
 #define _auxInit(i) \
 	p##i.x = p##i.y = p##i.z = p##i.ang = f##i.val = 0; \
-	e##i = M100
+	range(idx, 0, 9) e##i[idx] = M100;
 	
 void initLogica() {
 	_auxInit(1);
@@ -34,7 +35,8 @@ void updateByAngle(projetil *p) {
     plInfo v; \
     v.p = p##i; \
     v.f = f##i; \
-    v.e = e##i; \
+    v.e = &e##i[0]; \
+    v.j = jg##i; \
     return v
 
 plInfo getinfo_p1() { _getinfo(1); }
@@ -53,27 +55,48 @@ static inline int pow2(int x) {
 	return x * x;
 }
 
-#define _auxColision(i) macrofy(\
-        e##i++; \
-        if(e##i >= M0) { \
-            0; \
-        }) 
+static float intervalos[9][2] = {
+    {-1550, -1215.70},
+    {-1215.70, -874.05},
+    {-874.05, -526.71},
+    {-526.71, -175.75},
+    {-175.75, 175.75},
+    {175.75, 526.71},
+    {526.71, 874.05},
+    {874.05, 1215.70},
+    {1215.70, 1550}
+};
+
+#define FRACAO_MURALHA 172.2
+static int getMuralha(float z) {
+    range(i, 0, 9) {
+        dprintf("%f, %f, %f\n", intervalos[i][0], z, intervalos[i][1]);
+        if(z >= intervalos[i][0] && z <= intervalos[i][1]) return i;
+    }
+    return 4;
+}
+
+// Seja a equação da parábola para a muralha 1 igual a f(x) = 0.00012z² + 810 + x0
+#define _validateColision(i, j, p) \
+    float z = 0.00012*pow2(p.z); \
+    if(p.x >= z + 2210 ||(0 && p.x <= z + 2260 && p.y < 300)) { \
+        colide##i = true; \
+        int muralha = getMuralha(p.z); \
+        dprintf("%d\n", muralha); \
+        e##j[muralha]++; \
+        glutPostRedisplay(); \
+        if(e##j[muralha] == M0) { \
+            jg##i = VENCEU; \
+            jg##j = PERDEU; \
+        } \
+    }
 
 void check_colision_p1(projetil p) { 
-    // Seja a equação da parábola para a muralha 1 igual a f(x) = 0.00012z² + 810
-    if(p.z >= 0.00012*pow2(p.x) + 810 && p.z - 910 <= 0) {
-        colide1 = true;
-        _auxColision(2);        
-    }
+    _validateColision(1, 2, p)
 }
 
 void check_colision_p2(projetil p) { 
-    // Seja a equação da parábola para a muralha 2 igual a f(x) = 0.00012z² + 810
-    //dprintf("%f, %f", p.x, p.z);
-    if(p.z >= 0.00012*pow2(p.x) + 810 && p.z - 910 <= 0) {
-        colide2 = true;
-        _auxColision(1);        
-    }
+    _validateColision(2, 1, p)
 }
 
 #define _shoot(speed, i) macrofy(\
@@ -126,7 +149,6 @@ void force_p2(int inc) {
 	if(charging##i) { \
 		charging##i = false; \
 		p##i.ang = ang; \
-		dprintf("%f\n", p##i.ang); \
 	})
 
 void end_force_p1(float ang) { 

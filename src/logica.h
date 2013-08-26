@@ -3,6 +3,8 @@
 
 typedef enum _muralhaEstado { M100, M80, M60, M40, M20, M0 } muralhaEstado;
 
+typedef enum _estadoJogador { PERDEU, JOGANDO, VENCEU, MORREU } estadoJogador;
+
 typedef struct _projetil {
     float x;
     float y;
@@ -17,7 +19,8 @@ typedef struct _force {
 typedef struct _plInfo {
     projetil p;
     force f;
-	muralhaEstado e;
+	muralhaEstado* e;
+	estadoJogador j;
 } plInfo;
 
 plInfo getinfo_p1();

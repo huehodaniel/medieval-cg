@@ -18,6 +18,6 @@ void muralhaArua(muralhaEstado estado);
  * 	- 2 pessoaDerrota
  * 	- 3 pessoaMorte
  */
-void pessoa(int tipo_pessoa, double estagio_anima);
+void pessoa(estadoJogador tipo_pessoa, double estagio_anima);
 
 #endif /** FIGURAS_H **/
