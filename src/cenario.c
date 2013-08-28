@@ -5,6 +5,7 @@
 
 #include "macros.h"
 #include "cenario.h"
+#include "texturas.h"
 
 static GLUquadricObj *obj;
 static float angX = 15;
@@ -65,10 +66,24 @@ void cenario(){
             glutSolidSphere(1.5,50,50);
         });*/
         transform({//desenha chão
-            glColor3f(0,0.2,0);
-            glTranslatef(0,-350,0);
-            glScalef(4,0.001,2);
-            glutSolidCube(3200);
+            glColor3f(0,0.6,0);
+            glTranslatef(0,-355,0);
+            //glScalef(4,0.001,2);
+            //glutSolidCube(3200);
+            glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glEnable ( GL_TEXTURE_2D );
+            glBindTexture(GL_TEXTURE_2D, texturesID[GRAMA]);
+            glBegin(GL_QUADS);
+            
+				glNormal3f(-1.0, 0.0, 0.0);
+				glTexCoord2f(0.0f, 0.0f); glVertex3f(-3200.0f, 0.0f, -3200.0f);
+				glTexCoord2f(0.0f, 7.0f); glVertex3f(-3200.0f, 0.0f, 3200.0f);
+				glTexCoord2f(7.0f, 7.0f); glVertex3f(3200.0f, 0.0f, 3200.0f);
+				glTexCoord2f(7.0f, 0.0f); glVertex3f(3200.0f, 0.0f, -3200.0f);
+
+			glEnd();
+			glDisable ( GL_TEXTURE_2D );
         });
         transform({//desenha rio
             glColor3f(0,0,1);

@@ -111,6 +111,7 @@ void CarregaTexturas(){
 
 		funcoesDeCarregamento("resources\\bandeira_derrota.bmp", BANDEIRA_DERROTA);
 		funcoesDeCarregamento("resources\\bandeira_derrota_cabo.bmp", BANDEIRA_DERROTA_CABO);
+		funcoesDeCarregamento("resources\\grama.bmp", GRAMA);
 
 		
 	}
@@ -154,6 +155,7 @@ void CarregaTexturas(){
 		funcoesDeCarregamento("./resources/muralha10.bmp", MURALHA10);
 		funcoesDeCarregamento("./resources/muralha11.bmp", MURALHA11);
 		funcoesDeCarregamento("./resources/muralha12.bmp", MURALHA12);
+		funcoesDeCarregamento("./resources/grama.bmp", GRAMA);
 
 		funcoesDeCarregamento("./resources/bandeira_derrota.bmp", BANDEIRA_DERROTA);
 		funcoesDeCarregamento("./resources/bandeira_derrota_cabo.bmp", BANDEIRA_DERROTA_CABO);

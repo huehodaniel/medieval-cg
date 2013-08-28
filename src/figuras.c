@@ -74,20 +74,6 @@ void catapulta(float angulo) {
 	});
 }
 
-void desenha_quadrado_textura( int textures_ID_index)
-{
-	glBindTexture(GL_TEXTURE_2D, texturesID[textures_ID_index]);
-
-	glBegin(GL_QUADS);
-	
-	glNormal3f(-5.0f, -5.0f, 6.0f); glTexCoord2f(0.0, 0.0); glVertex3f(-5.0f, -5.0f, 6.0f);
-	glNormal3f(5.0f, -5.0f, 6.0f); glTexCoord2f(1.0, 0.0); glVertex3f(5.0f, -5.0f, 6.0f);
-	glNormal3f(5.0f, 5.0f, 6.0f); glTexCoord2f(1.0, 1.0); glVertex3f(5.0f,  5.0f, 6.0f);
-	glNormal3f(-5.0f, 5.0f, 6.0f); glTexCoord2f(0.0, 1.0); glVertex3f(-5.0f,  5.0f, 6.0f);
-
-	glEnd();
-}
-
 void desenha_quadrado_textura_pessoa( int textures_ID_index )
 {
 	glBindTexture(GL_TEXTURE_2D, texturesID[textures_ID_index]);
@@ -528,35 +514,49 @@ void pessoa(estadoJogador tipo_pessoa, double estagio_anima)
 	}
 	glDisable( GL_TEXTURE_2D );
 }
+static void desenhaParalelepipedo()
+{
+  GLfloat size = 11.0;
+  static GLfloat n[6][3] =
+  {
+    {-1.0, 0.0, 0.0},
+    {0.0, 1.0, 0.0},
+    {1.0, 0.0, 0.0},
+    {0.0, -1.0, 0.0},
+    {0.0, 0.0, 1.0},
+    {0.0, 0.0, -1.0}
+  };
+  static GLint faces[6][4] =
+  {
+    {0, 1, 2, 3},
+    {3, 2, 6, 7},
+    {7, 6, 5, 4},
+    {4, 5, 1, 0},
+    {5, 6, 2, 1},
+    {7, 4, 0, 3}
+  };
+  GLfloat v[8][3];
+  GLint i;
 
-void desenhaParalelepipedo(){
-	desenha_quadrado_textura(22);//(22+(rand()%12)));
-	transform({
-		//glTranslatef( -5.0, 0.0, -5.0 );
-		glRotatef( 90.0, 0.0, 1.0, 0.0 );
-		desenha_quadrado_textura(23);//(22+(rand()%12)));
-	});
-	transform({
-		//glTranslatef( 5.0, 0.0, -5.0 );
-		glRotatef( -90.0, 0.0, 1.0, 0.0 );
-		desenha_quadrado_textura( 24);//(22+(rand()%12)));
-	});
-	transform({
-		glTranslatef( 0.0, 0.0, -10.0 );
-		desenha_quadrado_textura(25);//(22+(rand()%12)));
-	});
-	transform({
-		//glTranslatef( 0.0, 5.0, -5.0 );
-		glRotatef( -90.0, 1.0, 0.0, 0.0 );
-		desenha_quadrado_textura(26);//(22+(rand()%12)));
-	});
-	transform({
-		//glTranslatef( 0.0, -5.0, -5.0 );
-		glRotatef( 90.0, 1.0, 0.0, 0.0 );
-		desenha_quadrado_textura(27);//(22+(rand()%12)));
-	});
+  v[0][0] = v[1][0] = v[2][0] = v[3][0] = -size / 2;
+  v[4][0] = v[5][0] = v[6][0] = v[7][0] = size / 2;
+  v[0][1] = v[1][1] = v[4][1] = v[5][1] = -size / 2;
+  v[2][1] = v[3][1] = v[6][1] = v[7][1] = size / 2;
+  v[0][2] = v[3][2] = v[4][2] = v[7][2] = -size / 2;
+  v[1][2] = v[2][2] = v[5][2] = v[6][2] = size / 2;
+
+  glBindTexture(GL_TEXTURE_2D, texturesID[22]);
+  glBegin(GL_QUADS);
+  for (i = 5; i >= 0; i--) {
+    glNormal3fv(&n[i][0]);
+    glTexCoord2i(0, 0);glVertex3fv(&v[faces[i][0]][0]);
+    glTexCoord2i(1, 0);glVertex3fv(&v[faces[i][1]][0]);
+    glTexCoord2i(1, 1);glVertex3fv(&v[faces[i][2]][0]);
+    glTexCoord2i(0, 1);glVertex3fv(&v[faces[i][3]][0]);
+    
+  }
+  glEnd();
 }
-
 void muralha(muralhaEstado estado){
 	int i,j;
 	int matrizMuralha[9][9] = {
@@ -592,17 +592,14 @@ void muralha(muralhaEstado estado){
 			for(j=0;j<9;j++){
 				glTranslatef(0, 0, 13);
 				if(matrizMuralha[9-i][9-j]) desenhaParalelepipedo();
-				//glutSolidCube(10*matrizMuralha[9-i][9-j]);
 			}
 			if (i%2==0)glTranslatef(0,0,-125.5);
 			else glTranslatef(0,0,-109.5);
 		}
 	});
 	transform({
-		//glTranslatef(0, 0, 0);
 		glScalef(11, 11, 85);
 		glTranslatef(0, 36, 2.7);
-		//glutSolidCube(10*matrizMuralha[0][5]);
 		if(matrizMuralha[0][5]) desenhaParalelepipedo();
 
 	});
@@ -610,23 +607,17 @@ void muralha(muralhaEstado estado){
 	transform({
 		glTranslatef(0, 550, -130);
 		glScalef(11, 11, 11);
-		//glScalef(0.5, 0.5, 0.5);
-		//glutSolidCube(10*matrizMuralha[0][0]);
 		if(matrizMuralha[0][0]) desenhaParalelepipedo();
 		glTranslatef(0, 0, 17);
-		//glutSolidCube(10*matrizMuralha[0][1]);
 		if(matrizMuralha[0][1]) desenhaParalelepipedo();
 
 		glTranslatef(0, 0, 17);
-		//glutSolidCube(10*matrizMuralha[0][2]);
 		if(matrizMuralha[0][2]) desenhaParalelepipedo();
 
 		glTranslatef(0, 0, 17);
-		//glutSolidCube(10*matrizMuralha[0][3]);
 		if(matrizMuralha[0][3]) desenhaParalelepipedo();
 	
 		glTranslatef(0, 0, 17);
-		//glutSolidCube(10*matrizMuralha[0][4]);
 		if(matrizMuralha[0][4]) desenhaParalelepipedo();
 
 	});

@@ -46,7 +46,9 @@
 #define BANDEIRA_DERROTA 37
 #define BANDEIRA_DERROTA_CABO 38
 
-#define QTD_TEX 38
+#define GRAMA 39
+
+#define QTD_TEX 40
 
 extern GLuint texturesID[QTD_TEX];
 
