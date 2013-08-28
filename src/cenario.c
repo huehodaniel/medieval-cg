@@ -2,6 +2,7 @@
 #include <GL/glu.h>
 #include <GL/gl.h>
 #include <stdlib.h>
+#include <math.h>
 
 #include "macros.h"
 #include "cenario.h"
@@ -17,9 +18,16 @@ float x[NUM_TREES], y[NUM_TREES];
 void initCenario(){
     obj = gluNewQuadric();
     gluQuadricDrawStyle(obj,GLU_FILL);
-    int spreadTrees = 100;//(NUM_TREES/100 + 1)*20;
-
-    range(i, 0, NUM_TREES/4){
+    float xRange;
+    int spreadTrees = (NUM_TREES/100 + 1)*20;
+	range(i, 0, NUM_TREES){
+		y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*320;
+		xRange=(powf(y[i],2.0f)/8.0f)/100.0f;
+        x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*(xRange+70));
+        printf("%f, %f\n",xRange,y[i]);
+    }
+	
+    /*range(i, 0, NUM_TREES/4){
         x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*spreadTrees)-1.5*spreadTrees;
         y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140 - 180;
     }
@@ -34,7 +42,7 @@ void initCenario(){
     range(i, 3*NUM_TREES/4, NUM_TREES){
         x[i] = ((2 * (float)rand() / (float)RAND_MAX - 1)*spreadTrees)+1.5*spreadTrees;
         y[i] = (2 * (float)rand() / (float)RAND_MAX - 1)*140 + 180;
-    }
+    }*/
 }
 
 void drawBranches(float x, float y){
