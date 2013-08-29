@@ -52,7 +52,7 @@ int pass = 10;
 typedef enum _modoJogo { INICIO, JOGO, FIM } modoJogo;
 modoJogo modo = INICIO;
 
-double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 5.0;
+double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 3.0;
 
 //Vetor de estados do teclado (para permitir multiplas teclas pressionadas)
 bool keystate[256], spkeystate[256];
@@ -280,12 +280,23 @@ void drawfunc()
 		                glTranslatef(30,0,-900);
 		                muralha(pl2.e[idx]);
 		            }
+		            repeat(5) {
+		                glRotatef(5,0,1,0);
+		                glTranslatef(30,0,-900);
+		                muralha(M100);
+		            }
 		        });
+		        
 		        transform({
 		            range(idx, 5, 9) {
 		                glRotatef(-5,0,1,0);
 		                glTranslatef(60,0,900);
 		                muralha(pl2.e[idx]);
+		            }
+		            repeat(5) {
+		                glRotatef(-5,0,1,0);
+		                glTranslatef(60,0,900);
+		                muralha(M100);
 		            }
 		        });
             });
@@ -300,12 +311,22 @@ void drawfunc()
 		                glTranslatef(-30,0,-900);
 		                muralha(pl1.e[idx]);
 		            }
+		            repeat(5) {
+		                glRotatef(-5,0,1,0);
+		                glTranslatef(-30,0,-900);
+		                muralha(M100);
+		            }
 		        });
 		        transform({
 		            range(idx, 5, 9) {
 		                glRotatef(5,0,1,0);
 		                glTranslatef(-60,0,900);
 		                muralha(pl1.e[idx]);
+		            }
+		            repeat(5) {
+		                glRotatef(5,0,1,0);
+		                glTranslatef(-60,0,900);
+		                muralha(M100);
 		            }
 		        });
             });

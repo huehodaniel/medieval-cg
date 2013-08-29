@@ -61,9 +61,10 @@ void catapulta(float angulo) {
 	});
 
 	transform({
-		glColor(255, 0, 0);
+		glRotatef(-45, 1, 0, 0);
+		glColor(150, 150, 150);
 		gluDisk(obj, 0, 20, 20, 20);
-		glColor(0, 255, 0);
+		glColor(150, 150, 150);
 		gluCylinder(obj,20,40,30,20,20);
 		glTranslatef(0, 0, 30);
 		gluCylinder(obj,40,40,100,20,20);
