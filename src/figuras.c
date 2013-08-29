@@ -8,8 +8,8 @@
 #include "texturas.h"
 #include "logica.h"
 
-bool inited = false;
-GLUquadricObj *obj;
+static bool inited = false;
+static GLUquadricObj *obj;
 
 void initFiguras() {
 	if(!inited) {
@@ -514,6 +514,7 @@ void pessoa(estadoJogador tipo_pessoa, double estagio_anima)
 	}
 	glDisable( GL_TEXTURE_2D );
 }
+
 static void desenhaParalelepipedo()
 {
   GLfloat size = 11.0;
@@ -557,6 +558,7 @@ static void desenhaParalelepipedo()
   }
   glEnd();
 }
+
 void muralha(muralhaEstado estado){
 	int i,j;
 	int matrizMuralha[9][9] = {
@@ -645,7 +647,18 @@ void letreiroIni() {
 }
 
 void letreiroFim(int vencedor) {
+	glColor(0, 0, 0);
 	_letreiro(vencedor == 1 ? "Parabens jogador 1!" : "Parabens jogador 2!", "Pressione Enter para sair...");
+}
+
+void pontuacao(int jogador, int pontos) {
+	static const char* template = "P%d: %d";
+	static char texto[20];
+	sprintf(texto, template, jogador, pontos);
+	transform({
+		if(jogador == 1) glColor(255, 0, 0); else glColor(0, 0, 255);
+		escreverTexto(texto);
+	});
 }
 
 

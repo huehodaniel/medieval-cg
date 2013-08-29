@@ -67,7 +67,7 @@ void anima_func(int value)
 	pessoa_estagio_anima += pessoa_estagio_incremento;
 
 	if(modo == INICIO) {
-		viewangY += 4;
+		viewangY += 2;
 	}
 
 	glutTimerFunc( 10, anima_func, 1 ); /* Faz a funcao anima_func continuar sendo chamada infinitamente */
@@ -125,15 +125,17 @@ void keyboardOpStart() {
 	}
 }
 
-void keyboardOp() {
-    if(keystate['m']) {
-         if(getinfo_p1().p.x <= 0) force_p1(10);
+const int force_inc = 3;
+
+void keyboardOp(plInfo p1, plInfo p2) {
+    if(keystate['m'] && p1.j == JOGANDO) {
+         if(p1.p.x <= 0) force_p1(force_inc);
     } else {
         end_force_p1(-direcaoCanhao1);
     }
 
-    if(keystate[' ']) {
-        if(getinfo_p2().p.x <= 0) force_p2(10);
+    if(keystate[' '] && p2.j == JOGANDO) {
+        if(p2.p.x <= 0) force_p2(force_inc);
     } else {
         end_force_p2(direcaoCanhao2);
     }
@@ -209,7 +211,7 @@ void drawfunc()
 
 	switch(modo) {
 		case INICIO: keyboardOpStart(); break;
-		case JOGO: keyboardOp(); break;
+		case JOGO: keyboardOp(pl1, pl2); break;
 		case FIM: keyboardOpEnd();
 	}
 
@@ -222,6 +224,11 @@ void drawfunc()
 		    	letreiroIni();
 		    } else if(modo == FIM) {
 		    	letreiroFim(pl1.j == VENCEU ? 1 : 2);
+		    } else {
+		    	glTranslatef(-1500, 800, 0);
+		    	pontuacao(2, pl2.pnt);
+		    	glTranslatef(2500, 0, 0);
+		    	pontuacao(1, pl1.pnt);
 		    }
 		});
 	    transform({

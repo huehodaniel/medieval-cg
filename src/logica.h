@@ -21,6 +21,7 @@ typedef struct _plInfo {
     force f;
 	muralhaEstado* e;
 	estadoJogador j;
+	int pnt;
 } plInfo;
 
 plInfo getinfo_p1();

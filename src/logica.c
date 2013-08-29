@@ -7,7 +7,7 @@
 #include "logica.h"
 
 const float G = 9.81;
-static const float ANIM_SPEED = 180; //velocidade da bola
+static const float ANIM_SPEED = 90; //velocidade da bola
 
 static projetil p1, p2;
 static force f1, f2;
@@ -15,6 +15,7 @@ static muralhaEstado e1[9], e2[9];
 static bool charging1 = false, charging2 = false;
 static bool colide1 = false, colide2 = false;
 static estadoJogador jg1 = JOGANDO, jg2 = JOGANDO;
+static int pnt1 = 0, pnt2 = 0;
 
 #define _auxInit(i) \
 	p##i.x = p##i.y = p##i.z = p##i.ang = f##i.val = 0; \
@@ -37,6 +38,7 @@ void updateByAngle(projetil *p) {
     v.f = f##i; \
     v.e = &e##i[0]; \
     v.j = jg##i; \
+    v.pnt = pnt##i; \
     return v
 
 plInfo getinfo_p1() { _getinfo(1); }
@@ -77,17 +79,20 @@ static int getMuralha(float z) {
 }
 
 // Seja a equação da parábola para a muralha oponente igual a f(x) = 0.00012z² + 810 + x0
-// e a equação da parábola para a própria muralha igual a f(x) = - 0.00012z² + 600 + x0
+// ,a equação da parábola para a própria muralha igual a f(x) = - 0.00012z² + 600 + x0
+// e a equação da esfera igual a (x - x0)² + (y - y0)² + (z - z0)² = R² 
 #define _validateColision(i, j, p) \
     float z = 0.00012*pow2(p.z); \
     bool oponente = p.x >= z + 2210 && p.x <= z + 2260; \
     bool propria  = p.x >= -z + 600 && p.x <= -z + 650; \
+    bool boneco = pow2(p.x -2860) + pow2(p.y) + pow2(p.z) <= pow2(200); \
     if(oponente || propria) { \
         int muralha = getMuralha(p.z); \
         dprintf("%d\n", muralha); \
         if(oponente){\
             if(p.y > e##j[muralha]*50) return; \
             else colide##i = true; \
+            pnt##i += 5; \
             e##j[muralha]--; \
             if(e##j[muralha] == M0) { \
                 jg##i = VENCEU; \
@@ -96,6 +101,7 @@ static int getMuralha(float z) {
         } else { \
             if(p.y > e##i[muralha]*50) return; \
             else colide##i = true; \
+            pnt##j += 5; \
             e##i[muralha]--; \
             if(e##i[muralha] == M0) { \
                 jg##j = VENCEU; \
@@ -103,7 +109,20 @@ static int getMuralha(float z) {
             } \
         } \
         glutPostRedisplay(); \
+    } else if(boneco) { \
+        colide##i = true; \
+        pnt##i += 10; \
+        jg##j = MORREU; \
+        punish_p##j(5); \
     }
+
+#define _punish(i, timeout) macrofy( \
+    if(timeout > 0) { \
+        glutTimerFunc(1000, punish_p##i, timeout - 1); \
+    } else jg##i = jg##i == MORREU ? JOGANDO : jg##i;)
+
+static void punish_p1(int timeout) { _punish(1, timeout); }
+static void punish_p2(int timeout) { _punish(2, timeout); }
 
 void check_colision_p1(projetil p) { 
     _validateColision(1, 2, p)
