@@ -52,7 +52,7 @@ int pass = 10;
 typedef enum _modoJogo { INICIO, JOGO, FIM } modoJogo;
 modoJogo modo = INICIO;
 
-double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 1.0;
+double pessoa_estagio_anima = 0.0, pessoa_estagio_incremento = 5.0;
 
 //Vetor de estados do teclado (para permitir multiplas teclas pressionadas)
 bool keystate[256], spkeystate[256];

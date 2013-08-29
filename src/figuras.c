@@ -322,49 +322,56 @@ void desenha_pessoa_jogo( double estagio_anima )
 
 void desenha_pessoa_vitoria( double estagio_anima )
 {
-	// Desenha cabeca
 	transform({
-		glTranslatef( 0.0, 240, 50.0);
-		desenha_pessoa_cabeca(1);
-	});
+		//glTranslatef( 0.0, 100.0, 0.0);
+		//glRotatef( -estagio_anima, 1.0, 0.0, 0.0 );
+		glTranslatef( 0.0, estagio_anima*2, 0.0);
 
-	// Desenha torso
-	transform({
-		desenha_pessoa_torso();
-	});
+		// Desenha cabeca
+		transform({
+			glTranslatef( 0.0, 240, 50.0);
+			desenha_pessoa_cabeca(1);
+		});
 
-	//Desenha braco esquerdo
-	transform({
-		glTranslatef( -120.0, -10.0, -20.0);
+		// Desenha torso
+		transform({
+			desenha_pessoa_torso();
+		});
 
-		//Para a movimentacao do braco
-		glTranslatef( 0.0, 100.0, 0.0);
-		glRotatef( -estagio_anima, 1.0, 0.0, 0.0 );
-		glTranslatef( 0.0, -100.0, 0.0);
+		//Desenha braco esquerdo
+		transform({
+			glTranslatef( -120.0, -10.0, -20.0);
 
-		desenha_pessoa_braco();
+			//Movimentacao do braco
+			glTranslatef( 0.0, 100.0, 0.0);
+			glRotatef( -estagio_anima*2, 1.0, 0.0, 0.0 );
+			glTranslatef( 0.0, -100.0, 0.0);
+		
+			desenha_pessoa_braco();
+		});
 
-		//TODO fazer funcionar essa parada
-		//		trombete();
+		// Desenha braco direito
+		transform({
+			glTranslatef( 120.0, -10.0, -20.0);
+		
+			glTranslatef( 0.0, 100.0, 0.0);
+			glRotatef( -estagio_anima*2, 1.0, 0.0, 0.0 );
+			glTranslatef( 0.0, -100.0, 0.0);
+		
+			desenha_pessoa_braco();
+		});
 
-	});
+		// Desenha perna esquerda
+		transform({
+			glTranslatef( -40.0, -290.0, -20.0);
+			desenha_pessoa_perna();
+		});
 
-	// Desenha braco direito
-	transform({
-		glTranslatef( 120.0, -10.0, -20.0);
-		desenha_pessoa_braco();
-	});
-
-	// Desenha perna esquerda
-	transform({
-		glTranslatef( -40.0, -290.0, -20.0);
-		desenha_pessoa_perna();
-	});
-
-	// Desenha perna direita
-	transform({
-		glTranslatef( 40.0, -290.0, -20.0);
-		desenha_pessoa_perna();
+		// Desenha perna direita
+		transform({
+			glTranslatef( 40.0, -290.0, -20.0);
+			desenha_pessoa_perna();
+		});
 	});
 }
 

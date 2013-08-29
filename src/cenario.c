@@ -24,9 +24,9 @@ static inline double rndSig(double x) {
 
 #define auxInit(id) macrofy(\
     range(i, 0, NUM_TREES/2){ \
-        ty##id[i] = rndSig(((double)rand() / (double)RAND_MAX)*320); \
+        ty##id[i] = rndSig(((double)rand() / (double)RAND_MAX)*160); \
         xRange = (powf(ty##id[i],2.0f)/8.0f)/100.0f; \
-        tx##id[i] = sig((((double)rand() / (double)RAND_MAX))*(xRange+50) + 20, id); \
+        tx##id[i] = sig((((double)rand() / (double)RAND_MAX))*(xRange+25) + 10, id); \
         dprintf("%f, %f\n", tx##id[i], ty##id[i]); \
     })
 
@@ -40,27 +40,28 @@ void initCenario(){
 
 void drawBranches(float x, float y){
     transform({
-        glScalef(10,10,10);
+        glScalef(20,20,20);
         glRotatef(-90,1.0,0.0,0.0);
     	glColor3f(0,0.5,0);
-    	glTranslatef(x,y,-30.0);
+    	glTranslatef(x,y,-12.5);
         glutSolidCone(2,7,20,20);
     });
 }
 
 void drawTrunk(float x, float y){
     transform({ 
-        glScalef(10,10,10);
+        glScalef(20,20,20);
     	glRotatef(-90,1.0,0.0,0.0);
     	glColor3f(0.5,0.35,0.05);
-    	glTranslatef(x,y,-35.0);
+    	glTranslatef(x,y,-17.0);
         gluCylinder(obj,0.5,0.5,5,20,20);
     });
 }
 
 void cenario(){
     transform({
-        glColor3f(0.7,0.7,0.7);
+    	glColor3f(0.7,0.7,0.7);
+    	glDisable(GL_COLOR_MATERIAL);
         transform({//desenha chão
             glColor3f(0,0.6,0);
             glTranslatef(0,-355,0);
@@ -78,11 +79,25 @@ void cenario(){
 			glDisable ( GL_TEXTURE_2D );
         });
         transform({//desenha rio
-            glColor3f(0,0,1);
+            glColor3f(0,0,0);
             glTranslatef(0,-345,0);
-            glScalef(0.2,0.003,8);
-            glutSolidCube(800);
+            glScalef(0.5,0.003,8);
+            glEnable ( GL_TEXTURE_2D );
+            //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glBindTexture(GL_TEXTURE_2D, texturesID[RIO]);
+            glBegin(GL_QUADS);
+            
+				glNormal3f(-1.0, 0.0, 0.0);
+				glTexCoord2f(0.0f, 0.0f); glVertex3f(-400.0f, 0.0f, -400.0f);
+				glTexCoord2f(0.0f, 10.0f); glVertex3f(-400.0f, 0.0f, 400.0f);
+				glTexCoord2f(1.0f, 10.0f); glVertex3f(400.0f, 0.0f, 400.0f);
+				glTexCoord2f(1.0f, 0.0f); glVertex3f(400.0f, 0.0f, -400.0f);
+
+			glEnd();
+			glDisable ( GL_TEXTURE_2D );
         });
+        glEnable(GL_COLOR_MATERIAL);
         range(i, 0, NUM_TREES/2) {
         	drawTrunk(tx1[i], ty1[i]);
             drawBranches(tx1[i], ty1[i]);
