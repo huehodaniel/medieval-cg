@@ -149,25 +149,25 @@ void keyboardOp(plInfo p1, plInfo p2) {
 		viewangZ++;
 		glutPostRedisplay();
 	}*/
+	if(DEBUG){
+		/* Rotacao em Y */
+		if(spkeystate[GLUT_KEY_LEFT]) {
+			viewangY--;
+			glutPostRedisplay();
+		} else if(spkeystate[GLUT_KEY_RIGHT]) {
+			viewangY++;
+			glutPostRedisplay();
+		}
 
-    /* Rotacao em Y */
-	if(spkeystate[GLUT_KEY_LEFT]) {
-		viewangY--;
-		glutPostRedisplay();
-	} else if(spkeystate[GLUT_KEY_RIGHT]) {
-		viewangY++;
-		glutPostRedisplay();
+		/* Rotacao em X */
+		if(spkeystate[GLUT_KEY_DOWN]) {
+			viewangX++;
+			glutPostRedisplay();
+		} else if(spkeystate[GLUT_KEY_UP]) {
+			viewangX--;
+			glutPostRedisplay();
+		}
 	}
-
-	/* Rotacao em X */
-	if(spkeystate[GLUT_KEY_DOWN]) {
-		viewangX++;
-		glutPostRedisplay();
-	} else if(spkeystate[GLUT_KEY_UP]) {
-		viewangX--;
-		glutPostRedisplay();
-	}
-	
 	if(keystate['n']){
 		if(direcaoCanhao1 < 40)
 			direcaoCanhao1 += 2;

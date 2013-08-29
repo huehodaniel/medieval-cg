@@ -48,8 +48,9 @@
 
 #define GRAMA 39
 #define RIO 40
+#define CEU 41
 
-#define QTD_TEX 41
+#define QTD_TEX 42
 
 extern GLuint texturesID[QTD_TEX];
 

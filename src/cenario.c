@@ -98,6 +98,26 @@ void cenario(){
 			glDisable ( GL_TEXTURE_2D );
         });
         glEnable(GL_COLOR_MATERIAL);
+        transform({//desenha ceu
+            glColor3f(1,1,1);
+            glTranslatef(0,-345,-3200);
+            glScalef(16,8,1);
+            glEnable ( GL_TEXTURE_2D );
+            //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+            glBindTexture(GL_TEXTURE_2D, texturesID[CEU]);
+            glBegin(GL_QUADS);
+            
+				glNormal3f(-1.0, 0.0, 0.0);
+				glTexCoord2f(0.0f, 0.0f); glVertex3f(-400.0f, -200.0f, 0.0f);
+				glTexCoord2f(0.0f, 1.0f); glVertex3f(-400.0f, 600.0f, 0.0f);
+				glTexCoord2f(1.0f, 1.0f); glVertex3f(400.0f, 600.0f, 0.0f);
+				glTexCoord2f(1.0f, 0.0f); glVertex3f(400.0f, -200.0f, 0.0f);
+
+			glEnd();
+			glDisable ( GL_TEXTURE_2D );
+        });
+        
         range(i, 0, NUM_TREES/2) {
         	drawTrunk(tx1[i], ty1[i]);
             drawBranches(tx1[i], ty1[i]);
