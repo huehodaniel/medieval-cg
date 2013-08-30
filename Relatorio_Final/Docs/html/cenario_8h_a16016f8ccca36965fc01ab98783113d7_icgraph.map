@@ -1,0 +1,4 @@
+<map id="drawTrunk" name="drawTrunk">
+<area shape="rect" id="node2" href="$cenario_8h.html#a6c6d82d8cd9c64ef1bff9bbe6d7efc50" title="Funcao que desenha e posiciona todos os objetos do cenario." alt="" coords="136,5,200,32"/>
+<area shape="rect" id="node3" href="$main_8c.html#ac866c2165c3c1aad6ae7709126ea6794" title="Funcao que desenha todos os objetos na tela." alt="" coords="249,5,322,32"/>
+</map>

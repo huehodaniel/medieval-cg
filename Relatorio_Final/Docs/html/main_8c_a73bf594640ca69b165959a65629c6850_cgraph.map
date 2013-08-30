@@ -1,0 +1,11 @@
+<map id="misc" name="misc">
+<area shape="rect" id="node2" href="$figuras_8c.html#a6d6de3fd5fa642fef7cd54c85572a6e9" title="Inicializa alguns parametros para os desenhos." alt="" coords="121,5,204,32"/>
+<area shape="rect" id="node3" href="$cenario_8c.html#a313165c1daa3756fd66974743834ea94" title="Funcao para inicializacao dos parametros utilizados na contrucao do cenario." alt="" coords="121,56,204,83"/>
+<area shape="rect" id="node4" href="$logica_8c.html#ac55f43ebee8a4d647317fbe4feb95b6f" title="Funcao para inicializacao dos parametros utilizados na logica." alt="" coords="124,107,201,133"/>
+<area shape="rect" id="node5" href="$iluminacao_8c.html#a2baf20e2528fd354f2d475ceaade007d" title="Funcao que inicializa todos os parametros utilizados na iluminacao do jogo." alt="" coords="129,157,196,184"/>
+<area shape="rect" id="node7" href="$texturas_8c.html#ad566607cd58b85cfaebae44060eeaf1e" title="Funcao para carregar todas as texturas utilizadas." alt="" coords="104,208,221,235"/>
+<area shape="rect" id="node10" href="$main_8c.html#a20eba85e77a8ed4f745f231773400e0e" title="Funcao de animacao geral." alt="" coords="119,259,207,285"/>
+<area shape="rect" id="node6" href="$iluminacao_8c.html#a1f59b1ba59f3dafdc31887f2d71912f3" title="Funcao que habilita e define as posicoes e direcoes de todas as iluminacoes utilizadas no jogo..." alt="" coords="317,157,387,184"/>
+<area shape="rect" id="node8" href="$texturas_8c.html#a91cd72c2c70efe56726a64ed75b8c139" title="Funcao para ler uma imagem no formato .bmp." alt="" coords="270,208,434,235"/>
+<area shape="rect" id="node9" href="$texturas_8c.html#a97f97b6df9b9841a0cbb5c65080bbed1" title="Funcao para interpretar uma imagem no formato .bmp." alt="" coords="483,208,626,235"/>
+</map>

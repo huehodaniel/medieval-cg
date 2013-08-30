@@ -1,0 +1,34 @@
+<map id="drawfunc" name="drawfunc">
+<area shape="rect" id="node2" href="$logica_8c.html#a2cf2d383b69cebaf1f1642264036bad1" title="getinfo_p1" alt="" coords="147,5,229,32"/>
+<area shape="rect" id="node3" href="$logica_8c.html#a8dfb51e7f6052208955c26a515e58773" title="getinfo_p2" alt="" coords="147,56,229,83"/>
+<area shape="rect" id="node4" href="$main_8c.html#a4cb3ea6151f5c88596ebb40617c94100" title="Funcao de start do teclado." alt="" coords="128,107,248,133"/>
+<area shape="rect" id="node5" href="$main_8c.html#a1b3eaf8c4ca948d2746405cea92a0e4c" title="Funcao responsavel pelas acoes do teclado." alt="" coords="142,157,234,184"/>
+<area shape="rect" id="node10" href="$main_8c.html#a480f7032a6a90d1ce8a13d3296bd8cbe" title="Funcao utilizada quando um operacao iniciada pelo teclado termina." alt="" coords="131,208,245,235"/>
+<area shape="rect" id="node11" href="$figuras_8c.html#a6a17a619cd3e2bcc674d27b21303fcfa" title="Desenha o letreiro mostrado no inicio do jogo." alt="" coords="151,360,225,387"/>
+<area shape="rect" id="node14" href="$figuras_8c.html#a58357dc610dd285a0888205b354a8b69" title="Desenha o letreiro apresentado ao final do jogo, apresentando o vencedor." alt="" coords="147,309,229,336"/>
+<area shape="rect" id="node15" href="$figuras_8c.html#a7603cd1e0b0763937bec056aec598801" title="Desenha um letreiro de pontuacao, a posicao e o numero apresentado varia de acordo com os parametros..." alt="" coords="339,259,421,285"/>
+<area shape="rect" id="node16" href="$cenario_8c.html#a6c6d82d8cd9c64ef1bff9bbe6d7efc50" title="Funcao que desenha e posiciona todos os objetos do cenario." alt="" coords="156,411,220,437"/>
+<area shape="rect" id="node19" href="$figuras_8c.html#a256aaa407ce025f3b2dbd93160a36b15" title="Desenha a catapulta, na verdade eh um canhao, mas whatever XD." alt="" coords="151,461,225,488"/>
+<area shape="rect" id="node21" href="$logica_8c.html#a60d85d95fb00931e29c65fcbcb40b838" title="Funcao para atualizacao do angulo do projetil quando eh disparado." alt="" coords="133,512,243,539"/>
+<area shape="rect" id="node22" href="$figuras_8c.html#a51a296750f948c5d1ce79e5d97afc0be" title="Desenha um bloco de muralha." alt="" coords="154,563,222,589"/>
+<area shape="rect" id="node23" href="$figuras_8c.html#a1a8e45004fa5aae96342011cc0d9969e" title="Desenha uma pessoa, que eh mostrada ao lado do canhao." alt="" coords="156,613,220,640"/>
+<area shape="rect" id="node6" href="$logica_8c.html#a7e75f9a5fac117e78e07da67598f8524" title="Funcao para iniciar o incremento da forca do tiro do jogador 1." alt="" coords="345,208,415,235"/>
+<area shape="rect" id="node7" href="$logica_8c.html#ab7d0f1373feec9e8b3e7756c6d31dc09" title="Funcao para finalizar o incremento da forca do tiro do jogador 1." alt="" coords="331,56,429,83"/>
+<area shape="rect" id="node8" href="$logica_8c.html#a7c28079eea5538e8b0086e5835d7806c" title="Funcao para iniciar o incremento da forca do tiro do jogador 2." alt="" coords="345,107,415,133"/>
+<area shape="rect" id="node9" href="$logica_8c.html#a70b2e386bbd23910c37953ca51226dbf" title="Funcao para finalizar o incremento da forca do tiro do jogador 2." alt="" coords="331,157,429,184"/>
+<area shape="rect" id="node12" href="$figuras_8c.html#a55080d153fe5b761d95dad9a8583e831" title="_letreiro" alt="" coords="346,309,414,336"/>
+<area shape="rect" id="node13" href="$figuras_8c.html#af78c2506e7e0ffebe2f88ddbc9631879" title="escreverTexto" alt="" coords="546,284,649,311"/>
+<area shape="rect" id="node17" href="$cenario_8c.html#a16016f8ccca36965fc01ab98783113d7" title="Funcao para desenhar o tronco das arvores." alt="" coords="339,411,421,437"/>
+<area shape="rect" id="node18" href="$cenario_8c.html#a591c3f3167c85588cc92906bd7e72fef" title="Funcao para desenhar a copa das arvores." alt="" coords="328,360,432,387"/>
+<area shape="rect" id="node20" href="$figuras_8c.html#a66e6f6b62767c1a9cc918e4965512508" title="roda" alt="" coords="357,461,403,488"/>
+<area shape="rect" id="node24" href="$figuras_8c.html#a69b35092ac02e9da7fafc1db4f857f17" title="desenha_pessoa_jogo" alt="" coords="305,689,455,716"/>
+<area shape="rect" id="node30" href="$figuras_8c.html#afdee45acd1e265d26d79e4692821d8c7" title="desenha_pessoa_vitoria" alt="" coords="300,588,460,615"/>
+<area shape="rect" id="node31" href="$figuras_8c.html#a09eedd838dea10ae8183333b9e7f4e9e" title="desenha_pessoa_derrota" alt="" coords="297,537,463,564"/>
+<area shape="rect" id="node33" href="$figuras_8c.html#abfe66cb9381417df0a4fad111cb42fae" title="desenha_pessoa_morte" alt="" coords="300,639,460,665"/>
+<area shape="rect" id="node25" href="$figuras_8c.html#af7e1a9e29d5cd1733fd6c48f3f355bbb" title="desenha_pessoa_cabeca" alt="" coords="513,639,682,665"/>
+<area shape="rect" id="node27" href="$figuras_8c.html#a6bf1a3f2ae41b15e71524bbc0e0c6b03" title="desenha_pessoa_torso" alt="" coords="519,689,675,716"/>
+<area shape="rect" id="node28" href="$figuras_8c.html#abfef2da9251520509fc6382abdfb6f55" title="desenha_pessoa_braco" alt="" coords="518,537,677,564"/>
+<area shape="rect" id="node29" href="$figuras_8c.html#a144f0aea3ab162830846ddccfde3d17c" title="desenha_pessoa_perna" alt="" coords="518,588,677,615"/>
+<area shape="rect" id="node26" href="$figuras_8c.html#aeb3907596501e547ce9c7c33da9695a6" title="desenha_quadrado_textura\l_pessoa" alt="" coords="731,581,909,622"/>
+<area shape="rect" id="node32" href="$figuras_8c.html#a6dbe7fb69034a99ccb6a16eab54a4d00" title="bandeira_derrota" alt="" coords="538,487,657,513"/>
+</map>

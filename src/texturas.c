@@ -1,3 +1,10 @@
+/*!
+ * \file
+ *
+ * Este eh o arquivo onde sao implementadas as funcoes definidas ao arquivo \ref texturas.h .
+ *
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <GL/glu.h>
@@ -10,7 +17,6 @@ GLuint texturesID[QTD_TEX];
 //int SO = WINDOWS;
 int SO = LINUX;
 
-/* Funções para leitura de imagens .bmp */
 void getBitmapImageData( char* pFileName, BMPImage* pImage ) {
 
     FILE *pFile = NULL;

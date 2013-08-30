@@ -1,0 +1,7 @@
+<map id="desenha_pessoa_morte" name="desenha_pessoa_morte">
+<area shape="rect" id="node2" href="$figuras_8c.html#af7e1a9e29d5cd1733fd6c48f3f355bbb" title="desenha_pessoa_cabeca" alt="" coords="214,5,383,32"/>
+<area shape="rect" id="node4" href="$figuras_8c.html#a6bf1a3f2ae41b15e71524bbc0e0c6b03" title="desenha_pessoa_torso" alt="" coords="221,56,377,83"/>
+<area shape="rect" id="node5" href="$figuras_8c.html#abfef2da9251520509fc6382abdfb6f55" title="desenha_pessoa_braco" alt="" coords="219,107,378,133"/>
+<area shape="rect" id="node6" href="$figuras_8c.html#a144f0aea3ab162830846ddccfde3d17c" title="desenha_pessoa_perna" alt="" coords="219,157,378,184"/>
+<area shape="rect" id="node3" href="$figuras_8c.html#aeb3907596501e547ce9c7c33da9695a6" title="desenha_quadrado_textura\l_pessoa" alt="" coords="432,74,611,115"/>
+</map>

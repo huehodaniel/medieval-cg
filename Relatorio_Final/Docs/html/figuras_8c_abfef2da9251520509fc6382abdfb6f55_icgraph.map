@@ -1,0 +1,8 @@
+<map id="desenha_pessoa_braco" name="desenha_pessoa_braco">
+<area shape="rect" id="node2" href="$figuras_8c.html#a69b35092ac02e9da7fafc1db4f857f17" title="desenha_pessoa_jogo" alt="" coords="222,5,373,32"/>
+<area shape="rect" id="node5" href="$figuras_8c.html#afdee45acd1e265d26d79e4692821d8c7" title="desenha_pessoa_vitoria" alt="" coords="217,56,377,83"/>
+<area shape="rect" id="node6" href="$figuras_8c.html#a09eedd838dea10ae8183333b9e7f4e9e" title="desenha_pessoa_derrota" alt="" coords="214,107,381,133"/>
+<area shape="rect" id="node7" href="$figuras_8c.html#abfe66cb9381417df0a4fad111cb42fae" title="desenha_pessoa_morte" alt="" coords="217,157,377,184"/>
+<area shape="rect" id="node3" href="$figuras_8h.html#a1a8e45004fa5aae96342011cc0d9969e" title="Desenha uma pessoa, que eh mostrada ao lado do canhao." alt="" coords="429,81,493,108"/>
+<area shape="rect" id="node4" href="$main_8c.html#ac866c2165c3c1aad6ae7709126ea6794" title="Funcao que desenha todos os objetos na tela." alt="" coords="542,81,615,108"/>
+</map>

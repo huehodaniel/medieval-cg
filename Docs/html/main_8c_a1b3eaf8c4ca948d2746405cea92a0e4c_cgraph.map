@@ -1,0 +1,6 @@
+<map id="keyboardOp" name="keyboardOp">
+<area shape="rect" id="node2" href="$logica_8c.html#a7e75f9a5fac117e78e07da67598f8524" title="Funcao para iniciar o incremento da forca do tiro do jogador 1." alt="" coords="161,5,231,32"/>
+<area shape="rect" id="node3" href="$logica_8c.html#ab7d0f1373feec9e8b3e7756c6d31dc09" title="Funcao para finalizar o incremento da forca do tiro do jogador 1." alt="" coords="147,56,245,83"/>
+<area shape="rect" id="node4" href="$logica_8c.html#a7c28079eea5538e8b0086e5835d7806c" title="Funcao para iniciar o incremento da forca do tiro do jogador 2." alt="" coords="161,107,231,133"/>
+<area shape="rect" id="node5" href="$logica_8c.html#a70b2e386bbd23910c37953ca51226dbf" title="Funcao para finalizar o incremento da forca do tiro do jogador 2." alt="" coords="147,157,245,184"/>
+</map>

@@ -1,9 +1,12 @@
-/**
- * Coleção de macros utilitárias para ajudar em algumas tarefas.
- * Atenção: algumas dessas macros só funcionam se o compilador estiver configurado
- * para compilar o padrão C99. Outras funções ainda só rolam no modo G99, que é o C99 + extensões do GCC.
- * O makefile já esta preparado para disparar a compilação como G99
- **/
+/*!
+ * \file
+ *
+ * Neste arquivo sao definidas diversas macros para facilitar a programacao do jogo.
+ *
+ * Atencao: algumas dessas macros nao funcionam se o compilador estiver configurado
+ * para compilar o padrao C99. Outras funcoes ainda nao rolam no modo G99, que sao o C99 + extencoes do GCC.
+ * O makefile ja esta preparado para disparar a compilacao como G99
+ */
 
 #ifndef MACROS_H
 #define MACROS_H

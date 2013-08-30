@@ -1,3 +1,11 @@
+/*!
+ * \file
+ *
+ * Neste arquivo sao implementadas as funcoes referentes ao desenho isolado de cada objeto do jogo, as funcoes sao definidas
+ * no arquivo \ref figuras.h .
+ *
+ */
+
 #include <stdbool.h>
 #include <stdio.h>
 #include <math.h>

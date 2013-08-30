@@ -1,3 +1,12 @@
+/*!
+ * \file
+ *
+ * Este eh o arquivo de cabecalho utilizado pela parte relacionada as texturas utilizadas no projeto,
+ * aqui sao definidas as constantes utilizadas, e a assinatura das funcoes implementadas para a utilizacao
+ * de texturas.
+ *
+ */
+
 #ifndef TEXTURAS_H
 #define TEXTURAS_H
 
@@ -60,10 +69,39 @@ typedef struct {
     char* data;
 } BMPImage;
 
+/*!
+ * \brief Funcao para interpretar uma imagem no formato .bmp.
+ *
+ * Essa funcao interpreta um arquivo de imagem no formato .bmp e transforma esse arquivo em uma estrutura
+ * de dados ( \ref BMPImage ) virtual para a utilizacao dessa imagem como um textura.
+ *
+ * \param pFileName Caminho do arquivo de imagem no formato bmp.
+ * \param pImagem Estrutura de dados utilizada para armazenar a imagem lida.
+ *
+ * \return void
+ */
 void getBitmapImageData( char* pFileName, BMPImage* pImage );
 
+/*!
+ * \brief Funcao para ler uma imagem no formato .bmp.
+ *
+ * Essa funcao le um arquivo de imagem no formato .bmp e salva esse arquivo lido de acordo com um id,
+ * para a utilizacao da mesma no programa.
+ *
+ * \param img Caminho do arquivo de imagem.
+ * \param idImagem ID para diferenciacao das imagens lidas.
+ *
+ * \return void
+ */
 void funcoesDeCarregamento( char* img, int idImagem );
 
+/*!
+ * \brief Funcao para carregar todas as texturas utilizadas.
+ *
+ * Essa funcao realiza a leitura e identificacao de todas as texturas a serem utilizadas no programa.
+ *
+ * \return void
+ */
 void CarregaTexturas();
 
 #endif /* TEXTURAS_H */

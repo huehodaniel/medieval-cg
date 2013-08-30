@@ -1,0 +1,12 @@
+<map id="pessoa" name="pessoa">
+<area shape="rect" id="node2" href="$figuras_8c.html#a69b35092ac02e9da7fafc1db4f857f17" title="desenha_pessoa_jogo" alt="" coords="126,5,277,32"/>
+<area shape="rect" id="node8" href="$figuras_8c.html#afdee45acd1e265d26d79e4692821d8c7" title="desenha_pessoa_vitoria" alt="" coords="121,56,281,83"/>
+<area shape="rect" id="node9" href="$figuras_8c.html#a09eedd838dea10ae8183333b9e7f4e9e" title="desenha_pessoa_derrota" alt="" coords="118,157,285,184"/>
+<area shape="rect" id="node11" href="$figuras_8c.html#abfe66cb9381417df0a4fad111cb42fae" title="desenha_pessoa_morte" alt="" coords="121,107,281,133"/>
+<area shape="rect" id="node3" href="$figuras_8c.html#af7e1a9e29d5cd1733fd6c48f3f355bbb" title="desenha_pessoa_cabeca" alt="" coords="334,56,503,83"/>
+<area shape="rect" id="node5" href="$figuras_8c.html#a6bf1a3f2ae41b15e71524bbc0e0c6b03" title="desenha_pessoa_torso" alt="" coords="341,107,497,133"/>
+<area shape="rect" id="node6" href="$figuras_8c.html#abfef2da9251520509fc6382abdfb6f55" title="desenha_pessoa_braco" alt="" coords="339,157,498,184"/>
+<area shape="rect" id="node7" href="$figuras_8c.html#a144f0aea3ab162830846ddccfde3d17c" title="desenha_pessoa_perna" alt="" coords="339,5,498,32"/>
+<area shape="rect" id="node4" href="$figuras_8c.html#aeb3907596501e547ce9c7c33da9695a6" title="desenha_quadrado_textura\l_pessoa" alt="" coords="552,99,731,141"/>
+<area shape="rect" id="node10" href="$figuras_8c.html#a6dbe7fb69034a99ccb6a16eab54a4d00" title="bandeira_derrota" alt="" coords="359,208,478,235"/>
+</map>

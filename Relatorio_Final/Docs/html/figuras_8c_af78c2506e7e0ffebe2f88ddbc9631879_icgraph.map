@@ -1,0 +1,7 @@
+<map id="escreverTexto" name="escreverTexto">
+<area shape="rect" id="node2" href="$figuras_8c.html#a55080d153fe5b761d95dad9a8583e831" title="_letreiro" alt="" coords="165,56,233,83"/>
+<area shape="rect" id="node6" href="$figuras_8h.html#a7603cd1e0b0763937bec056aec598801" title="Desenha um letreiro de pontuacao, a posicao e o numero apresentado varia de acordo com os parametros..." alt="" coords="157,107,240,133"/>
+<area shape="rect" id="node3" href="$figuras_8h.html#a6a17a619cd3e2bcc674d27b21303fcfa" title="Desenha o letreiro mostrado no inicio do jogo." alt="" coords="292,5,367,32"/>
+<area shape="rect" id="node5" href="$figuras_8h.html#a58357dc610dd285a0888205b354a8b69" title="Desenha o letreiro apresentado ao final do jogo, apresentando o vencedor." alt="" coords="288,56,371,83"/>
+<area shape="rect" id="node4" href="$main_8c.html#ac866c2165c3c1aad6ae7709126ea6794" title="Funcao que desenha todos os objetos na tela." alt="" coords="419,56,493,83"/>
+</map>

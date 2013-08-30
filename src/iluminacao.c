@@ -1,3 +1,9 @@
+/*!
+ * \file
+ *
+ * Neste arquivo sao implementadas as funcoes utilizadas na ilumincao do jogo, essas funcoes sao definidas no arquivo \ref iluminacao.h
+ */
+
 #include <stdio.h>
 #include <math.h>
 #include <GL/glut.h>

@@ -1,3 +1,10 @@
+/*!
+ * \file
+ *
+ * Neste arquivo sao implementadas as funcoes definidas no arquivo \ref cenario.h
+ *
+ */
+
 #include <GL/glut.h>
 #include <GL/glu.h>
 #include <GL/gl.h>

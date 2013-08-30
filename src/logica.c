@@ -1,3 +1,10 @@
+/*!
+ * \file
+ *
+ * Neste arquivo sao implementadas as funcoes referentes a logica do jogo, que sao definidas no arquivo \ref logica.c
+ *
+ */
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
