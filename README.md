@@ -1,3 +1,9 @@
+#### Pra quem interessar
+
+Código importado de um repositório antes-privado do Bitbucket, para a aula de Computação Gráfica do primeiro semestre de 2013 no Instituto de Ciências e Tecnologia da Universidade Federal de São Paulo.
+
+É um código feito na faculdade. Não espere nada além disso. No mais, resto do leia-me a seguir.
+
 # BATALHA MEDIEVAL
 NÃO É MAIS VELHO-OESTE
 
@@ -49,3 +55,27 @@ git mergetool: se um rebase falhar, use para fazer o merge de cada arquivo com c
 git rebase --continue: depois do merge dar certo, use para prosseguir com o rebase anterior.  
 git rebase --abort: se quiser desistir do rebase, use para abortar.  
 git push: manda os commits feitos pro master remoto (i.e o repositório)
+	
+# Licença
+```
+The MIT License (MIT)
+
+Copyright (c) 2013-2017 [fullname]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+```
