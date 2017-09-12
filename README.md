@@ -60,7 +60,7 @@ git push: manda os commits feitos pro master remoto (i.e o repositório)
 ```
 The MIT License (MIT)
 
-Copyright (c) 2013-2017 [fullname]
+Copyright (c) 2013-2017 Daniel Gracia, Aruã Mello, Kim Tostes, Rafael Januzzi
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
