@@ -185,6 +185,14 @@ const int force_inc = 3;
  *
  * \return void;
  */
+void mover_canhao(int angulo, int* direcaoCanhao){
+    if(abs(*direcaoCanhao + angulo) < 40){
+        *direcaoCanhao += angulo;
+        dprintf("%d\n", *direcaoCanhao);
+    }
+}
+
+
 void keyboardOp(plInfo p1, plInfo p2) {
     if(keystate['m'] && p1.j == JOGANDO) {
          if(p1.p.x <= 0) force_p1(force_inc);
@@ -218,21 +226,15 @@ void keyboardOp(plInfo p1, plInfo p2) {
 		}
 	}
 	if(keystate['n']){
-		if(direcaoCanhao1 < 40)
-			direcaoCanhao1 += 2;
-			dprintf("%d\n", direcaoCanhao1);
+		mover_canhao(2, &direcaoCanhao1);
 	}
 	
 	if(keystate['j']){
-		if(direcaoCanhao1 > -40)
-			direcaoCanhao1 -= 2;
-			dprintf("%d\n", direcaoCanhao1);
+		mover_canhao(-2, &direcaoCanhao1);
 	}
 	
 	if(keystate['s']){
-		if(direcaoCanhao2 < 40)
-			direcaoCanhao2 += 2;
-			dprintf("%d\n", direcaoCanhao2);
+		mover_canhao(2, &direcaoCanhao2);
 	}
 	
 	if(keystate['x']){
